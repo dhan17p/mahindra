@@ -1,0 +1,90 @@
+_schema-version: "3.1"
+ID: mahindra
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: mahindra-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: mahindra-db
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm
+- name: mahindra-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: mahindra-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: mahindra-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: mahindra-destination-service
+    parameters:
+      content-target: true
+  - name: mahindra_html_repo_host
+    parameters:
+      service-key:
+        name: mahindra_html_repo_host-key
+  - name: uaa_mahindra
+    parameters:
+      service-key:
+        name: uaa_mahindra-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: mahindravendorapprouter_mahindra_html_repo_host
+          ServiceInstanceName: mahindra-html5-app-host-service
+          ServiceKeyName: mahindra_html_repo_host-key
+          sap.cloud.service: mahindravendorapprouter
+        - Authentication: OAuth2UserTokenExchange
+          Name: mahindravendorapprouter_uaa_mahindra
+          ServiceInstanceName: mahindra-xsuaa-service
+          ServiceKeyName: uaa_mahindra-key
+          sap.cloud.service: mahindravendorapprouter
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+resources:
+- name: mahindra-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: mahindra-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      version: 1.0.0
+    service: destination
+    service-name: mahindra-destination-service
+    service-plan: lite
+- name: mahindra_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: mahindra-html5-app-host-service
+    service-plan: app-host
+- name: uaa_mahindra
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: mahindra-xsuaa-service
+    service-plan: application
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npx cds build --production
