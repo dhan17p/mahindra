@@ -35,8 +35,13 @@ annotate service.VOB with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'Project Code & Description',
-                Value : project_code_description,
+                Value : project_code,
+                Label : 'project_code',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : project_description,
+                Label : 'project_description',
             },
             {
                 $Type : 'UI.DataField',
@@ -212,5 +217,19 @@ annotate service.VOB2 with @(
                 Value : id,
                 Label : 'id',
             },],
+    }
+);
+annotate service.VOB with @(
+    UI.HeaderInfo : {
+        Title : {
+            $Type : 'UI.DataField',
+            Value : project_code,
+        },
+        TypeName : '',
+        TypeNamePlural : '',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : project_description,
+        },
     }
 );

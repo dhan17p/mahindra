@@ -3,7 +3,8 @@ namespace db;
 entity VOB {
     key id                        : UUID;
         part_system               : String;
-        project_code_description  : String;
+        project_code  : String;
+        project_description:String;
         sop                       : String;
         sector                    : String;
         potential_suppliers       : String;

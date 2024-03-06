@@ -1,183 +1,209 @@
 {
-  "_version": "1.59.0",
-  "sap.app": {
-    "id": "vobmah",
-    "type": "application",
-    "i18n": "i18n/i18n.properties",
-    "applicationVersion": {
-      "version": "0.0.1"
-    },
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
-    "resources": "resources.json",
-    "sourceTemplate": {
-      "id": "@sap/generator-fiori:lrop",
-      "version": "1.12.5",
-      "toolsId": "2b8a6f77-0e0b-47e3-8d2a-1a59968fc9db"
-    },
-    "dataSources": {
-      "mainService": {
-        "uri": "/odata/v4/my/",
-        "type": "OData",
-        "settings": {
-          "annotations": [],
-          "odataVersion": "4.0"
-        }
-      }
-    },
-    "crossNavigation": {
-      "inbounds": {
-        "vobsemobj-display": {
-          "semanticObject": "vobsemobj",
-          "action": "display",
-          "title": "{{flpTitle}}",
-          "signature": {
-            "parameters": {},
-            "additionalParameters": "allowed"
-          }
-        }
-      }
-    }
-  },
-  "sap.ui": {
-    "technology": "UI5",
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
-    },
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    }
-  },
-  "sap.ui5": {
-    "flexEnabled": true,
-    "dependencies": {
-      "minUI5Version": "1.121.1",
-      "libs": {
-        "sap.m": {},
-        "sap.ui.core": {},
-        "sap.ushell": {},
-        "sap.fe.templates": {}
-      }
-    },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
-    },
-    "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleName": "vobmah.i18n.i18n"
-        }
-      },
-      "": {
-        "dataSource": "mainService",
-        "preload": true,
-        "settings": {
-          "synchronizationMode": "None",
-          "operationMode": "Server",
-          "autoExpandSelect": true,
-          "earlyRequests": true
-        }
-      },
-      "@i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "uri": "i18n/i18n.properties"
-      }
-    },
-    "resources": {
-      "css": []
-    },
-    "routing": {
-      "routes": [
-        {
-          "pattern": ":?query:",
-          "name": "VOBList",
-          "target": "VOBList"
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "vobmah",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
         },
-        {
-          "pattern": "VOB({key}):?query:",
-          "name": "VOBObjectPage",
-          "target": "VOBObjectPage"
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.12.5",
+            "toolsId": "2b8a6f77-0e0b-47e3-8d2a-1a59968fc9db"
         },
-        {
-          "pattern": "VOB2({key}):?query:",
-          "name": "VOB2ObjectPage",
-          "target": "VOB2ObjectPage"
-        }
-      ],
-      "targets": {
-        "VOBList": {
-          "type": "Component",
-          "id": "VOBList",
-          "name": "sap.fe.templates.ListReport",
-          "options": {
-            "settings": {
-              "contextPath": "/VOB",
-              "variantManagement": "Page",
-              "navigation": {
-                "VOB": {
-                  "detail": {
-                    "route": "VOBObjectPage"
-                  }
-                },
-                "VOB2": {
-                  "detail": {
-                    "route": "VOB2ObjectPage"
-                  }
+        "dataSources": {
+            "mainService": {
+                "uri": "/odata/v4/my/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "odataVersion": "4.0"
                 }
-              },
-              "views": {
-                "paths": [
-                  {
-                    "key": "tableView2",
-                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView2"
-                  },
-                  {
-                    "key": "tableView",
-                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView",
-                    "entitySet": "VOB2"
-                  }
-                ]
-              }
             }
-          }
         },
-        "VOBObjectPage": {
-          "type": "Component",
-          "id": "VOBObjectPage",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "editableHeaderContent": false,
-              "contextPath": "/VOB",
-              "navigation": {}
+        "crossNavigation": {
+            "inbounds": {
+                "vobsemobj-display": {
+                    "semanticObject": "vobsemobj",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
+                }
             }
-          }
-        },
-        "VOB2ObjectPage": {
-          "type": "Component",
-          "id": "VOB2ObjectPage",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "contextPath": "/VOB2",
-              "navigation": {}
-            }
-          }
         }
-      }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.121.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "vobmah.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "VOBList",
+                    "target": "VOBList"
+                },
+                {
+                    "pattern": "VOB({key}):?query:",
+                    "name": "VOBObjectPage",
+                    "target": "VOBObjectPage"
+                },
+                {
+                    "pattern": "VOB2({key}):?query:",
+                    "name": "VOB2ObjectPage",
+                    "target": "VOB2ObjectPage"
+                }
+            ],
+            "targets": {
+                "VOBList": {
+                    "type": "Component",
+                    "id": "VOBList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/VOB",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "VOB": {
+                                    "detail": {
+                                        "route": "VOBObjectPage"
+                                    }
+                                },
+                                "VOB2": {
+                                    "detail": {
+                                        "route": "VOB2ObjectPage"
+                                    }
+                                }
+                            },
+                            "views": {
+                                "paths": [
+                                    {
+                                        "key": "tableView2",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView2"
+                                    },
+                                    {
+                                        "key": "tableView",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView",
+                                        "entitySet": "VOB2"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "VOBObjectPage": {
+                    "type": "Component",
+                    "id": "VOBObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "contextPath": "/VOB",
+                            "navigation": {},
+                            "content": {
+                                "footer": {
+                                    "actions": {
+                                        "approveid": {
+                                            "press": "vobmah.ext.controller.Approve.Approvemethod",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Approve"
+                                        },
+                                        "rejectid": {
+                                            "press": "vobmah.ext.controller.Reject.rejectmethod",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Reject",
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "approveid"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "VOB2ObjectPage": {
+                    "type": "Component",
+                    "id": "VOB2ObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/VOB2",
+                            "navigation": {}
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "mahindravendorapprouter"
     }
-  },
-  "sap.fiori": {
-    "registrationIds": [],
-    "archeType": "transactional"
-  }
 }
