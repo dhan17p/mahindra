@@ -4,28 +4,23 @@ annotate service.VOB with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'part_system',
+            Label : 'Part System',
             Value : part_system,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'project_code_description',
+            Label : 'Project Code & Description',
             Value : project_code_description,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'sop',
+            Label : 'SOP',
             Value : sop,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'potential_suppliers',
-            Value : potential_suppliers,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'supplier_assessment_score',
-            Value : supplier_assessment_score,
+            Value : sector,
+            Label : 'Sector',
         },
     ]
 );
@@ -35,37 +30,42 @@ annotate service.VOB with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'part_system',
+                Label : 'Part System',
                 Value : part_system,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'project_code_description',
+                Label : 'Project Code & Description',
                 Value : project_code_description,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'sop',
+                Label : 'SOP',
                 Value : sop,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'potential_suppliers',
+                Value : sector,
+                Label : 'Sector',
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Potential Suppliers',
                 Value : potential_suppliers,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'supplier_assessment_score',
+                Label : 'Supplier assessment score',
                 Value : supplier_assessment_score,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'forum',
+                Label : 'FORUM',
                 Value : forum,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'presented_on_by',
+                Label : 'Presented On & By',
                 Value : presented_on_by,
             },
         ],
@@ -89,12 +89,28 @@ annotate service.YOY with @(
     UI.LineItem #YOYAnnualProjections : [
         {
             $Type : 'UI.DataField',
-            Value : vob_id,
-            Label : 'vob_id',
+            Value : MGSP_Part_Nos,
+            Label : 'MGSP Part Nos',
         },{
             $Type : 'UI.DataField',
-            Value : total,
-            Label : 'total',
+            Value : proposed_vf_part_no,
+            Label : 'Proposed VF Part No',
+        },{
+            $Type : 'UI.DataField',
+            Value : application_model,
+            Label : 'Application Model',
+        },{
+            $Type : 'UI.DataField',
+            Value : f24,
+            Label : 'F24',
+        },{
+            $Type : 'UI.DataField',
+            Value : f25,
+            Label : 'F25',
+        },{
+            $Type : 'UI.DataField',
+            Value : f26,
+            Label : 'F26',
         },]
 );
 annotate service.VOB with @(
