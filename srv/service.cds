@@ -14,8 +14,14 @@ service MyService {
 
     // for 3rd screen
  
+         @odata.draft.enabled
     entity VOB_Screen3 as projection on db.VOB_Screen3;
     entity YOY_Screen3 as projection on db.YOY_Screen3;
 
 
+
+    // for 4th screen
+     @odata.draft.enabled
+    entity VOB_Screen4 as projection on db.VOB_Screen4;
+    entity YOY_Screen4 as projection on db.YOY_Screen4;
 }
