@@ -10,7 +10,6 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
              * @memberOf vobscreen3.ext.controller.ObjectPageController
              */
 				onInit: function () {
-					debugger
 				function generateUniqueId() {
 					// Generate a random number
 					var randomNumber = Math.floor(Math.random() * 1000000);
@@ -23,8 +22,6 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 					return uniqueId;
 				}
-				
-				
 				// you can access the Fiori elements extensionAPI via this.base.getExtensionAPI
 				var oModel = this.base.getExtensionAPI().getModel();
 				let header_anchor = this.base.getView().mAggregations.content[0].mAggregations.headerTitle;
@@ -32,7 +29,6 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 
 				let oHbox =  sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--mainHBox").getItems()[1];
-
 
 // 				header_anchor.addAction(new sap.m.Button({
 // 					text: "Add Vendor",
