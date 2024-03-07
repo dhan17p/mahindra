@@ -110,7 +110,6 @@ entity YOY_Screen3 {
         yoy_vov_scr2        : Association to VOB_Screen3;
 }
 
-<<<<<<< HEAD
 entity Files: cuid, managed{
     // key id1 : String;
     @Core.MediaType: mediaType
@@ -122,7 +121,6 @@ entity Files: cuid, managed{
     Folder : String;
     url: String;
 }
-=======
 
 //Screen 4
 
@@ -156,4 +154,3 @@ entity YOY_Screen4 {
 }
 
 
->>>>>>> 9437b508adcd0fc5073d4fe4be18a8341b608345
