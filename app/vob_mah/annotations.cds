@@ -36,12 +36,12 @@ annotate service.VOB with @(
             {
                 $Type : 'UI.DataField',
                 Value : project_code,
-                Label : 'project_code',
+                Label : 'Project Code',
             },
             {
                 $Type : 'UI.DataField',
                 Value : project_description,
-                Label : 'project_description',
+                Label : 'Project Description',
             },
             {
                 $Type : 'UI.DataField',

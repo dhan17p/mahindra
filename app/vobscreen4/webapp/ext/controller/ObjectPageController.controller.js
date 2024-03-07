@@ -1,38 +1,44 @@
 sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExtension) {
 	'use strict';
 
-	return ControllerExtension.extend('vobscreen3.ext.controller.ObjectPageController', {
+	return ControllerExtension.extend('vobscreen4.ext.controller.ObjectPageController', {
 		// this section allows to extend lifecycle hooks or hooks provided by Fiori elements
 		override: {
 			/**
              * Called when a controller is instantiated and its View controls (if available) are already created.
              * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-             * @memberOf vobscreen3.ext.controller.ObjectPageController
+             * @memberOf vobscreen4.ext.controller.ObjectPageController
              */
-				onInit: function () {
-					debugger
-				function generateUniqueId() {
-					// Generate a random number
-					var randomNumber = Math.floor(Math.random() * 1000000);
+			onInit: function () {
+				// function generateUniqueId() {
+					
+				// 	// Generate a random number
+				// 	var randomNumber = Math.floor(Math.random() * 1000000);
 
-					// Get the current timestamp
-					var timestamp = new Date().getTime();
+				// 	// Get the current timestamp
+				// 	var timestamp = new Date().getTime();
 
-					// Combine timestamp and random number to create a unique ID
-					var uniqueId = timestamp + '-' + randomNumber;
+				// 	// Combine timestamp and random number to create a unique ID
+				// 	var uniqueId = timestamp + '-' + randomNumber;
 
-					return uniqueId;
-				}
-				
-				
-				// you can access the Fiori elements extensionAPI via this.base.getExtensionAPI
-				var oModel = this.base.getExtensionAPI().getModel();
+				// 	return uniqueId;
+				// }
+				// // you can access the Fiori elements extensionAPI via this.base.getExtensionAPI
+				// var oModel = this.base.getExtensionAPI().getModel();
 				let header_anchor = this.base.getView().mAggregations.content[0].mAggregations.headerTitle;
-				header_anchor.destroyActions();
+				// header_anchor.destroyActions();
 
 
-				let oHbox =  sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--mainHBox").getItems()[1];
-
+				// let oHbox =  sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--mainHBox").getItems()[1];
+				header_anchor.addAction(new sap.m.Button({
+					text: "Delete",
+					type:"Accept",
+					press:function async(oEvent){
+						var tableitems = oEvent.getSource().getParent().getParent().getParent().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mAggregations.items;
+						
+debugger
+					}
+				}))
 
 // 				header_anchor.addAction(new sap.m.Button({
 // 					text: "Add Vendor",
@@ -253,7 +259,7 @@ for (let j = 0; j < vendorNames.length; j++) {
 	debugger
     let vendor_name = vendorNames[j];
 
-    let oHbox = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--mainHBox").getItems()[1];
+    let oHbox = sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Vobobject--mainHBox").getItems()[1];
     let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
     let list_inp_field = [];
     let input_field;

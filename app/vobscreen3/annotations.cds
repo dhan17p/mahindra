@@ -4,27 +4,27 @@ annotate service.VOB_Screen3 with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'part_system',
+            Label : 'Part System',
             Value : part_system,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'project_code',
+            Label : 'Project Code',
             Value : project_code,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'project_description',
+            Label : 'Project Description',
             Value : project_description,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'sop',
+            Label : 'SOP',
             Value : sop,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'sector',
+            Label : 'Sector',
             Value : sector,
         },
     ]
@@ -35,47 +35,47 @@ annotate service.VOB_Screen3 with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'part_system',
+                Label : 'Part System',
                 Value : part_system,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'project_code',
+                Label : 'Project Code',
                 Value : project_code,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'project_description',
+                Label : 'Project Description',
                 Value : project_description,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'sop',
+                Label : 'SOP',
                 Value : sop,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'sector',
+                Label : 'Sector',
                 Value : sector,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'potential_suppliers',
+                Label : 'Potential Suppliers',
                 Value : potential_suppliers,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'supplier_assessment_score',
+                Label : 'Supplier assessment score',
                 Value : supplier_assessment_score,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'forum',
+                Label : 'FORUM',
                 Value : forum,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'presented_on_by',
+                Label : 'Presented On & By',
                 Value : presented_on_by,
             },
         ],
@@ -95,7 +95,7 @@ annotate service.VOB_Screen3 with @(
             {
                 $Type : 'UI.DataField',
                 Value : forum,
-                Label : 'forum',
+                Label : 'FORUM',
             },{
                 $Type : 'UI.DataField',
                 Value : id,
@@ -103,31 +103,31 @@ annotate service.VOB_Screen3 with @(
             },{
                 $Type : 'UI.DataField',
                 Value : project_code,
-                Label : 'project_code',
+                Label : 'Project Code',
             },{
                 $Type : 'UI.DataField',
                 Value : project_description,
-                Label : 'project_description',
+                Label : 'Project Description',
             },{
                 $Type : 'UI.DataField',
                 Value : sop,
-                Label : 'sop',
+                Label : 'SOP',
             },{
                 $Type : 'UI.DataField',
                 Value : sector,
-                Label : 'sector',
+                Label : 'Sector',
             },{
                 $Type : 'UI.DataField',
                 Value : potential_suppliers,
-                Label : 'potential_suppliers',
+                Label : 'Potential Suppliers',
             },{
                 $Type : 'UI.DataField',
                 Value : presented_on_by,
-                Label : 'presented_on_by',
+                Label : 'Presented On & By',
             },{
                 $Type : 'UI.DataField',
                 Value : part_system,
-                Label : 'part_system',
+                Label : 'Part System',
             },],
     }
 );
