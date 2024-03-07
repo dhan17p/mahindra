@@ -32,14 +32,26 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 				// let oHbox =  sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--mainHBox").getItems()[1];
 				header_anchor.addAction(new sap.m.Button({
 					text: "Delete",
-					type:"Accept",
-					press:function async(oEvent){
-						var tableitems = oEvent.getSource().getParent().getParent().getParent().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mAggregations.items;
-						
-debugger
+					type: "Accept",
+					press: function async(oEvent) {
+						debugger
+						var table = oEvent.getSource().getParent().getParent().getParent().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0]
+						var tableItems = oEvent.getSource().getParent().getParent().getParent().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mAggregations.items;
+						var venodVBox = oEvent.getSource().getParent().getParent().getParent().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[1].mAggregations.items
+				
+						// Iterate through table items in reverse to safely remove selected items
+						for (var i = tableItems.length - 1; i >= 0; i--) {
+							var item = tableItems[i];
+							if (item.getSelected()) {
+								table.removeItem(item);
+								for( var v = 0 ; v < venodVBox.length; v++ ){
+									var itemremovevBox = venodVBox[v].getItems()[1].getItems()[i]
+									venodVBox[v].getItems()[1].removeItem(itemremovevBox)								}
+							}
+							
+						}
 					}
-				}))
-
+				}));
 // 				header_anchor.addAction(new sap.m.Button({
 // 					text: "Add Vendor",
 // 					type: "Accept",
