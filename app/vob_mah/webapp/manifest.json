@@ -63,7 +63,8 @@
                 "sap.m": {},
                 "sap.ui.core": {},
                 "sap.ushell": {},
-                "sap.fe.templates": {}
+                "sap.fe.templates": {},
+                "sap.suite.ui.commons": {}
             }
         },
         "contentDensities": {
@@ -93,7 +94,11 @@
             }
         },
         "resources": {
-            "css": []
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
         },
         "routing": {
             "routes": [
@@ -160,23 +165,16 @@
                             "contextPath": "/VOB",
                             "navigation": {},
                             "content": {
-                                "footer": {
-                                    "actions": {
-                                        "approveid": {
-                                            "press": "vobmah.ext.controller.Approve.Approvemethod",
-                                            "visible": true,
-                                            "enabled": true,
-                                            "text": "Approve"
-                                        },
-                                        "rejectid": {
-                                            "press": "vobmah.ext.controller.Reject.rejectmethod",
-                                            "visible": true,
-                                            "enabled": true,
-                                            "text": "Reject",
+                                "body": {
+                                    "sections": {
+                                        "Comments": {
+                                            "template": "vobmah.ext.fragment.Comments",
                                             "position": {
                                                 "placement": "After",
-                                                "anchor": "approveid"
-                                            }
+                                                "anchor": "YOYAnnualProjections"
+                                            },
+                                            "title": "Comments",
+                                            "type": "XMLFragment"
                                         }
                                     }
                                 }
@@ -193,6 +191,15 @@
                             "contextPath": "/VOB2",
                             "navigation": {}
                         }
+                    }
+                }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController": {
+                        "controllerName": "vobmah.ext.controller.Save"
                     }
                 }
             }

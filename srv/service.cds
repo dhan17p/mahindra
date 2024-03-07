@@ -6,4 +6,16 @@ service MyService {
        @odata.draft.enabled
     entity VOB2 as projection on db.VOB2;
     entity YOY as projection on db.YOY;
+         @odata.draft.enabled
+    entity VOB_Screen2 as projection on db.VOB_Screen2;
+    entity YOY_Screen2 as projection on db.YOY_Screen2;
+
+
+
+    // for 3rd screen
+ 
+    entity VOB_Screen3 as projection on db.VOB_Screen3;
+    entity YOY_Screen3 as projection on db.YOY_Screen3;
+
+
 }

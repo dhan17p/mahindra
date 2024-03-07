@@ -6,12 +6,12 @@
     "license": "UNLICENSED",
     "private": true,
     "dependencies": {
-        "@sap/cds": "^7",
-        "@sap/cds-hana": "^2",
-        "express": "^4",
         "@sap-cloud-sdk/http-client": "^3.7.0",
         "@sap-cloud-sdk/resilience": "^3.7.0",
+        "@sap/cds": "^7",
+        "@sap/cds-hana": "^2",
         "@sap/xssec": "^3.3.5",
+        "express": "^4",
         "passport": "^0.6.0"
     },
     "devDependencies": {
@@ -25,14 +25,18 @@
         "watch-vob_mah": "cds watch --open vob_mah/webapp/index.html?sap-ui-xx-viewCache=false",
         "undeploy": "cf undeploy mahindra --delete-services --delete-service-keys --delete-service-brokers",
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
-        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+        "watch-vob_screen2": "cds watch --open vob_screen2/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-vobscreen3": "cds watch --open vobscreen3/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "requires": {
-            "auth":"dummy"
+            "auth": "dummy"
         }
     },
     "sapux": [
-        "app/vob_mah"
+        "app/vob_mah",
+        "app/vob_screen2",
+        "app/vobscreen3"
     ]
 }

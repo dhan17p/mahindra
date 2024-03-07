@@ -233,3 +233,45 @@ annotate service.VOB with @(
         },
     }
 );
+annotate service.VOB with @(
+    UI.FieldGroup #Comments : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : Team_Recommendation_with_Rationale,
+                Label : 'Team_Recommendation_with_Rationale',
+            },{
+                $Type : 'UI.DataField',
+                Value : Decision_MOM_of_Forum,
+                Label : 'Decision_MOM_of_Forum',
+            },{
+                $Type : 'UI.DataField',
+                Value : Development_Supply_Agreement_Whether_Signed,
+                Label : 'Development_Supply_Agreement_Whether_Signed',
+            },{
+                $Type : 'UI.DataField',
+                Value : Tooling_Agreement_signed,
+                Label : 'Tooling_Agreement_signed',
+            },{
+                $Type : 'UI.DataField',
+                Value : Supplier_Code_of_Conduct,
+                Label : 'Supplier_Code_of_Conduct',
+            },],
+    }
+);
+annotate service.VOB with {
+    Team_Recommendation_with_Rationale @UI.MultiLineText : true
+};
+annotate service.VOB with {
+    Decision_MOM_of_Forum @UI.MultiLineText : true
+};
+annotate service.VOB with {
+    Development_Supply_Agreement_Whether_Signed @UI.MultiLineText : true
+};
+annotate service.VOB with {
+    Tooling_Agreement_signed @UI.MultiLineText : true
+};
+annotate service.VOB with {
+    Supplier_Code_of_Conduct @UI.MultiLineText : true
+};
