@@ -50,8 +50,7 @@ sap.ui.define([
 							debugger
 							cdialog.close();
 							// var incomplete_items = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Attachments--11").destroyIncompleteItems();
-							sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Attachments--11").mAggregations.items[1].destroyIncompleteItems();
-							cdialog.destroyContent();
+                            sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Attachments--11").mAggregations.items[1].destroyIncompleteItems();							cdialog.destroyContent();
 							dialogOpen = false; // Reset the flag when dialog is closed
 						},
 
@@ -106,8 +105,8 @@ sap.ui.define([
 					cdialog.destroyContent();
 					dialogOpen = false;
 					// var oUploadSet = this.byId("uploadSet");
-					var oUploadSet = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Attachments--11").mAggregations.items[1]
-					oUploadSet.setHttpRequestMethod("PUT");
+					var oUploadSet = sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Attachments--11").mAggregations.items[1];				
+                    oUploadSet.setHttpRequestMethod("PUT");
 					oUploadSet.uploadItem(item);
 				})
 				.catch((err) => {
@@ -156,21 +155,28 @@ sap.ui.define([
 				// uploadedOnText.addStyleClass("uptime")
 				// contentVBox.addItem(uploadedOnText);
 		
-			
 				var vb1 = new sap.m.VBox("vb1");
 				vb1.addItem(
 					new sap.ui.webc.main.Tree("treee", {
 						itemClick: async function(params) {
 							let selectedItem = params.mParameters.item;
-							let path = selectedItem.getText();
-							let parent = selectedItem.getParent();
+							let path = '';
+							let currentFolder = selectedItem;
 				
 							// Traverse up the hierarchy and construct the path
-							while (parent !== null && parent.getId() !== 'treee') {
-								path = `${parent.getText()} / ${path}`;
-								parent = parent.getParent();
+							while (currentFolder && currentFolder.getId() !== 'treee') {
+								// Get the icon and name of the current folder
+								let icon = currentFolder.getIcon();
+								let name = currentFolder.getText();
+				
+								// Construct the path by adding the icon and name
+								path = `${icon} ${name} / ${path}`;
+				
+								// Move to the parent folder
+								currentFolder = currentFolder.getParent();
 							}
 				
+							// Set the footer text with the constructed path
 							sap.ui.getCore().byId("treee").setFooterText(path);
 						},
 						footerText: "Click on the folder to select path",
@@ -199,12 +205,11 @@ sap.ui.define([
 									new sap.ui.webc.main.TreeItem("folder_2-folder_2.1", {
 										icon: "sap-icon://folder-2",
 										text: "Existing MGSP PO Price1",
-										items : [
+										items: [
 											new sap.ui.webc.main.TreeItem("folder_2-folder_2.1-folder2.1.1", {
 												icon: "sap-icon://folder-2",
 												text: "Target Price1"
 											})
-											
 										]
 									})
 								]
@@ -212,6 +217,7 @@ sap.ui.define([
 						]
 					})
 				);
+				
 				
 			
 				

@@ -64,7 +64,8 @@
         "sap.ui.core": {},
         "sap.ushell": {},
         "sap.fe.templates": {},
-        "sap.suite.ui.commons" : {}
+        "sap.suite.ui.commons": {},
+        "sap.ui.webc.main" : {}
       }
     },
     "contentDensities": {
@@ -160,6 +161,15 @@
                         "anchor": "Vobobject"
                       },
                       "title": "comments",
+                      "type": "XMLFragment"
+                    },
+                    "Attachments": {
+                      "template": "vobscreen4.ext.fragment.Attachments",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Comments"
+                      },
+                      "title": "Attachments",
                       "type": "XMLFragment"
                     }
                   }

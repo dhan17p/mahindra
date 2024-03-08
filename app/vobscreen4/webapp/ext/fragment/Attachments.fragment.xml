@@ -3,11 +3,11 @@ displayBlock="true"
 xmlns:mvc="sap.ui.core.mvc"
 	xmlns:upload="sap.m.upload">
 	<VBox id= "11" >
-	<Button id="dewdewdw" visible="false" core:require="{ handler: 'vobscreen3/ext/fragment/Attachments'}" text="Jhggfds" press="handler.onPress" />
+	<Button id="dewdewdw" visible="false" core:require="{ handler: 'vobscreen4/ext/fragment/Attachments'}" text="Jhggfds" press="handler.onPress" />
 						<upload:UploadSet
 					
 					id="uploadSet"
-					core:require="{ handler: 'vobscreen3/ext/fragment/Attachments'}"
+					core:require="{ handler: 'vobscreen4/ext/fragment/Attachments'}"
 					instantUpload="false"
 					uploadEnabled="true"
 					showIcons="true"
