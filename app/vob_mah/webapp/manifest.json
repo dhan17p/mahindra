@@ -156,6 +156,13 @@
                                         }
                                     }
                                 }
+                            },
+                            "controlConfiguration": {
+                                "vob_yoy/@com.sap.vocabularies.UI.v1.LineItem#YOYAnnualProjections": {
+                                    "tableSettings": {
+                                        "type": "GridTable"
+                                    }
+                                }
                             }
                         }
                     }
