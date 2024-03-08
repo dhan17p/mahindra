@@ -30,8 +30,24 @@
 			<Label text="Inco Terms"> </Label>
 			<Label text="Payment Terms"> </Label>
 			<Label text="Transport Cost"> </Label>
-		   <Label text="Capex"> </Label>
+				<HBox>
+			<Label text="Capex"> </Label>
+			<VBox>
+			<Label text="Tooling / Dies / Moulds / Fixtures"> </Label>
+			<Label text="Inspection Gauges"> </Label>
+			</VBox>
+			</HBox>
+
+			<HBox>
 			<Label text="Revenue"> </Label>
+			<VBox>
+			<Label text="Testing / Validation"> </Label>
+			<Label text="Engg Fees"> </Label>
+			<Label text="Proto Tooling"> </Label>
+			<Label text="Logistics Trolliesg"> </Label>
+			</VBox>
+			</HBox>
+			<Label text="Total Landed Investment Settled"> </Label>
 			</VBox>
 		</VBox>
 		<HBox class="VendorHBoxClass"></HBox>
