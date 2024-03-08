@@ -10,7 +10,7 @@ annotate service.VOB_Screen4b with @(
         {
             $Type : 'UI.DataField',
             Label : 'project Code & Description',
-            Value : project_code,
+            Value : project_description,
         },
         {
             $Type : 'UI.DataField',
@@ -84,7 +84,7 @@ annotate service.VOB_Screen4b with @(
     UI.HeaderInfo : {
         Title : {
             $Type : 'UI.DataField',
-            Value : project_code,
+            Value : project_description,
         },
         TypeName : '',
         TypeNamePlural : '',

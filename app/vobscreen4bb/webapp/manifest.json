@@ -127,7 +127,8 @@
                     "route": "VOB_Screen4bObjectPage"
                   }
                 }
-              }
+              },
+              "initialLoad": "Enabled"
             }
           }
         },
@@ -139,9 +140,29 @@
             "settings": {
               "contextPath": "/VOB_Screen4b",
               "navigation": {},
+              "editableHeaderContent": false,
               "content": {
                 "body": {
-                  "sections": {}
+                  "sections": {
+                    "Vobobject": {
+                      "template": "vobscreen4bb.ext.fragment.Vobobject",
+                      "position": {
+                        "anchor": "GeneratedFacet1",
+                        "placement": "After"
+                      },
+                      "type": "XMLFragment",
+                      "title": "VOB"
+                    },
+                    "Comments": {
+                      "template": "vobscreen4bb.ext.fragment.Comments",
+                      "position": {
+                        "anchor": "Vobobject",
+                        "placement": "After"
+                      },
+                      "type": "XMLFragment",
+                      "title": "Comments"
+                    }
+                  }
                 }
               }
             }

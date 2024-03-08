@@ -129,7 +129,8 @@
                     "route": "VOB_Screen4ObjectPage"
                   }
                 }
-              }
+              },
+              "initialLoad": "Enabled"
             }
           }
         },
@@ -160,7 +161,7 @@
                         "placement": "After",
                         "anchor": "Vobobject"
                       },
-                      "title": "comments",
+                      "title": "Comments",
                       "type": "XMLFragment"
                     },
                     "Attachments": {

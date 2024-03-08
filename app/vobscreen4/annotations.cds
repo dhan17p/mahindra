@@ -9,11 +9,6 @@ annotate service.VOB_Screen4 with @(
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Project Code',
-            Value : project_code,
-        },
-        {
-            $Type : 'UI.DataField',
             Label : 'Project Description',
             Value : project_description,
         },
@@ -55,8 +50,8 @@ annotate service.VOB_Screen4 with @(
             },
             {
                 $Type : 'UI.DataField',
+                Value : vob_suplier4.suplier,
                 Label : 'Potential Suppliers',
-                Value : potential_suppliers,
             },
             {
                 $Type : 'UI.DataField',
@@ -83,4 +78,14 @@ annotate service.VOB_Screen4 with @(
             Target : '@UI.FieldGroup#GeneratedGroup1',
         },
     ]
+);
+annotate service.VOB_Screen4 with @(
+    UI.HeaderInfo : {
+        Title : {
+            $Type : 'UI.DataField',
+            Value : project_description,
+        },
+        TypeName : '',
+        TypeNamePlural : '',
+    }
 );

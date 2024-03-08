@@ -45,7 +45,7 @@ sap.ui.define([
                 // userNameClicked: "onUserNameClick",
                 // select: "onPressItems",
                 // userPicture: "Photo",
-                text: 'Demo Comment1',
+                text: 'Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat',
                 userName: "Team Recommendation with Rationale"
             });
             var oTimelineItem1 = new sap.suite.ui.commons.TimelineItem(("thisuniqid2"+generateUniqueId()),{
@@ -55,7 +55,7 @@ sap.ui.define([
                 // userNameClicked: "onUserNameClick",
                 // select: "onPressItems",
                 // userPicture: "Photo",
-                text: 'Demo Comment Decision & MOM of Forum',
+                text: 'Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat',
                 userName: "Decision & MOM of Forum"
             });
             var oTimelineItem2 = new sap.suite.ui.commons.TimelineItem(("thisuniqid2"+generateUniqueId()),{
@@ -65,13 +65,35 @@ sap.ui.define([
                 // userNameClicked: "onUserNameClick",
                 // select: "onPressItems",
                 // userPicture: "Photo",
-                text: 'Demo Comment Tooling Agreement signed',
+                text: 'Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat',
+                userName: "Development Supply Agreement Whether Signed ? (If no- LoBA will share after DSA agreement.)"                
+            });
+            var oTimelineItem3 = new sap.suite.ui.commons.TimelineItem(("thisuniqid2"+generateUniqueId()),{
+                dateTime: "12/3/34",
+                // title: "demo title1",
+                userNameClickable: false,
+                // userNameClicked: "onUserNameClick",
+                // select: "onPressItems",
+                // userPicture: "Photo",
+                text: 'Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat',
                 userName: "Tooling Agreement signed"                
+            });
+            var oTimelineItem4= new sap.suite.ui.commons.TimelineItem(("thisuniqid2"+generateUniqueId()),{
+                dateTime: "12/3/34",
+                // title: "demo title1",
+                userNameClickable: false,
+                // userNameClicked: "onUserNameClick",
+                // select: "onPressItems",
+                // userPicture: "Photo",
+                text: 'Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat',
+                userName: "Supplier Code of Conduct"                
             });
             
             cdialog.addContent(oTimelineItem);
             cdialog.addContent(oTimelineItem1);
             cdialog.addContent(oTimelineItem2);
+            cdialog.addContent(oTimelineItem3);
+            cdialog.addContent(oTimelineItem4);
     
             cdialog.open(); // Open the dialog
 debugger

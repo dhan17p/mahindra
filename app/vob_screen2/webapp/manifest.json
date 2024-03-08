@@ -64,7 +64,7 @@
         "sap.ui.core": {},
         "sap.ushell": {},
         "sap.fe.templates": {},
-        "sap.suite.ui.commons" : {}
+        "sap.suite.ui.commons": {}
       }
     },
     "contentDensities": {
@@ -128,7 +128,8 @@
                     "route": "VOB_Screen2ObjectPage"
                   }
                 }
-              }
+              },
+              "initialLoad": "Enabled"
             }
           }
         },

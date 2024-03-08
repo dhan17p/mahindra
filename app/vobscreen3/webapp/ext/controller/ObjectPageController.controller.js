@@ -189,8 +189,17 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					// let subsection = objectPage.getSections()[0].getSubSections()[0];
 					// subsection.addStyleClass("sectionClass");
 					// subsection.setShowTitle(false);
+					var spathid = oBindingContext.sPath;
+					var idRegex = /\(([^)]+)\)/;
+					var match = spathid.match(idRegex);
 
-					let tableData = [
+					if (match && match.length > 1) {
+						var id = match[1];
+					}
+					if (id == "cf659f8c-3fbb-4c94-89be-1ec9d5244b72") {
+						var vendorNames = ["Infinity Auto", "Balaji Parts","vendor3","vendor4","vendor5"]
+						
+					var tableData = [
 						{
 							"mgsp_part_no": "EGRValve",
 							"existing_mgsp_po_price": 1500,
@@ -217,12 +226,40 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							"target_price": 1500
 						}
 					]
+					}
+					else if(id == "70ac0c95-4022-4da3-b6e6-4aea987d03f7")
+					{
+						var vendorNames = ["Kirloskar", "New India Parts","vendor3","vendor4","vendor5"]
+				  var tableData = [
+						{
+							"mgsp_part_no": "RearWheel",
+							"existing_mgsp_po_price": 1500,
+							"target_price": 1200
+						},
+						{
+							"mgsp_part_no": "Crankshaft",
+							"existing_mgsp_po_price": 2000,
+							"target_price": 1800
+						},
+						{
+							"mgsp_part_no": "Transmission",
+							"existing_mgsp_po_price": 3000,
+							"target_price": 2800
+						},
+						{
+							"mgsp_part_no": "Pilot",
+							"existing_mgsp_po_price": 2500,
+							"target_price": 2000
+						}
+					]
+					}
 
 
 					var oMainHbox = objectPage.mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content;
 
 					let oTable = oMainHbox.getItems()[0].getItems()[0];
 					debugger
+					oTable.destroyItems();
 
 					for (let i = 0; i < tableData.length; i++) {
 					
@@ -243,18 +280,28 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							text: tableData[i].target_price
 						})
 						row.addCell(target_price);
-					
-
 					}
+					debugger
+					
 					
 
-let vendorNames = ["vendor1", "vendor2", "vendor3", "vendor4", "vendor5"]; // Add as many vendor names as needed
-
+// let vendorNames = ["vendor1", "vendor2", "vendor3", "vendor4", "vendor5"]; // Add as many vendor names as needed
+let oHbox = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--mainHBox").getItems()[1];
+oHbox.destroyItems();
 for (let j = 0; j < vendorNames.length; j++) {
 	debugger
     let vendor_name = vendorNames[j];
 
-    let oHbox = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--mainHBox").getItems()[1];
+    
+    // let oHbox_destroy = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--mainHBox").getItems()[1];
+	// oHbox_destroy.destroy();
+	// var oHbox = new sap.m.HBox({
+
+	// });
+	// var mainVbox= sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--mainHBox");
+	// mainVbox.addItem(oHbox);
+
+
     let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
     let list_inp_field = [];
     let input_field;
@@ -265,7 +312,7 @@ for (let j = 0; j < vendorNames.length; j++) {
             // rows:1
         });
         input_field.addStyleClass("inpFieldClass ResetClass")
-		if (vendorNames[j] == "vendor1"  || vendorNames[j] == "vendor5"){
+		if (vendorNames[j] == "Balaji Parts"  || vendorNames[j] == "Infinity Auto" ||  vendorNames[j] == "Kirloskar" ||  vendorNames[j] == "New India Parts"){
 			debugger
 			input_field.addStyleClass("inputcss")
 			// vendor.addStyleClass("custColo1");
@@ -294,10 +341,10 @@ for (let j = 0; j < vendorNames.length; j++) {
     });
 	vendor.mAggregations.items[0].mAggregations.items[0].addStyleClass("vendorlabel");
 	debugger
-	if (vendorNames[j] == "vendor1"  || vendorNames[j] == "vendor5"){
-		// inp_vbox.addStyleClass("inputcss")
-		vendor.addStyleClass("custColo1");
-	}  
+	// if (vendorNames[j] == "vendor1"  || vendorNames[j] == "vendor5"){
+	// 	// inp_vbox.addStyleClass("inputcss")
+	// 	vendor.addStyleClass("custColo1");
+	// }  
     // vendor.addStyleClass("custColor");
     oHbox.addItem(vendor);
 	// vendor.addStyleClass("")
