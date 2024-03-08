@@ -365,8 +365,8 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						})
 						row.addCell(mgsp_part_no);
 
-						let existing_mgsp_po_price = new sap.m.Text({
-							text: tableData[i].existing_mgsp_po_price
+						let existing_mgsp_po_price = new sap.m.Input({
+							value: tableData[i].existing_mgsp_po_price
 						})
 						row.addCell(existing_mgsp_po_price);
 
