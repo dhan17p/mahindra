@@ -121,7 +121,6 @@
           "options": {
             "settings": {
               "contextPath": "/VOB_Screen4b",
-              "variantManagement": "Page",
               "navigation": {
                 "VOB_Screen4b": {
                   "detail": {
@@ -138,31 +137,11 @@
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
-              "editableHeaderContent": false,
               "contextPath": "/VOB_Screen4b",
               "navigation": {},
               "content": {
                 "body": {
-                  "sections": {
-                    "Vobobject": {
-                      "template": "vobscreen4bb.ext.fragment.Vobobject",
-                      "position": {
-                        "placement": "After",
-                        "anchor": "GeneratedFacet1"
-                      },
-                      "title": "VOB",
-                      "type": "XMLFragment"
-                    },
-                    "Comments": {
-                      "template": "vobscreen4bb.ext.fragment.Comments",
-                      "position": {
-                        "placement": "After",
-                        "anchor": "Vobobject"
-                      },
-                      "title": "comments",
-                      "type": "XMLFragment"
-                    }
-                  }
+                  "sections": {}
                 }
               }
             }
