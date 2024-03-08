@@ -63,7 +63,8 @@
         "sap.m": {},
         "sap.ui.core": {},
         "sap.ushell": {},
-        "sap.fe.templates": {}
+        "sap.fe.templates": {},
+        "sap.suite.ui.commons": {}
       }
     },
     "contentDensities": {
@@ -93,10 +94,13 @@
       }
     },
     "resources": {
-      "css": []
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
     },
     "routing": {
-      "config": {},
       "routes": [
         {
           "pattern": ":?query:",
@@ -107,11 +111,6 @@
           "pattern": "VOB_Screen4b({key}):?query:",
           "name": "VOB_Screen4bObjectPage",
           "target": "VOB_Screen4bObjectPage"
-        },
-        {
-          "pattern": "VOB_Screen4b({key})/vob_yoy_scr4b({key2}):?query:",
-          "name": "YOY_Screen4bObjectPage",
-          "target": "YOY_Screen4bObjectPage"
         }
       ],
       "targets": {
@@ -141,25 +140,41 @@
             "settings": {
               "editableHeaderContent": false,
               "contextPath": "/VOB_Screen4b",
-              "navigation": {
-                "vob_yoy_scr4b": {
-                  "detail": {
-                    "route": "YOY_Screen4bObjectPage"
+              "navigation": {},
+              "content": {
+                "body": {
+                  "sections": {
+                    "Vobobject": {
+                      "template": "vobscreen4bb.ext.fragment.Vobobject",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "GeneratedFacet1"
+                      },
+                      "title": "VOB",
+                      "type": "XMLFragment"
+                    },
+                    "Comments": {
+                      "template": "vobscreen4bb.ext.fragment.Comments",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Vobobject"
+                      },
+                      "title": "comments",
+                      "type": "XMLFragment"
+                    }
                   }
                 }
               }
             }
           }
-        },
-        "YOY_Screen4bObjectPage": {
-          "type": "Component",
-          "id": "YOY_Screen4bObjectPage",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "editableHeaderContent": false,
-              "contextPath": "/VOB_Screen4b/vob_yoy_scr4b"
-            }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController": {
+            "controllerName": "vobscreen4bb.ext.controller.ObjectPageController"
           }
         }
       }

@@ -4,27 +4,22 @@ annotate service.VOB_Screen4b with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'part_system',
+            Label : 'Part System',
             Value : part_system,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'project_code',
+            Label : 'project Code & Description',
             Value : project_code,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'project_description',
-            Value : project_description,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'sop',
+            Label : 'SOP',
             Value : sop,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'sector',
+            Label : 'Sector',
             Value : sector,
         },
     ]
@@ -35,49 +30,45 @@ annotate service.VOB_Screen4b with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'part_system',
+                Label : 'Part System',
                 Value : part_system,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'project_code',
-                Value : project_code,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'project_description',
+                Label : 'Project Code & Description',
                 Value : project_description,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'sop',
+                Label : 'SOP',
                 Value : sop,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'sector',
+                Label : 'Sector',
                 Value : sector,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'potential_suppliers',
-                Value : potential_suppliers,
+                Value : vob_suplier4b.suplier,
+                Label : 'Potential Suplier',
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'supplier_assessment_score',
+                Label : 'Supplier assessment score',
                 Value : supplier_assessment_score,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'forum',
+                Label : 'FORUM',
                 Value : forum,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'presented_on_by',
+                Label : 'Presented on & by',
                 Value : presented_on_by,
             },
+           
         ],
     },
     UI.Facets : [
@@ -88,4 +79,14 @@ annotate service.VOB_Screen4b with @(
             Target : '@UI.FieldGroup#GeneratedGroup1',
         },
     ]
+);
+annotate service.VOB_Screen4b with @(
+    UI.HeaderInfo : {
+        Title : {
+            $Type : 'UI.DataField',
+            Value : project_code,
+        },
+        TypeName : '',
+        TypeNamePlural : '',
+    }
 );
