@@ -26,4 +26,8 @@ service MyService {
     entity YOY_Screen4 as projection on db.YOY_Screen4;
 
     entity Files as projection on db.Files;
+    // for 4bth screen
+     @odata.draft.enabled
+    entity VOB_Screen4b as projection on db.VOB_Screen4b;
+    entity YOY_Screen4b as projection on db.YOY_Screen4b;
 }

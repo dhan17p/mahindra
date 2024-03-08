@@ -9,8 +9,8 @@ annotate service.VOB with @(
         },
         {
             $Type : 'UI.DataField',
+            Value : project_description,
             Label : 'Project Code & Description',
-            Value : project_code_description,
         },
         {
             $Type : 'UI.DataField',
@@ -35,13 +35,8 @@ annotate service.VOB with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value : project_code,
-                Label : 'Project Code',
-            },
-            {
-                $Type : 'UI.DataField',
                 Value : project_description,
-                Label : 'Project Description',
+                Label : 'Project Code & Description',
             },
             {
                 $Type : 'UI.DataField',
@@ -223,14 +218,10 @@ annotate service.VOB with @(
     UI.HeaderInfo : {
         Title : {
             $Type : 'UI.DataField',
-            Value : project_code,
+            Value : project_description,
         },
         TypeName : '',
         TypeNamePlural : '',
-        Description : {
-            $Type : 'UI.DataField',
-            Value : project_description,
-        },
     }
 );
 annotate service.VOB with @(

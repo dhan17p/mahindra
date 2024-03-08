@@ -29,7 +29,8 @@
         "watch-vob_screen2": "cds watch --open vob_screen2/webapp/index.html?sap-ui-xx-viewCache=false",
         "watch-vobscreen3": "cds watch --open vobscreen3/webapp/index.html?sap-ui-xx-viewCache=false",
         "watch-vobscreen4": "cds watch --open vobscreen4/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-vobscreen4b": "cds watch --open vobscreen4b/webapp/index.html?sap-ui-xx-viewCache=false"
+        "watch-vobscreen4b": "cds watch --open vobscreen4b/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-vobscreen4bb": "cds watch --open vobscreen4bb/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "requires": {
@@ -41,6 +42,7 @@
         "app/vob_screen2",
         "app/vobscreen3",
         "app/vobscreen4",
-        "app/vobscreen4b"
+        "app/vobscreen4b",
+        "app/vobscreen4bb"
     ]
 }

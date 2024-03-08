@@ -84,6 +84,10 @@ modules:
       - vobscreen4b.zip
       name: vobscreen4b
       target-path: resources/
+    - artifacts:
+      - vobscreen4bb.zip
+      name: vobscreen4bb
+      target-path: resources/
 - name: vobmah
   type: html5
   path: app/vob_mah
@@ -127,6 +131,16 @@ modules:
 - name: vobscreen4b
   type: html5
   path: app/vobscreen4b
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: vobscreen4bb
+  type: html5
+  path: app/vobscreen4bb
   build-parameters:
     build-result: dist
     builder: custom
