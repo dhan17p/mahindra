@@ -329,6 +329,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 								inp_vbox
 							]
 						});
+						vendor.mAggregations.items[0].mAggregations.items[0].addStyleClass("vendorlabel");
 						if (vendorNames[j] == "vendor1" || vendorNames[j] == "vendor5") {
 							inp_vbox.addStyleClass("inputcss");
 							vendor.addStyleClass("custColo1");

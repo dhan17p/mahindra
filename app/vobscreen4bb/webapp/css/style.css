@@ -120,11 +120,53 @@
 .inputcss {
     background-color: greenyellowred !important;
     border-style: ridge !important;
+    opacity: 0.5;
 }
 .custColo1{
-    background: lightblue !important;
+    background: rgb(199,230,173) !important;
 
 }
 .texttoggle{
     padding-top: 7px;
+}
+.vboxbelowtable {
+    padding-top: 13px;
+    padding-right: 10px;
+    /* / display: flex; / */
+    gap: 1.28vw !important;
+}
+.innervbox {
+    gap: 1.1vw !important;
+    text-align: end;
+    border-left: solid;
+    padding: 2px;
+    text-align: center;
+}
+
+.innerhbox {
+   
+    /* display: flex; */
+    align-items:center;
+    text-align: center;
+    padding-left: 20px;
+    border: solid;
+}
+.hboxlabel1
+{
+    padding-right:20px ;
+    text-align: center;
+    align-items:center;
+}
+.hboxlabel2
+{
+    padding-right:60px ;
+    padding-left: 30px;
+    text-align: center;
+    align-items:center;
+}
+.vendorlabel
+{
+    padding: 5px;
+    font-size : 15px;
+    padding-left: 80px;
 }
