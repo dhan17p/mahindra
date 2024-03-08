@@ -261,6 +261,13 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							text: tableData[i].target_price
 						})
 						row.addCell(target_price);
+						let switchtoglle = new sap.m.Switch({
+							state:true,
+							customTextOff :"Rejected",
+							customTextOn :"Approved"
+							// text: tableData[i].target_price
+						})
+						row.addCell(switchtoglle);
 
 					}
 					
