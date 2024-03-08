@@ -243,6 +243,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							text: tableData[i].target_price
 						})
 						row.addCell(target_price);
+					
 
 					}
 					

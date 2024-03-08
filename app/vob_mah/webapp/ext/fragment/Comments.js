@@ -44,33 +44,33 @@ sap.ui.define([
                 // userNameClicked: "onUserNameClick",
                 // select: "onPressItems",
                 // userPicture: "Photo",
-                text: 'Demo Comment1',
+                text: 'Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat',
                 userName: "Team Recommendation with Rationale"
             });
-            var oTimelineItem1 = new sap.suite.ui.commons.TimelineItem(("thisuniqid2"+generateUniqueId()),{
-                dateTime: "12/3/34",
-                // title: "demo title1",
-                userNameClickable: false,
-                // userNameClicked: "onUserNameClick",
-                // select: "onPressItems",
-                // userPicture: "Photo",
-                text: 'Demo Comment Decision & MOM of Forum',
-                userName: "Decision & MOM of Forum"
-            });
-            var oTimelineItem2 = new sap.suite.ui.commons.TimelineItem(("thisuniqid2"+generateUniqueId()),{
-                dateTime: "12/3/34",
-                // title: "demo title1",
-                userNameClickable: false,
-                // userNameClicked: "onUserNameClick",
-                // select: "onPressItems",
-                // userPicture: "Photo",
-                text: 'Demo Comment Tooling Agreement signed',
-                userName: "Tooling Agreement signed"                
-            });
+            // var oTimelineItem1 = new sap.suite.ui.commons.TimelineItem(("thisuniqid2"+generateUniqueId()),{
+            //     dateTime: "12/3/34",
+            //     // title: "demo title1",
+            //     userNameClickable: false,
+            //     // userNameClicked: "onUserNameClick",
+            //     // select: "onPressItems",
+            //     // userPicture: "Photo",
+            //     text: 'Demo Comment Decision & MOM of Forum',
+            //     userName: "Decision & MOM of Forum"
+            // });
+            // var oTimelineItem2 = new sap.suite.ui.commons.TimelineItem(("thisuniqid2"+generateUniqueId()),{
+            //     dateTime: "12/3/34",
+            //     // title: "demo title1",
+            //     userNameClickable: false,
+            //     // userNameClicked: "onUserNameClick",
+            //     // select: "onPressItems",
+            //     // userPicture: "Photo",
+            //     text: 'Demo Comment Tooling Agreement signed',
+            //     userName: "Tooling Agreement signed"                
+            // });
             
             cdialog.addContent(oTimelineItem);
-            cdialog.addContent(oTimelineItem1);
-            cdialog.addContent(oTimelineItem2);
+            // cdialog.addContent(oTimelineItem1);
+            // cdialog.addContent(oTimelineItem2);
     
             cdialog.open(); // Open the dialog
 debugger

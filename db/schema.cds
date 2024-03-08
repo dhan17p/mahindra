@@ -1,5 +1,10 @@
 namespace db;
 
+using {
+    cuid,
+    managed
+} from '@sap/cds/common';
+
 entity VOB {
     key id                        : UUID;
         part_system               : String;
@@ -105,6 +110,17 @@ entity YOY_Screen3 {
         yoy_vov_scr2        : Association to VOB_Screen3;
 }
 
+entity Files: cuid, managed{
+    // key id1 : String;
+    @Core.MediaType: mediaType
+    content: LargeBinary;
+    @Core.IsMediaType: true
+    mediaType: String;
+    fileName: String;
+    // size: Integer;
+    Folder : String;
+    url: String;
+}
 
 //Screen 4
 
