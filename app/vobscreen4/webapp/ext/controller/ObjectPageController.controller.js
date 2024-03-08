@@ -5,13 +5,13 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 		// this section allows to extend lifecycle hooks or hooks provided by Fiori elements
 		override: {
 			/**
-             * Called when a controller is instantiated and its View controls (if available) are already created.
-             * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-             * @memberOf vobscreen4.ext.controller.ObjectPageController
-             */
+			 * Called when a controller is instantiated and its View controls (if available) are already created.
+			 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
+			 * @memberOf vobscreen4.ext.controller.ObjectPageController
+			 */
 			onInit: function () {
 				// function generateUniqueId() {
-					
+
 				// 	// Generate a random number
 				// 	var randomNumber = Math.floor(Math.random() * 1000000);
 
@@ -30,131 +30,132 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 
 				// let oHbox =  sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--mainHBox").getItems()[1];
-				header_anchor.addAction(new sap.m.Button({
-					text: "Delete",
-					type: "Accept",
-					press: function async(oEvent) {
-						debugger
-						var table = oEvent.getSource().getParent().getParent().getParent().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0]
-						var tableItems = oEvent.getSource().getParent().getParent().getParent().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mAggregations.items;
-						var venodVBox = oEvent.getSource().getParent().getParent().getParent().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[1].mAggregations.items
-				
-						// Iterate through table items in reverse to safely remove selected items
-						for (var i = tableItems.length - 1; i >= 0; i--) {
-							var item = tableItems[i];
-							if (item.getSelected()) {
-								table.removeItem(item);
-								for( var v = 0 ; v < venodVBox.length; v++ ){
-									var itemremovevBox = venodVBox[v].getItems()[1].getItems()[i]
-									venodVBox[v].getItems()[1].removeItem(itemremovevBox)								}
-							}
-							
-						}
-					}
-				}));
-// 				header_anchor.addAction(new sap.m.Button({
-// 					text: "Add Vendor",
-// 					type: "Accept",
-// 					press: function async(oEvent) {
-// 						debugger
+				// header_anchor.addAction(new sap.m.Button({
+				// 	text: "Delete",
+				// 	type: "Accept",
+				// 	press: function async(oEvent) {
+				// 		debugger
+				// 		var table = oEvent.getSource().getParent().getParent().getParent().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0]
+				// 		var tableItems = oEvent.getSource().getParent().getParent().getParent().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mAggregations.items;
+				// 		var venodVBox = oEvent.getSource().getParent().getParent().getParent().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[1].mAggregations.items
 
-// 						let vendordetails = ["Vendor  1", "vendor2", "vendor3", "vendor4", "vendor5"]
+				// 		// Iterate through table items in reverse to safely remove selected items
+				// 		for (var i = tableItems.length - 1; i >= 0; i--) {
+				// 			var item = tableItems[i];
+				// 			if (item.getSelected()) {
+				// 				table.removeItem(item);
+				// 				for (var v = 0; v < venodVBox.length; v++) {
+				// 					var itemremovevBox = venodVBox[v].getItems()[1].getItems()[i]
+				// 					venodVBox[v].getItems()[1].removeItem(itemremovevBox)
+				// 				}
+				// 			}
 
+				// 		}
+				// 	}
+				// }));
+				// 				header_anchor.addAction(new sap.m.Button({
+				// 					text: "Add Vendor",
+				// 					type: "Accept",
+				// 					press: function async(oEvent) {
+				// 						debugger
 
-// 						let comboBox = new sap.m.ComboBox();
-
-// 						for (let i = 0; i < vendordetails.length; i++) {
-// 							comboBox.addItem(new sap.ui.core.Item({
-// 								text: vendordetails[i]
-// 							}))
-
-// 						}
-// 						var oDialog = new sap.m.Dialog({
-// 							title: "Add Vendor",
-// 							type: sap.m.DialogType.Message,
-// 							content: [
-// 								new sap.m.Label({ text: `Vendor Name: ⠀`, design: "Bold" }),
-// 								comboBox
-// 							],
-// 							beginButton: new sap.m.Button({
-
-// 								text: "OK",
-// 								press: async function (oEvent) {
-// 									debugger
-// 									let vendor_name = oEvent.getSource().getParent().getContent()[1].getValue();
-
-// 									let oTable = oHbox.getParent().getItems()[0].getItems()[0];
-// 									let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
-// 									let list_inp_field = [];
-// 									let input_field;
+				// 						let vendordetails = ["Vendor  1", "vendor2", "vendor3", "vendor4", "vendor5"]
 
 
+				// 						let comboBox = new sap.m.ComboBox();
 
-// 									for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length; i++) {
-// 										input_field = new sap.m.TextArea({
-// 											height: "32px",
-// 											wrapping: 'None'
-// 											// rows:1
-// 										});
-// 										input_field.addStyleClass("inpFieldClass ResetClass")
-// 										list_inp_field.push(input_field)
-// 									}
+				// 						for (let i = 0; i < vendordetails.length; i++) {
+				// 							comboBox.addItem(new sap.ui.core.Item({
+				// 								text: vendordetails[i]
+				// 							}))
 
-// 									let inp_vbox = new sap.m.VBox({
-// 										items: list_inp_field
-// 									});
-// 									inp_vbox.addStyleClass("ResetClass inpVboxClass")
+				// 						}
+				// 						var oDialog = new sap.m.Dialog({
+				// 							title: "Add Vendor",
+				// 							type: sap.m.DialogType.Message,
+				// 							content: [
+				// 								new sap.m.Label({ text: `Vendor Name: ⠀`, design: "Bold" }),
+				// 								comboBox
+				// 							],
+				// 							beginButton: new sap.m.Button({
 
-// 									let vendor = new sap.m.VBox({
-// 										items: [
-// 											new sap.m.HBox({
-// 												items: [
-// 													// new sap.m.Label({ text: vendor_name, design: "Bold" }),
-// 													new sap.m.CheckBox({
-// 														text: vendor_name
-// 													})
-// 												]
-// 											}),
-// 											inp_vbox
-// 										]
-// 									});
+				// 								text: "OK",
+				// 								press: async function (oEvent) {
+				// 									debugger
+				// 									let vendor_name = oEvent.getSource().getParent().getContent()[1].getValue();
 
-
-// 									vendor.addStyleClass("vendorClass");
+				// 									let oTable = oHbox.getParent().getItems()[0].getItems()[0];
+				// 									let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
+				// 									let list_inp_field = [];
+				// 									let input_field;
 
 
 
-// 									oHbox.addItem(vendor);
-// 									oDialog.close();
-// 								}
-// 							}),
-// 							endButton: new sap.m.Button({
-// 								text: "Close",
-// 								press: async function (oEvent) {
-// 									oDialog.close()
-// 								}
-// 							})
-// 						})
+				// 									for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length; i++) {
+				// 										input_field = new sap.m.TextArea({
+				// 											height: "32px",
+				// 											wrapping: 'None'
+				// 											// rows:1
+				// 										});
+				// 										input_field.addStyleClass("inpFieldClass ResetClass")
+				// 										list_inp_field.push(input_field)
+				// 									}
 
-// 						oDialog.open()
-// 					}
-// 				}))
+				// 									let inp_vbox = new sap.m.VBox({
+				// 										items: list_inp_field
+				// 									});
+				// 									inp_vbox.addStyleClass("ResetClass inpVboxClass")
 
-// 				header_anchor.addAction(new sap.m.Button({
-// 					text: "Delete",
-// 					press: function (oEvent) {
-// 						debugger
-// 						for (let i = 0; i < oHbox.getItems().length; i++) {
-// 							var checkbox = oHbox.getItems()[i].getItems()[0].getItems()[0].getSelected();
-// 							if (checkbox)
-//  {
-// 								oHbox.removeItem(oHbox.getItems()[i])
-// 								// .setVisible(false);
-// 							}
+				// 									let vendor = new sap.m.VBox({
+				// 										items: [
+				// 											new sap.m.HBox({
+				// 												items: [
+				// 													// new sap.m.Label({ text: vendor_name, design: "Bold" }),
+				// 													new sap.m.CheckBox({
+				// 														text: vendor_name
+				// 													})
+				// 												]
+				// 											}),
+				// 											inp_vbox
+				// 										]
+				// 									});
 
-// 						}
-// 					}
-// 				}))
+
+				// 									vendor.addStyleClass("vendorClass");
+
+
+
+				// 									oHbox.addItem(vendor);
+				// 									oDialog.close();
+				// 								}
+				// 							}),
+				// 							endButton: new sap.m.Button({
+				// 								text: "Close",
+				// 								press: async function (oEvent) {
+				// 									oDialog.close()
+				// 								}
+				// 							})
+				// 						})
+
+				// 						oDialog.open()
+				// 					}
+				// 				}))
+
+				// 				header_anchor.addAction(new sap.m.Button({
+				// 					text: "Delete",
+				// 					press: function (oEvent) {
+				// 						debugger
+				// 						for (let i = 0; i < oHbox.getItems().length; i++) {
+				// 							var checkbox = oHbox.getItems()[i].getItems()[0].getItems()[0].getSelected();
+				// 							if (checkbox)
+				//  {
+				// 								oHbox.removeItem(oHbox.getItems()[i])
+				// 								// .setVisible(false);
+				// 							}
+
+				// 						}
+				// 					}
+				// 				}))
 
 				//  debugger
 				// let vendor_name = "vendor1";
@@ -243,7 +244,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					debugger
 
 					for (let i = 0; i < tableData.length; i++) {
-					
+
 						oTable.addItem(new sap.m.ColumnListItem(`row${i}`))
 						let row = oTable.getItems()[i];
 
@@ -261,71 +262,82 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							text: tableData[i].target_price
 						})
 						row.addCell(target_price);
+						let hboxswitch = new sap.m.HBox({
+
+						});
+						let text1 = new sap.m.Text({
+							text:"Approved:"
+						})
+						text1.addStyleClass("texttoggle")
 						let switchtoglle = new sap.m.Switch({
-							state:true,
-							customTextOff :"Rejected",
-							customTextOn :"Approved"
+							state: true,
+							customTextOff: "No",
+							customTextOn: "Yes"
 							// text: tableData[i].target_price
 						})
-						row.addCell(switchtoglle);
+						hboxswitch.addItem(text1);
+						hboxswitch.addItem(switchtoglle);
+
+						
+						row.addCell(hboxswitch);
 
 					}
-					
 
-let vendorNames = ["vendor1", "vendor2", "vendor3", "vendor4", "vendor5"]; // Add as many vendor names as needed
 
-for (let j = 0; j < vendorNames.length; j++) {
-	debugger
-    let vendor_name = vendorNames[j];
+					let vendorNames = ["vendor1", "vendor2", "vendor3", "vendor4", "vendor5"]; // Add as many vendor names as needed
 
-    let oHbox = sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Vobobject--mainHBox").getItems()[1];
-    let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
-    let list_inp_field = [];
-    let input_field;
-    for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length; i++) {
-        input_field = new sap.m.TextArea({
-            height: "32px",
-            wrapping: 'None'
-            // rows:1
-        });
-        input_field.addStyleClass("inpFieldClass ResetClass")
-		if (vendorNames[j] == "vendor1"  || vendorNames[j] == "vendor5"){
-			debugger
-			input_field.addStyleClass("inputcss")
-			// vendor.addStyleClass("custColo1");
-		}
-        list_inp_field.push(input_field)
-	
-    }
+					for (let j = 0; j < vendorNames.length; j++) {
+						debugger
+						let vendor_name = vendorNames[j];
 
-		    let inp_vbox = new sap.m.VBox({
-        items: list_inp_field
-    });
-	
-    inp_vbox.addStyleClass("ResetClass inpVboxClass")
-    let vendor = new sap.m.VBox({
-        items: [
-            new sap.m.HBox({
-                items: [
-                    // new sap.m.Label({ text: vendor_name, design: "Bold" }),
-                    new sap.m.CheckBox({
-                        text: vendor_name
-                    })
-                ]
-            }),
-            inp_vbox
-        ]
-    });
-	if (vendorNames[j] == "vendor1"  || vendorNames[j] == "vendor5"){
-		// inp_vbox.addStyleClass("inputcss")
-		vendor.addStyleClass("custColo1");
-	}  
-    // vendor.addStyleClass("custColor");
-    oHbox.addItem(vendor);
-	// vendor.addStyleClass("")
+						let oHbox = sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Vobobject--mainHBox").getItems()[1];
+						let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
+						let list_inp_field = [];
+						let input_field;
+						for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length; i++) {
+							input_field = new sap.m.TextArea({
+								height: "32px",
+								wrapping: 'None'
+								// rows:1
+							});
+							input_field.addStyleClass("inpFieldClass ResetClass")
+							if (vendorNames[j] == "vendor1" || vendorNames[j] == "vendor5") {
+								debugger
+								input_field.addStyleClass("inputcss")
+								// vendor.addStyleClass("custColo1");
+							}
+							list_inp_field.push(input_field)
 
-}
-	
+						}
+
+						let inp_vbox = new sap.m.VBox({
+							items: list_inp_field
+						});
+
+						inp_vbox.addStyleClass("ResetClass inpVboxClass")
+						let vendor = new sap.m.VBox({
+							items: [
+								new sap.m.HBox({
+									items: [
+										// new sap.m.Label({ text: vendor_name, design: "Bold" }),
+										new sap.m.CheckBox({
+											text: vendor_name
+										})
+									]
+								}),
+								inp_vbox
+							]
+						});
+						if (vendorNames[j] == "vendor1" || vendorNames[j] == "vendor5") {
+							// inp_vbox.addStyleClass("inputcss")
+							vendor.addStyleClass("custColo1");
+						}
+						// vendor.addStyleClass("custColor");
+						oHbox.addItem(vendor);
+						// vendor.addStyleClass("")
+
+					}
+
 
 				}
 			}
