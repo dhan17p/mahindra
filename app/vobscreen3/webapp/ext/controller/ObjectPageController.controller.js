@@ -292,6 +292,8 @@ for (let j = 0; j < vendorNames.length; j++) {
             inp_vbox
         ]
     });
+	vendor.mAggregations.items[0].mAggregations.items[0].addStyleClass("vendorlabel");
+	debugger
 	if (vendorNames[j] == "vendor1"  || vendorNames[j] == "vendor5"){
 		// inp_vbox.addStyleClass("inputcss")
 		vendor.addStyleClass("custColo1");

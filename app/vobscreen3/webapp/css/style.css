@@ -159,3 +159,9 @@
     text-align: center;
     align-items:center;
 }
+.vendorlabel
+{
+    padding: 5px;
+    font-size : 15px;
+    padding-left: 80px;
+}
