@@ -258,7 +258,7 @@ for (let j = 0; j < vendorNames.length; j++) {
     let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
     let list_inp_field = [];
     let input_field;
-    for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length + 5; i++) {
+    for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length + 4; i++) {
         input_field = new sap.m.TextArea({
             height: "32px",
             wrapping: 'None'

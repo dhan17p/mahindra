@@ -58,11 +58,42 @@
 }
 
 .vboxbelowtable {
-    padding-top: 8px;
+    padding-top: 13px;
     padding-right: 10px;
     /* / display: flex; / */
-    gap: 10px !important;
+    gap: 1.28vw !important;
 }
+.innervbox {
+    gap: 0.8vw !important;
+    text-align: end;
+    border-left: solid;
+    padding: 5px;
+    text-align: center;
+}
+
+.innerhbox {
+    margin-top: 2px;
+    /* display: flex; */
+    align-items:center;
+    text-align: center;
+    padding-left: 20px;
+    border: solid;
+}
+.hboxlabel1
+{
+    padding-right:20px ;
+    text-align: center;
+    align-items:center;
+}
+.hboxlabel2
+{
+    padding-right:60px ;
+    padding-left: 30px;
+    text-align: center;
+    align-items:center;
+}
+
+
 
 /* / .vboxbelowtable .sapMLabel{ /
     / background: red; /
@@ -120,9 +151,10 @@
 .inputcss {
     background-color: greenyellowred !important;
     border-style: ridge !important;
+    opacity: 0.5;
 }
 .custColo1{
-    background: lightblue !important;
+    background: rgb(199,230,173) !important;
 
 }
 .texttoggle{

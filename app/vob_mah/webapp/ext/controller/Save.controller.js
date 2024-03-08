@@ -15,19 +15,25 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension', 'sap/m/MessageToast', 'sap
             },
             editFlow: {
                 onBeforeSave: function (oEvent) {
+                    var oLabel = new sap.m.Label({
+                        text: "Are you sure you want to save?",
+                        // class: "customText" // Add your custom class here
+                    });
+                    oLabel.addStyleClass("customText");
                     return new Promise(function (resolve, reject) {
+                        
+                        
                         var oDialog = new Dialog({
                             title: "Submit",
                             resizable: true,
                             draggable: true,
-                            content: [
-                                new sap.m.Label({ text: "Are you sure you want to save?" })
-                            ],
+                            content: [oLabel], // Use the Label with the custom class as content
                             buttons: [
                                 new Button({
                                     text: "Yes",
                                     press: function () {
                                         oDialog.close();
+                                        oDialog.destroy();
                                         MessageToast.show("Saving...");
                                         resolve(); // Resolve the promise when "Yes" is clicked
                                     }
@@ -36,14 +42,16 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension', 'sap/m/MessageToast', 'sap
                                     text: "No",
                                     press: function () {
                                         oDialog.close();
+                                        oDialog.destroy();
                                         MessageToast.show("Cancelled");
                                         reject(new Error("Save cancelled")); // Reject the promise when "No" is clicked
                                     }
                                 })
                             ]
                         });
-
+                        
                         oDialog.open();
+                        
                     });
                 }
             }

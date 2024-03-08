@@ -54,12 +54,7 @@
         scrollbar-width: none;
     }
     
-    .vboxbelowtable{
-        padding-top: 15px;
-        padding-right: 10px;
-        /* / display: flex; / */
-        gap:1.275vw !important;
-    }
+   
     
     /* / .vboxbelowtable .sapMLabel{ /
         / background: red; /
@@ -108,3 +103,39 @@
         padding-left :80vw !important;
         padding-top: -90px !important;
     } */
+
+    .vboxbelowtable{
+        padding-top: 15px;
+        padding-right: 10px;
+        /* / display: flex; / */
+        gap:1.25vw !important;
+    }
+    .innervbox {
+        gap: 0.8vw !important;
+        text-align: end;
+        border-left: solid;
+        padding: 5px;
+        text-align: center;
+    }
+    
+    .innerhbox {
+        margin-top: -5px;
+        /* display: flex; */
+        align-items:center;
+        text-align: center;
+        padding-left: 20px;
+        border: solid;
+    }
+    .hboxlabel1
+    {
+        padding-right:20px ;
+        text-align: center;
+        align-items:center;
+    }
+    .hboxlabel2
+    {
+        padding-right:60px ;
+        padding-left: 30px;
+        text-align: center;
+        align-items:center;
+    }
