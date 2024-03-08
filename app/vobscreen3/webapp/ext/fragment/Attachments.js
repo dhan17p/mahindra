@@ -64,8 +64,15 @@ sap.ui.define([
 							foldername = oEvent.getSource().getParent().mAggregations.content[1].mAggregations.items[0].mProperties.footerText;
 							if(foldername == "Click on the folder to select path")
 							{
-								foldername = "No Folder Selected";
+								var oMessageBox = sap.m.MessageBox.warning("No folder selected.", {
+									title: "Warning",
+									onClose: function() {
+										oMessageBox.close();
+										debugger;
+									}
+								});
 							}
+							else {
 							debugger
 							var _createEntity = function(item) {
 								debugger
@@ -118,6 +125,7 @@ sap.ui.define([
 
 							debugger
 						}
+					}
 					})
 
 
@@ -156,55 +164,120 @@ sap.ui.define([
 				// uploadedOnText.addStyleClass("uptime")
 				// contentVBox.addItem(uploadedOnText);
 		
-			
 				var vb1 = new sap.m.VBox("vb1");
 				vb1.addItem(
 					new sap.ui.webc.main.Tree("treee", {
-						itemClick: async function(params) {
+						itemClick: async function (params) {
 							let selectedItem = params.mParameters.item;
-							let path = selectedItem.getText();
-							let parent = selectedItem.getParent();
-				
+							let path = '';
+							let currentFolder = selectedItem;
+
 							// Traverse up the hierarchy and construct the path
-							while (parent !== null && parent.getId() !== 'treee') {
-								path = `${parent.getText()} / ${path}`;
-								parent = parent.getParent();
+							while (currentFolder && currentFolder.getId() !== 'treee') {
+								// Get the icon and name of the current folder
+								// let icon = currentFolder.getIcon();
+								let name = currentFolder.getText();
+
+								// Construct the path by adding the icon and name
+								path = `${name} / ${path}`;
+
+								// Move to the parent folder
+								currentFolder = currentFolder.getParent();
 							}
-				
+
+							// Set the footer text with the constructed path
 							sap.ui.getCore().byId("treee").setFooterText(path);
 						},
 						footerText: "Click on the folder to select path",
 						headerText: "Folders",
+						//=======================Folder1========================
 						items: [
 							new sap.ui.webc.main.TreeItem("folder_1", {
 								icon: "sap-icon://folder-full",
-								text: "MGSP Part No",
+								text: "Part No",
+				
+								//=======================Vendor 1========================
 								items: [
-									new sap.ui.webc.main.TreeItem("folder_1-folder_1.1", {
-										icon: "sap-icon://folder-2",
-										text: "Existing MGSP PO Price",
+									new sap.ui.webc.main.TreeItem("folder_2", {
+										icon: "sap-icon://folder-full",
+										text: "Vendor 1",
+				
+										// Nested folders under Vendor 1
 										items: [
-											new sap.ui.webc.main.TreeItem("folder_1-folder_1.1-folder1.1.1", {
-												icon: "sap-icon://folder-2",
-												text: "Target Price"
-											})
-										]
-									})
-								]
-							}),
-							new sap.ui.webc.main.TreeItem("folder_2", {
-								icon: "sap-icon://folder-full",
-								text: "MGSP Part No1",
-								items: [
-									new sap.ui.webc.main.TreeItem("folder_2-folder_2.1", {
-										icon: "sap-icon://folder-2",
-										text: "Existing MGSP PO Price1",
-										items : [
-											new sap.ui.webc.main.TreeItem("folder_2-folder_2.1-folder2.1.1", {
-												icon: "sap-icon://folder-2",
-												text: "Target Price1"
-											})
+											new sap.ui.webc.main.TreeItem("folder_2.1", {
+												icon: "sap-icon://folder-full",
+												text: "NDA",
+											}),
+											new sap.ui.webc.main.TreeItem("folder_2.2", {
+												icon: "sap-icon://folder-full",
+												text: "RFQ",
+											}),
+
+											new sap.ui.webc.main.TreeItem("folder_2.3", {
+												icon: "sap-icon://folder-full",
+												text: "Quote and Quote Synthesis",
+											}),
+
+											new sap.ui.webc.main.TreeItem("folder_2.4", {
+												icon: "sap-icon://folder-full",
+												text: "Quote Backup",
+											}),
 											
+											new sap.ui.webc.main.TreeItem("folder_2.5", {
+                                                icon: "sap-icon://folder-full",
+                                                text: "Supplier Details",
+											}),
+											new sap.ui.webc.main.TreeItem("folder_2.6", {
+												icon: "sap-icon://folder-full",
+												text: "Offer price Approval from Bazzar Sales Team",
+											}),
+											new sap.ui.webc.main.TreeItem("folder_2.7", {
+												icon: "sap-icon://folder-full",
+												text: "SBU VOB FORUM",
+
+												items: [
+													new sap.ui.webc.main.TreeItem("folder_2.7.1", {
+														icon: "sap-icon://folder-2",
+														text: "PPT",
+													}),
+													new sap.ui.webc.main.TreeItem("folder_9.2", {
+														icon: "sap-icon://folder-2",
+														text: "Backup data",
+													}),
+													new sap.ui.webc.main.TreeItem("folder_9.3", {
+														icon: "sap-icon://folder-2",
+														text: "Approval",
+													})
+												]
+											}),
+											new sap.ui.webc.main.TreeItem("folder_2.8", {
+												icon: "sap-icon://folder-full",
+												text: "Vendor Code Creation",
+											}),
+											new sap.ui.webc.main.TreeItem("folder_2.9", {
+												icon: "sap-icon://folder-full",
+												text: "NDA sign-off with Packagign Supplier",
+											}),
+											new sap.ui.webc.main.TreeItem("folder_3.0", {
+												icon: "sap-icon://folder-full",
+												text: "Packaging Sign-offr",
+											}),
+											new sap.ui.webc.main.TreeItem("folder_3.1", {
+												icon: "sap-icon://folder-full",
+												text: "Proposed and Approved Drawings",
+											}),
+											new sap.ui.webc.main.TreeItem("folder_3.2", {
+												icon: "sap-icon://folder-full",
+												text: "Validation Reports",
+											}),
+											new sap.ui.webc.main.TreeItem("folder_3.3", {
+												icon: "sap-icon://folder-full",
+												text: "Final Drawing Approval for Production",
+											}),
+											new sap.ui.webc.main.TreeItem("folder_3.4", {
+												icon: "sap-icon://folder-full",
+												text: "VPPAP",
+											})
 										]
 									})
 								]

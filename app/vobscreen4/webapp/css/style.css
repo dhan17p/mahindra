@@ -109,8 +109,13 @@
 
 .buttonhistory {
 
-    padding-left: 80vw !important;
+    padding-left: 78vw !important;
     padding-top: -90px !important;
+}
+.buttonhistory1 {
+
+    padding-left: 30px !important;
+   
 }
 
 .custColor  {
@@ -125,3 +130,9 @@
     background: lightblue !important;
 
 }
+
+.customtreeInnerHbox{
+    width: 400px;
+    padding-left: 9px;
+}
+

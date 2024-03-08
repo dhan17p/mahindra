@@ -1,7 +1,10 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros">
 		<VBox  class="mainVboxComment">
+		<HBox>
 
 	<Button  class="buttonhistory" core:require="{ handler: 'vobscreen4/ext/fragment/Comments'}" text="Comment" press="handler.onPress" />
+	<Button class = "buttonhistory1" core:require="{handler : 'vobscreen4/ext/fragment/Folders'}" text ="Folders" press = "handler.folder"/>
+</HBox>
 
 	<HBox >
 		<Label wrapping="true"  text=" Team Recommendation with Rationale" class="labelcomment">

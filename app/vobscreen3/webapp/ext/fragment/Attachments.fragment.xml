@@ -11,6 +11,7 @@ xmlns:mvc="sap.ui.core.mvc"
 					instantUpload="false"
 					uploadEnabled="true"
 					showIcons="true"
+					mode="None"
 					afterItemAdded="handler.onAfterItemAdded"
 					uploadCompleted="handler.onUploadCompleted"
 					items="{
