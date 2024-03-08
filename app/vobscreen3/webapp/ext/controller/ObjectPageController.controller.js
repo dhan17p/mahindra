@@ -192,27 +192,27 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 					let tableData = [
 						{
-							"mgsp_part_no": "12345",
+							"mgsp_part_no": "EGRValve",
 							"existing_mgsp_po_price": 1500,
 							"target_price": 1200
 						},
 						{
-							"mgsp_part_no": "67890",
+							"mgsp_part_no": "DrainPlug",
 							"existing_mgsp_po_price": 2000,
 							"target_price": 1800
 						},
 						{
-							"mgsp_part_no": "13579",
+							"mgsp_part_no": "Sensor",
 							"existing_mgsp_po_price": 3000,
 							"target_price": 2800
 						},
 						{
-							"mgsp_part_no": "24680",
+							"mgsp_part_no": "HeatShield",
 							"existing_mgsp_po_price": 2500,
 							"target_price": 2000
 						},
 						{
-							"mgsp_part_no": "54321",
+							"mgsp_part_no": "Flywheel",
 							"existing_mgsp_po_price": 1800,
 							"target_price": 1500
 						}
@@ -284,7 +284,7 @@ for (let j = 0; j < vendorNames.length; j++) {
             new sap.m.HBox({
                 items: [
                     // new sap.m.Label({ text: vendor_name, design: "Bold" }),
-                    new sap.m.CheckBox({
+                    new sap.m.Label({
                         text: vendor_name
                     })
                 ]
