@@ -94,25 +94,20 @@ annotate service.VOB_Screen3 with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Value : forum,
-                Label : 'FORUM',
-            },{
-                $Type : 'UI.DataField',
-                Value : id,
-                Label : 'id',
-            },{
-                $Type : 'UI.DataField',
-                Value : project_code,
-                Label : 'Project Code',
-            },{
+                Value : part_system,
+                Label : 'Part System',
+            },
+            {
                 $Type : 'UI.DataField',
                 Value : project_description,
-                Label : 'Project Description',
-            },{
+                Label : 'Project Code & Description',
+            },
+            {
                 $Type : 'UI.DataField',
                 Value : sop,
                 Label : 'SOP',
-            },{
+            },
+            {
                 $Type : 'UI.DataField',
                 Value : sector,
                 Label : 'Sector',
@@ -121,14 +116,20 @@ annotate service.VOB_Screen3 with @(
                 $Type : 'UI.DataField',
                 Value : vob_suplier_scr3.suplier,
                 Label : 'Potential Supplier',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : supplier_assessment_score,
+                Label : 'Supplier Assessment Score',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : forum,
+                Label : 'FORUM',
             },{
                 $Type : 'UI.DataField',
                 Value : presented_on_by,
                 Label : 'Presented On & By',
-            },{
-                $Type : 'UI.DataField',
-                Value : part_system,
-                Label : 'Part System',
             },],
     }
 );

@@ -294,9 +294,9 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
 						let list_inp_field = [];
 						let input_field;
-						for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length + 5; i++) {
+						for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length + 4; i++) {
 							input_field = new sap.m.TextArea({
-								height: "32px",
+								height: "41px",
 								wrapping: 'None'
 								// rows:1
 							});
@@ -330,7 +330,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							]
 						});
 						if (vendorNames[j] == "vendor1" || vendorNames[j] == "vendor5") {
-							// inp_vbox.addStyleClass("inputcss")
+							inp_vbox.addStyleClass("inputcss");
 							vendor.addStyleClass("custColo1");
 						}
 						// vendor.addStyleClass("custColor");

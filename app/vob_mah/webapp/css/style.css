@@ -4,6 +4,11 @@
 
 /* } */
 
+.customText
+{
+    /* padding-left: 15px; */
+    text-align: center;
+}
 .labelcomment{
     padding-top: 60px;
     padding-left: 30px;

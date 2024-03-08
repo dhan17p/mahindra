@@ -237,7 +237,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 
 
-									for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length + 5; i++) {
+									for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length + 4; i++) {
 										input_field = new sap.m.TextArea({
 											height: "41px",
 											wrapping: 'None'
@@ -365,8 +365,8 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						})
 						row.addCell(mgsp_part_no);
 
-						let existing_mgsp_po_price = new sap.m.Text({
-							text: tableData[i].existing_mgsp_po_price
+						let existing_mgsp_po_price = new sap.m.Input({
+							value: tableData[i].existing_mgsp_po_price
 						})
 						row.addCell(existing_mgsp_po_price);
 

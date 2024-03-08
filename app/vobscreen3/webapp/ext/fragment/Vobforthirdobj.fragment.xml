@@ -27,17 +27,17 @@
 			<Label text="Inco Terms"> </Label>
 			<Label text="Payment Terms"> </Label>
 			<Label text="Transport Cost"> </Label>
-				<HBox>
-			<Label text="Capex"> </Label>
-			<VBox>
+			<HBox class = "innerhbox">
+			<Label class = "hboxlabel1" text="Capex">  </Label>
+			<VBox class="innervbox">
 			<Label text="Tooling / Dies / Moulds / Fixtures"> </Label>
 			<Label text="Inspection Gauges"> </Label>
 			</VBox>
 			</HBox>
 
-			<HBox>
-			<Label text="Revenue"> </Label>
-			<VBox>
+			<HBox class="innerhbox">
+			<Label class = "hboxlabel2" text="Revenue"> </Label>
+			<VBox class="innervbox">
 			<Label text="Testing / Validation"> </Label>
 			<Label text="Engg Fees"> </Label>
 			<Label text="Proto Tooling"> </Label>
