@@ -92,6 +92,7 @@ sap.ui.define([
                             // Handle item click event
                         },
                         headerText: "Folders",
+						//folder 1
                         items: [
                             new sap.ui.webc.main.TreeItemCustom({
                                 content: [
@@ -106,7 +107,37 @@ sap.ui.define([
                                             })
                                         ]
                                     })
-                                ]
+                                ],
+
+
+								items: [ 
+									new sap.ui.webc.main.TreeItemCustom({
+										content: [
+											new sap.m.HBox({
+												items: [
+													new sap.ui.core.Icon({
+														src: "sap-icon://folder-full"
+													}),
+													new sap.m.HBox({
+														justifyContent: "SpaceBetween",
+														items: [ // Customize child folder appearance as needed
+															new sap.m.Text({ text: "Vendor 1" }),
+															new sap.m.Text({ text: "Uploaded" }),
+															new sap.ui.core.Icon({
+																src: "sap-icon://show",
+																activeColor: "black",
+																press: async function (oEvent) {
+																	// Handle icon press action for child folder
+																}
+															}),
+														]
+													}).addStyleClass("child")
+												]
+											})
+										],
+									})
+								]
+
                             }),
                             // Add new parent folder below the existing folders
                             new sap.ui.webc.main.TreeItemCustom({
@@ -119,7 +150,7 @@ sap.ui.define([
                                             new sap.m.HBox({
                                                 justifyContent: "SpaceBetween",
                                                 items: [
-                                                    new sap.m.Text({ text: "Venodor 1" }),
+                                                    new sap.m.Text({ text: "NDA" }),
                                                     new sap.m.Text({ text: " not Uploaded" }),
                                                     new sap.ui.core.Icon({
                                                         src: "sap-icon://show",
