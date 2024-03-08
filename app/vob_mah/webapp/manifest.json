@@ -111,11 +111,6 @@
                     "pattern": "VOB({key}):?query:",
                     "name": "VOBObjectPage",
                     "target": "VOBObjectPage"
-                },
-                {
-                    "pattern": "VOB2({key}):?query:",
-                    "name": "VOB2ObjectPage",
-                    "target": "VOB2ObjectPage"
                 }
             ],
             "targets": {
@@ -132,26 +127,9 @@
                                     "detail": {
                                         "route": "VOBObjectPage"
                                     }
-                                },
-                                "VOB2": {
-                                    "detail": {
-                                        "route": "VOB2ObjectPage"
-                                    }
                                 }
                             },
-                            "views": {
-                                "paths": [
-                                    {
-                                        "key": "tableView2",
-                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView2"
-                                    },
-                                    {
-                                        "key": "tableView",
-                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView",
-                                        "entitySet": "VOB2"
-                                    }
-                                ]
-                            }
+                            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView2"
                         }
                     }
                 },
@@ -178,18 +156,14 @@
                                         }
                                     }
                                 }
+                            },
+                            "controlConfiguration": {
+                                "vob_yoy/@com.sap.vocabularies.UI.v1.LineItem#YOYAnnualProjections": {
+                                    "tableSettings": {
+                                        "type": "GridTable"
+                                    }
+                                }
                             }
-                        }
-                    }
-                },
-                "VOB2ObjectPage": {
-                    "type": "Component",
-                    "id": "VOB2ObjectPage",
-                    "name": "sap.fe.templates.ObjectPage",
-                    "options": {
-                        "settings": {
-                            "contextPath": "/VOB2",
-                            "navigation": {}
                         }
                     }
                 }

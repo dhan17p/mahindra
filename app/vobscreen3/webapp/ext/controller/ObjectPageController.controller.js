@@ -192,27 +192,27 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 					let tableData = [
 						{
-							"mgsp_part_no": "12345",
+							"mgsp_part_no": "EGRValve",
 							"existing_mgsp_po_price": 1500,
 							"target_price": 1200
 						},
 						{
-							"mgsp_part_no": "67890",
+							"mgsp_part_no": "DrainPlug",
 							"existing_mgsp_po_price": 2000,
 							"target_price": 1800
 						},
 						{
-							"mgsp_part_no": "13579",
+							"mgsp_part_no": "Sensor",
 							"existing_mgsp_po_price": 3000,
 							"target_price": 2800
 						},
 						{
-							"mgsp_part_no": "24680",
+							"mgsp_part_no": "HeatShield",
 							"existing_mgsp_po_price": 2500,
 							"target_price": 2000
 						},
 						{
-							"mgsp_part_no": "54321",
+							"mgsp_part_no": "Flywheel",
 							"existing_mgsp_po_price": 1800,
 							"target_price": 1500
 						}
@@ -258,7 +258,7 @@ for (let j = 0; j < vendorNames.length; j++) {
     let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
     let list_inp_field = [];
     let input_field;
-    for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length; i++) {
+    for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length + 4; i++) {
         input_field = new sap.m.TextArea({
             height: "32px",
             wrapping: 'None'
@@ -284,7 +284,7 @@ for (let j = 0; j < vendorNames.length; j++) {
             new sap.m.HBox({
                 items: [
                     // new sap.m.Label({ text: vendor_name, design: "Bold" }),
-                    new sap.m.CheckBox({
+                    new sap.m.Label({
                         text: vendor_name
                     })
                 ]
@@ -292,6 +292,8 @@ for (let j = 0; j < vendorNames.length; j++) {
             inp_vbox
         ]
     });
+	vendor.mAggregations.items[0].mAggregations.items[0].addStyleClass("vendorlabel");
+	debugger
 	if (vendorNames[j] == "vendor1"  || vendorNames[j] == "vendor5"){
 		// inp_vbox.addStyleClass("inputcss")
 		vendor.addStyleClass("custColo1");
