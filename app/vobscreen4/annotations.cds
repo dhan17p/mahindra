@@ -4,27 +4,27 @@ annotate service.VOB_Screen4 with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'part_system',
+            Label : 'Part System',
             Value : part_system,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'project_code',
+            Label : 'Project Code',
             Value : project_code,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'project_description',
+            Label : 'Project Description',
             Value : project_description,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'sop',
+            Label : 'SOP',
             Value : sop,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'sector',
+            Label : 'Sector',
             Value : sector,
         },
     ]
@@ -35,47 +35,47 @@ annotate service.VOB_Screen4 with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'part_system',
+                Label : 'Part System',
                 Value : part_system,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'project_code',
+                Label : 'Project Code',
                 Value : project_code,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'project_description',
+                Label : 'Project Description',
                 Value : project_description,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'sop',
+                Label : 'SOP',
                 Value : sop,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'sector',
+                Label : 'Sector',
                 Value : sector,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'potential_suppliers',
+                Label : 'Potential Suppliers',
                 Value : potential_suppliers,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'supplier_assessment_score',
+                Label : 'Supplier assessment score',
                 Value : supplier_assessment_score,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'forum',
+                Label : 'FORUM',
                 Value : forum,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'presented_on_by',
+                Label : 'Presented On & By',
                 Value : presented_on_by,
             },
         ],

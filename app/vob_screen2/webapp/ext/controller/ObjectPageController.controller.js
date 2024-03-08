@@ -239,7 +239,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 									for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length; i++) {
 										input_field = new sap.m.TextArea({
-											height: "32px",
+											height: "41px",
 											wrapping: 'None'
 											// rows:1
 										});
