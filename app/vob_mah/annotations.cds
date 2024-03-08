@@ -50,13 +50,13 @@ annotate service.VOB with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value : sector,
-                Label : 'Sector',
+                Value : vob_suplier.suplier,
+                Label : 'Potential Supplier',
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'Potential Suppliers',
-                Value : potential_suppliers,
+                Value : sector,
+                Label : 'Sector',
             },
             {
                 $Type : 'UI.DataField',
