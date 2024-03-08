@@ -40,12 +40,7 @@ annotate service.VOB_Screen4 with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'Project Code',
-                Value : project_code,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'Project Description',
+                Label : 'Project Code & Description',
                 Value : project_description,
             },
             {

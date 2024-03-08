@@ -1,0 +1,130 @@
+#vobscreen2\:\:VOB_Screen2ObjectPage--fe\:\:CustomSection\:\:Vandorboard {
+    /* margin: -3% !important;
+    width: 110% !important; */
+}
+
+
+
+.sectionClass {
+    margin: unset !important;
+    padding: unset !important;
+    background: red;
+    height: 85vh !important;
+}
+
+.tableClass {
+    max-width: 40vw !important;
+    min-width: 40vw !important;
+    /* / height: 80vh !important; / */
+}
+
+.vendorClass {
+    /* / padding-left: 2px; / */
+    padding-top: 0px;
+    align-items: center;
+    /* background-color: aqua; */
+    /* / border: solid 1px black; / */
+}
+
+.ResetClass * {
+    /* / padding-top: 11px; ; / */
+    margin: unset !important;
+    padding: unset !important;
+    border-radius: unset;
+    /* / gap:3px !important; / */
+}
+
+.inpVboxClass {
+
+    padding-top: 0px;
+}
+
+.inpFieldClass * {
+    /* / align-items: end; / */
+    /* text-align: center; */
+    font-size: 16px;
+    min-width: 15vw !important;
+    /* background-color: greenyellow !important;
+    border-style: ridge; */
+
+
+    /* / width: 30vw !important; / */
+
+}
+
+.VendorHBoxClass {
+    overflow-x: scroll !important;
+    scrollbar-width: none;
+}
+
+.vboxbelowtable {
+    padding-top: 8px;
+    padding-right: 10px;
+    /* / display: flex; / */
+    gap: 10px !important;
+}
+
+/* / .vboxbelowtable .sapMLabel{ /
+    / background: red; /
+    / width: 40vw; /
+    / border-bottom: solid 1px black; 
+/ } /
+ */
+
+.vendorClass .sapMCheckBox * {
+    size: 10px !important;
+    padding: unset;
+}
+
+.SupplierNameClass {
+    /* height: fit-content;  */
+}
+
+.sapMCb .sapMLabel {
+    font-weight: bolder;
+}
+
+#__area0 {
+
+    padding-top: 21px;
+    width: 100%;
+
+}
+
+.mainVboxComment {
+    padding-top: 20px;
+    gap: 20px !important;
+
+}
+
+.labelcomment {
+    padding-top: 60px;
+    padding-left: 30px;
+    padding-right: 70px;
+    font-weight: bolder;
+    width: 300px;
+    /* font-size: larger; */
+
+}
+
+.buttonhistory {
+
+    padding-left: 80vw !important;
+    padding-top: -90px !important;
+}
+
+.custColor  {
+
+    background: lightblue !important;
+}
+.inputcss {
+    background-color: greenyellowred !important;
+    border-style: ridge !important;
+}
+.custColo1{
+    background: lightblue !important;
+
+}
+.texttoggle{
+    padding-top: 7px;
+}

@@ -65,7 +65,7 @@
         "sap.ushell": {},
         "sap.fe.templates": {},
         "sap.suite.ui.commons": {},
-        "sap.ui.webc.main" : {}
+        "sap.ui.webc.main": {}
       }
     },
     "contentDensities": {
@@ -171,6 +171,26 @@
                       },
                       "title": "Attachments",
                       "type": "XMLFragment"
+                    }
+                  }
+                },
+                "footer": {
+                  "actions": {
+                    "Approveid": {
+                      "press": "vobscreen4.ext.controller.Approve.ApproveMethod",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Approve"
+                    },
+                    "rejectid": {
+                      "press": "vobscreen4.ext.controller.Reject.RejectMethod",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Reject",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Approveid"
+                      }
                     }
                   }
                 }
