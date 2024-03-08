@@ -64,15 +64,15 @@
     gap: 1.28vw !important;
 }
 .innervbox {
-    gap: 0.8vw !important;
+    gap: 1.1vw !important;
     text-align: end;
     border-left: solid;
-    padding: 5px;
+    padding: 2px;
     text-align: center;
 }
 
 .innerhbox {
-    margin-top: 2px;
+    margin-top: -5px;
     /* display: flex; */
     align-items:center;
     text-align: center;
