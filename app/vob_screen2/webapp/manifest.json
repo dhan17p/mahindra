@@ -163,6 +163,16 @@
                       "title": "Comments"
                     }
                   }
+                },
+                "footer": {
+                  "actions": {
+                    "summitid": {
+                      "press": "vobscreen2.ext.controller.Submithandler.submitmethod",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Submit"
+                    }
+                  }
                 }
               }
             }
