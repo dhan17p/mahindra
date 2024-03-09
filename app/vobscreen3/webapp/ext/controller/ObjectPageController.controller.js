@@ -305,7 +305,7 @@ for (let j = 0; j < vendorNames.length; j++) {
     let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
     let list_inp_field = [];
     let input_field;
-    for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length + 4; i++) {
+    for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length + 15; i++) {
         input_field = new sap.m.TextArea({
             height: "32px",
             wrapping: 'None'
@@ -341,12 +341,12 @@ for (let j = 0; j < vendorNames.length; j++) {
     });
 	vendor.mAggregations.items[0].mAggregations.items[0].addStyleClass("vendorlabel");
 	debugger
-	// if (vendorNames[j] == "vendor1"  || vendorNames[j] == "vendor5"){
-	// 	// inp_vbox.addStyleClass("inputcss")
-	// 	vendor.addStyleClass("custColo1");
-	// }  
-    // vendor.addStyleClass("custColor");
-    oHbox.addItem(vendor);
+	if (vendorNames[j] == "Balaji Parts"  || vendorNames[j] == "Infinity Auto" ||  vendorNames[j] == "Kirloskar" ||  vendorNames[j] == "New India Parts") {
+		inp_vbox.addStyleClass("inputcss");
+		vendor.addStyleClass("custColo1");
+	}
+	// vendor.addStyleClass("custColor");
+	oHbox.addItem(vendor);
 	// vendor.addStyleClass("")
 
 }

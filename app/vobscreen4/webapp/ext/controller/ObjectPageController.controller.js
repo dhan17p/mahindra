@@ -335,7 +335,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
 						let list_inp_field = [];
 						let input_field;
-						for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length + 4; i++) {
+						for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length + 15; i++) {
 							input_field = new sap.m.TextArea({
 								height: "41px",
 								wrapping: 'None'
@@ -370,6 +370,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 								inp_vbox
 							]
 						});
+						vendor.mAggregations.items[0].mAggregations.items[0].addStyleClass("vendorlabel");
 						if (vendorNames[j] == "Balaji Parts"  || vendorNames[j] == "Infinity Auto" ||  vendorNames[j] == "Kirloskar" ||  vendorNames[j] == "New India Parts") {
 							inp_vbox.addStyleClass("inputcss");
 							vendor.addStyleClass("custColo1");

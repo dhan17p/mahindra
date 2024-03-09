@@ -2,7 +2,7 @@
 		<VBox  class="mainVboxComment">
 		<HBox>
 
-	<Button  class="buttonhistory" core:require="{ handler: 'vobscreen4/ext/fragment/Comments'}" text="Comment" press="handler.onPress" />
+	<Button  class="buttonhistory" core:require="{ handler: 'vobscreen4/ext/fragment/Comments'}" text="Comments" press="handler.onPress" />
 	<Button class = "buttonhistory1" core:require="{handler : 'vobscreen4/ext/fragment/Folders'}" text ="Folders" press = "handler.folder"/>
 </HBox>
 

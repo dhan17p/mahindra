@@ -44,6 +44,7 @@
     /* text-align: center; */
     font-size: 16px;
     min-width: 15vw !important;
+    pointer-events: none;
     /* background-color: greenyellow !important;
     border-style: ridge; */
 
@@ -124,22 +125,45 @@
     background: rgb(199, 230, 173) !important;
 
 }
-.vboxbelowtable {
-    padding-top: 8px;
+.vboxbelowtable{
+    padding-top: 15px;
     padding-right: 10px;
-    display: flex; 
-    gap: 0.73vw !important;
+    /* / display: flex; / */
+    /* gap:1.25vw !important; */
 }
-.innervbox {
-    gap: 0.5vw !important;
+.vboxupper
+{
+    margin-top: -2px;
+    gap: 0.7vw;
+    text-align: end;
+}
+.innervbox1 {
+    gap: 0.6vw !important;
     text-align: end;
     border-left: solid;
     padding: 5px;
     text-align: center;
 }
+.innervbox2{
+    gap: 0.59vw !important;
+    text-align: end;
+    border-left: solid;
+    padding: 5px;
+    padding-top: 10px;
+    text-align: center;
+}
 
-.innerhbox {
-    margin-top: -5px;
+.innerhbox1 {
+    /* margin-top: 2px; */
+    /* display: flex; */
+    align-items:center;
+    text-align: center;
+    padding-left: 20px;
+    border: solid;
+    border-bottom: none;
+}
+.innerhbox2 {
+    /* margin-top: 2px; */
     /* display: flex; */
     align-items:center;
     text-align: center;
@@ -158,6 +182,11 @@
     padding-left: 30px;
     text-align: center;
     align-items:center;
+}
+.hboxcontainer
+{
+    margin-top: 9px;
+    padding-bottom: 10px;
 }
 .vendorlabel
 {

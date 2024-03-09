@@ -18,36 +18,43 @@
 					</Column>
 				</columns>
 			</Table>
-			<VBox alignItems='End' class="vboxbelowtable">
-			<Label text="Total Landed Investment - Settled (Rs. lacs)"> </Label>
-			<Label text="Total Business value (Rs. Lac) 1st 12months"> </Label>
-			<Label text="Amount to be paid to M/s RKR (Lac) 1st 12 months"> </Label>
-			<Label text="Amount to be paid to M/s RKR (Lac) 2nd + 3rd Year"> </Label>
-			<Label text="YOY Reduction for 3 yrs (After SOP + 1 year)"> </Label>
-			<Label text="FX Base Rate"> </Label>
-			<Label text="Finished Weight of Part / System (kg)"> </Label>
-			<Label text="DTB Packaging Cost Rs"> </Label>
-			<Label text="Inco Terms"> </Label>
-			<Label text="Payment Terms"> </Label>
-			<Label text="Transport Cost"> </Label>
-			<HBox class = "innerhbox">
-			<Label class = "hboxlabel1" text="Capex">  </Label>
-			<VBox class="innervbox">
-			<Label text="Tooling / Dies / Moulds / Fixtures"> </Label>
-			<Label text="Inspection Gauges"> </Label>
-			</VBox>
-			</HBox>
+			<VBox  alignItems='End' class="vboxbelowtable">
 
-			<HBox class="innerhbox">
-			<Label class = "hboxlabel2" text="Revenue"> </Label>
-			<VBox class="innervbox">
-			<Label text="Testing / Validation"> </Label>
-			<Label text="Engg Fees"> </Label>
-			<Label text="Proto Tooling"> </Label>
-			<Label text="Logistics Trolliesg"> </Label>
-			</VBox>
-			</HBox>
-			<Label text="Total Landed Investment Settled"> </Label>
+				<VBox  class="vboxupper">
+					<Label text="Total Landed Investment - Settled (Rs. lacs)"> </Label>
+					<Label text="Total Business value (Rs. Lac) 1st 12months"> </Label>
+					<Label text="Amount to be paid to M/s RKR (Lac) 1st 12 months"> </Label>
+					<Label text="Amount to be paid to M/s RKR (Lac) 2nd + 3rd Year"> </Label>
+					<Label text="YOY Reduction for 3 yrs (After SOP + 1 year)"> </Label>
+					<Label text="FX Base Rate"> </Label>
+					<Label text="Finished Weight of Part / System (kg)"> </Label>
+					<Label text="DTB Packaging Cost Rs"> </Label>
+					<Label text="Inco Terms"> </Label>
+					<Label text="Payment Terms"> </Label>
+					<Label text="Transport Cost"> </Label>
+				</VBox>
+
+				<VBox class = "hboxcontainer">
+					<HBox class = "innerhbox1">
+						<Label class = "hboxlabel1" text="Capex">  </Label>
+						<VBox class="innervbox1">
+							<Label text="Tooling / Dies / Moulds / Fixtures"> </Label>
+							<Label text="Inspection Gauges"> </Label>
+						</VBox>
+					</HBox>
+
+					<HBox class="innerhbox2">
+						<Label class = "hboxlabel2" text="Revenue"> </Label>
+						<VBox class="innervbox2">
+							<Label text="Testing / Validation"> </Label>
+							<Label text="Engg Fees"> </Label>
+							<Label text="Proto Tooling"> </Label>
+							<Label text="Logistics Trollies"> </Label>
+						</VBox>
+					</HBox>
+				</VBox>
+				<Label text="Total Landed Investment Settled"> </Label>
+
 			</VBox>
 		</VBox>
 		<HBox class="VendorHBoxClass"></HBox>
