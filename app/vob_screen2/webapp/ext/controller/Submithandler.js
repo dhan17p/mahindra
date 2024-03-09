@@ -8,8 +8,7 @@ sap.ui.define([
             var dialogId = sap.ui.core.Fragment.createId("dialogid");
             var labelId = sap.ui.core.Fragment.createId("labelid");
             var label = new sap.m.Label(labelId,{
-                text:"Are you sure you want to submit?",
-              
+                text:"Are you sure you want to submit?", 
             })
             label.addStyleClass("labeldialogsave")
             this.oDialog = new sap.m.Dialog(dialogId, {
