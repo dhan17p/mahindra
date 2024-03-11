@@ -10,6 +10,7 @@ sap.ui.define([
 	var dialogOpen;
 	var type;
 	var foldername;
+	var baseuri;
 
 	return {
 		onPress: function (oEvent) {
@@ -18,6 +19,7 @@ sap.ui.define([
 		},
 		onAfterItemAdded: function (oEvent) {
 			debugger
+			var baseuri = oEvent.oSource.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().oContainer.getParent().getParent().getParent().getManifestObject()._oBaseUri._string;
 			var item = oEvent.getParameter("item");
 			var filename = oEvent.getParameter("item").getFileName();
 			var filetype = oEvent.getParameter("item").getFileObject().type;
@@ -57,7 +59,7 @@ sap.ui.define([
 
 					}),
 					beginButton: new sap.m.Button({
-						text: "ok",
+						text: "Ok",
 						press: function (oEvent) {
 							debugger
 							foldername = oEvent.getSource().getParent().mAggregations.content[1].mAggregations.items[0].mProperties.footerText;
@@ -85,7 +87,8 @@ sap.ui.define([
 								};
 
 								var settings = {
-									url: "/odata/v4/my/Files",
+									url: baseuri + "odata/v4/my/Files",
+									// url: "/odata/v4/my/Files",
 									method: "POST",
 									headers: {
 										"Content-type": "application/json"
@@ -107,7 +110,8 @@ sap.ui.define([
 							_createEntity(item)
 								.then((id) => {
 									debugger
-									var url = `/odata/v4/my/Files(${id})/content`;
+									var url = baseuri + `odata/v4/my/Files(${id})/content`;
+									// var url = `/odata/v4/my/Files(${id})/content`;
 									item.setUploadUrl(url);
 									cdialog.close();
 									cdialog.destroyContent();
@@ -530,7 +534,53 @@ sap.ui.define([
 			// 	return iconUrl;
 		},
 
-
+			onOpenPressed: function(oEvent) {
+				debugger
+				 ;
+				oEvent.preventDefault();
+				 
+				var item = oEvent.getSource();
+				var fileName = item.getFileName();
+				var url111 = oEvent.getSource().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().oBindingContexts.undefined.oModel.sServiceUrl;
+				var newurl = item.getUrl();
+				var bWithoutCommonPart = newurl.substring('/odata/v4/my/'.length);
+				var new_url = url111 + bWithoutCommonPart;
+				// let dynamicUrl = newurl.replace("attachments", "Files");
+				// console.log(dynamicUrl);
+				var _download = function(item) {
+					var settings = {
+						// url: url111 + item.getUrl(),
+						url: new_url,
+						method: "GET",
+						headers: {
+							"Content-type": "application/octet-stream"
+						},
+						xhrFields: {
+							responseType: 'blob'
+						}
+					};
+			
+					return new Promise((resolve, reject) => {
+						$.ajax(settings)
+							.done((result) => {
+								resolve(result);
+							})
+							.fail((err) => {
+								reject(err);
+							});
+					});
+				};
+			
+				_download(item)
+					.then((blob) => {
+						var url = window.URL.createObjectURL(blob);
+						// Open the file in a new tab
+						window.open(url, '_blank');
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			},
 		formatThumbnailUrl: function (mediaType) {
 			debugger
 			var iconUrl;

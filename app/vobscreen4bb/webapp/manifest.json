@@ -64,7 +64,8 @@
         "sap.ui.core": {},
         "sap.ushell": {},
         "sap.fe.templates": {},
-        "sap.suite.ui.commons": {}
+        "sap.suite.ui.commons": {},
+        "sap.ui.webc.main": {}
       }
     },
     "contentDensities": {
@@ -128,7 +129,14 @@
                   }
                 }
               },
-              "initialLoad": "Enabled"
+              "initialLoad": "Enabled",
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "GridTable"
+                  }
+                }
+              }
             }
           }
         },
@@ -140,27 +148,44 @@
             "settings": {
               "contextPath": "/VOB_Screen4b",
               "navigation": {},
-              "editableHeaderContent": false,
               "content": {
                 "body": {
                   "sections": {
                     "Vobobject": {
                       "template": "vobscreen4bb.ext.fragment.Vobobject",
                       "position": {
-                        "anchor": "GeneratedFacet1",
-                        "placement": "After"
+                        "placement": "After",
+                        "anchor": "GeneratedFacet1"
                       },
-                      "type": "XMLFragment",
-                      "title": "VOB"
+                      "title": "VOB",
+                      "type": "XMLFragment"
                     },
                     "Comments": {
                       "template": "vobscreen4bb.ext.fragment.Comments",
                       "position": {
-                        "anchor": "Vobobject",
-                        "placement": "After"
+                        "placement": "After",
+                        "anchor": "Vobobject"
                       },
-                      "type": "XMLFragment",
-                      "title": "Comments"
+                      "title": "Comments",
+                      "type": "XMLFragment"
+                    },
+                    "Attachments": {
+                      "template": "vobscreen4bb.ext.fragment.Attachments",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Comments"
+                      },
+                      "title": "Attachments",
+                      "type": "XMLFragment"
+                    },
+                    "Worflow_History": {
+                      "template": "vobscreen4bb.ext.fragment.Worflow_History",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Attachments"
+                      },
+                      "title": "Workflow History",
+                      "type": "XMLFragment"
                     }
                   }
                 }

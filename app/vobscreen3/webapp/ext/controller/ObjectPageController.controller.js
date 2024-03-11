@@ -197,7 +197,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						var id = match[1];
 					}
 					if (id == "cf659f8c-3fbb-4c94-89be-1ec9d5244b72") {
-						var vendorNames = ["Infinity Auto", "Balaji Parts","vendor3","vendor4","vendor5"]
+						var vendorNames = ["Infinity Auto", "Balaji Parts"]
 						
 					var tableData = [
 						{
@@ -229,7 +229,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					}
 					else if(id == "70ac0c95-4022-4da3-b6e6-4aea987d03f7")
 					{
-						var vendorNames = ["Kirloskar", "New India Parts","vendor3","vendor4","vendor5"]
+						var vendorNames = ["Kirloskar", "New India Parts"]
 				  var tableData = [
 						{
 							"mgsp_part_no": "RearWheel",

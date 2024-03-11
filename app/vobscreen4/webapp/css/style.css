@@ -213,3 +213,7 @@
     font-size : 15px;
     padding-left: 80px;
 }
+
+.colClass{
+    border: solid 1px black;
+}

@@ -403,12 +403,12 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						row.addCell(mgsp_part_no);
 
 						let existing_mgsp_po_price = new sap.m.Input({
-							value: tableData[i].existing_mgsp_po_price
+							// value: tableData[i].existing_mgsp_po_price
 						})
 						row.addCell(existing_mgsp_po_price);
 
 						let target_price = new sap.m.Input({
-							value: tableData[i].target_price
+							// value: tableData[i].target_price
 						})
 						row.addCell(target_price);
 

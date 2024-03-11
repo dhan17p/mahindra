@@ -213,3 +213,16 @@ entity YOY_Screen4b {
         total               : String;
         yoy_vov_scr4b        : Association to VOB_Screen4b;
 }
+
+
+// entity workflow_History {
+//         Level           : String;
+//         Title           : String;
+//         Employee_id     : String;
+//         Employee_Name   : String;
+//         Begin_Date_Time : String;
+//         End_Date_Time   : String;
+//         Days_Taken      : String;
+//         Approved_By     : String;
+
+// }

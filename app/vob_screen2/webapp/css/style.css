@@ -172,3 +172,7 @@
         padding-left: 10px;
     
     }
+
+    .colClass{
+        border: solid 1px black;
+    }

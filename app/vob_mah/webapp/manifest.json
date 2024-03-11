@@ -129,7 +129,14 @@
                                     }
                                 }
                             },
-                            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView2"
+                            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView2",
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "GridTable"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -152,6 +159,15 @@
                                                 "anchor": "YOYAnnualProjections"
                                             },
                                             "title": "Comments",
+                                            "type": "XMLFragment"
+                                        },
+                                        "Worflow_History": {
+                                            "template": "vobmah.ext.fragment.Worflow_History",
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "Comments"
+                                            },
+                                            "title": "Workflow History",
                                             "type": "XMLFragment"
                                         }
                                     }

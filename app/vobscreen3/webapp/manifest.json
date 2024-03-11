@@ -130,7 +130,14 @@
                   }
                 }
               },
-              "initialLoad": "Enabled"
+              "initialLoad": "Enabled",
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "GridTable"
+                  }
+                }
+              }
             }
           }
         },
@@ -167,6 +174,15 @@
                         "anchor": "Comment"
                       },
                       "title": "Attachments",
+                      "type": "XMLFragment"
+                    },
+                    "Worflow_History": {
+                      "template": "vobscreen3.ext.fragment.Worflow_History",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Attachments"
+                      },
+                      "title": "Workflow History",
                       "type": "XMLFragment"
                     }
                   }
