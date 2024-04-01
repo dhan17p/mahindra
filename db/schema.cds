@@ -21,6 +21,7 @@ entity VOB {
         Development_Supply_Agreement_Whether_Signed : String;
         Tooling_Agreement_signed                    : String;
         Supplier_Code_of_Conduct                    : String;
+        status                                      : String default'n';
         vob_yoy                                     : Composition of many YOY
                                                           on vob_yoy.vob_id = id;
         vob_suplier                                 : Composition of many potential_suplier_scr1
@@ -160,11 +161,13 @@ entity VOB_Screen4 {
         vob_suplier4              : Composition of many potential_suplier_scr4
                                         on vob_suplier4.id = id;
 }
+
 entity potential_suplier_scr4 {
     key id_main : UUID;
         id      : UUID;
         suplier : String;
 }
+
 entity YOY_Screen4 {
     key id                  : UUID;
         vob_id              : UUID;
@@ -191,16 +194,18 @@ entity VOB_Screen4b {
         supplier_assessment_score : String;
         forum                     : String;
         presented_on_by           : String;
-        vob_yoy_scr4b              : Composition of many YOY_Screen4b
+        vob_yoy_scr4b             : Composition of many YOY_Screen4b
                                         on vob_yoy_scr4b.vob_id = id;
-        vob_suplier4b              : Composition of many potential_suplier_scr4b
+        vob_suplier4b             : Composition of many potential_suplier_scr4b
                                         on vob_suplier4b.id = id;
 }
+
 entity potential_suplier_scr4b {
     key id_main : UUID;
         id      : UUID;
         suplier : String;
 }
+
 entity YOY_Screen4b {
     key id                  : UUID;
         vob_id              : UUID;
@@ -211,7 +216,7 @@ entity YOY_Screen4b {
         f25                 : String;
         f26                 : String;
         total               : String;
-        yoy_vov_scr4b        : Association to VOB_Screen4b;
+        yoy_vov_scr4b       : Association to VOB_Screen4b;
 }
 
 
