@@ -11,6 +11,12 @@ sap.ui.define(
 
 			onInit: function () {
 				debugger
+				var currentUrl = window.location.href;
+
+				// Extract the id from the URL
+				var idRegex = /id=([a-f\d-]+)/;
+				var match = idRegex.exec(currentUrl);
+				var extractedId = match ? match[1] : null;
 				// this._handleNavigationToStep(1);
 				var wizstep = this.byId("partrequest");
 				wizstep.destroyContent();
@@ -26,7 +32,7 @@ sap.ui.define(
 					function (ocustomerDetail) {
 						debugger
 						ocustomerDetail.getRouter().navTo("VOBObjectPage", {
-							key: `id=0715d66c-3408-449d-a7dd-f1722136e1a8,IsActiveEntity=true`
+							key: `id=${extractedId},IsActiveEntity=true`
 						})
 						compCont.setComponent(ocustomerDetail);
 						// this._customerDetailContainer = ocustomerDetail;

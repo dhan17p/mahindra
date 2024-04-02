@@ -2,6 +2,7 @@ const cds = require('@sap/cds');
 const { SELECT, INSERT, UPDATE, DELETE } = cds.ql
 module.exports =cds.service.impl( async function () {
     let {
+        VOB,
         Files,
         draft_attachments,
         uploadset,
@@ -44,4 +45,31 @@ module.exports =cds.service.impl( async function () {
         //  var val332 =  await SELECT `*`.from(VOB_Screen2.drafts); 
         // ons?ole.log('content-type: ', req.headers['content-type'])
     });
+
+    this.on('createEntry', async (req) => {
+        debugger
+        var yoydata =req.data.status;
+        
+        if (req.data.status == 'vobpost') {
+            let data = await INSERT.into(VOB).entries({ project_code: '' });
+            let data1 = await SELECT.from(VOB);
+            return data1[data1.length - 1].id
+        }
+        if (yoydata.status == 'yoypost') {
+            let data = await INSERT.into(YOY).entries({ vob_id: yoydata.vob_id });
+            let data1 = await SELECT.from(VOB);
+            // return data1[data1.length - 1].id
+        }
+    })
+    this.on('deleteEntry', async (req) => {
+        debugger
+        let result = req.data.keyid;
+
+        result = JSON.parse(result);
+        for (let i = 0; i < result.length; i++) {
+            await DELETE.from(VOB).where({ id: result[i] });
+
+        }
+
+    })
 })

@@ -30,4 +30,6 @@ service MyService {
      // @odata.draft.enabled
     entity VOB_Screen4b as projection on db.VOB_Screen4b;
     entity YOY_Screen4b as projection on db.YOY_Screen4b;
+    function createEntry(status:String) returns String;
+    function deleteEntry(keyid : String) returns String;
 }

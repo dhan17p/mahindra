@@ -10,6 +10,7 @@ sap.ui.define([
         return Controller.extend("finalwizard.controller.Listreport", {
             onInit: function () {
             },
+            
             onCreatePressed: async function (oEvent) {
                 debugger
                 let oFunction = this.getView().getModel().bindContext("/createEntry(...)");
@@ -19,7 +20,7 @@ sap.ui.define([
                 debugger
                 var router = sap.ui.core.UIComponent;
                 router.getRouterFor(this).navTo("RouteObjectPage", {
-                    id: result.value
+                    id: `id=${result.value},IsActiveEntity=true`
                     // isAct: true
                 })
 

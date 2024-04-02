@@ -31,7 +31,8 @@
         "watch-vobscreen4": "cds watch --open vobscreen4/webapp/index.html?sap-ui-xx-viewCache=false",
         "watch-vobscreen4b": "cds watch --open vobscreen4b/webapp/index.html?sap-ui-xx-viewCache=false",
         "watch-vobscreen4bb": "cds watch --open vobscreen4bb/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-finalwizard": "cds watch --open finalwizard/webapp/index.html?sap-ui-xx-viewCache=false"
+        "watch-finalwizard": "cds watch --open finalwizard/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-folderstructure": "cds watch --open folderstructure/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "requires": {

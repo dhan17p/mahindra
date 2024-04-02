@@ -92,6 +92,10 @@ modules:
       - finalwizard.zip
       name: finalwizard
       target-path: resources/
+    - artifacts:
+      - folderstructure.zip
+      name: folderstructure
+      target-path: resources/
 - name: vobmah
   type: html5
   path: app/vob_mah
@@ -155,6 +159,16 @@ modules:
 - name: finalwizard
   type: html5
   path: app/finalwizard
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: folderstructure
+  type: html5
+  path: app/folderstructure
   build-parameters:
     build-result: dist
     builder: custom
