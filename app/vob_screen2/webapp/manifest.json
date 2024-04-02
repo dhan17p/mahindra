@@ -103,12 +103,12 @@
     "routing": {
       "routes": [
         {
-          "pattern": ":?query:",
+          "pattern": "list",
           "name": "VOB_Screen2List",
           "target": "VOB_Screen2List"
         },
         {
-          "pattern": "VOB_Screen2({key}):?query:",
+          "pattern": "VOB({key}):?query:",
           "name": "VOB_Screen2ObjectPage",
           "target": "VOB_Screen2ObjectPage"
         }
@@ -122,13 +122,6 @@
             "settings": {
               "contextPath": "/VOB_Screen2",
               "variantManagement": "Page",
-              "navigation": {
-                "VOB_Screen2": {
-                  "detail": {
-                    "route": "VOB_Screen2ObjectPage"
-                  }
-                }
-              },
               "initialLoad": "Enabled",
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {

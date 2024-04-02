@@ -1,0 +1,40 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" controllerName="finalwizard.controller.ObjectPage" displayBlock="true"
+    xmlns:m="sap.m"
+    xmlns:u="sap.uxap"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    	xmlns:upload="sap.m.upload">
+    <NavContainer id="wizardNavContainer" height="100vh">
+        <pages>
+            <Page id="wizardContentPage" showHeader="false">
+                <content>
+                    <Wizard id="CreateProductWizard" class="height1" renderMode="Page">
+                        <WizardStep id="partrequest" title="VOB-Part Request" validated="true">
+                        <!-- <Text text="sssss"></Text> -->
+                           <core:ComponentContainer id="screen1" propagateModel="true" height="500px" />
+                        </WizardStep>
+                        <WizardStep id="supplierdetails" validated="true" title="VOB-Supplier Details" activate="screen2activate">
+                            <core:ComponentContainer id="screen2" propagateModel="true" height="500px" />
+                        </WizardStep>
+                        <WizardStep id="OptionalInfoStep" validated="true" activate="screen3activate" title="VOB-Document Upload">
+                            <core:ComponentContainer id="screen3" propagateModel="true" height="500px" />
+                        </WizardStep>
+                        <WizardStep id="vobapproval1" complete="pricingComplete" validated="true" title="VOB-Approval" activate="screen4activate">
+                            <core:ComponentContainer id="screen4" propagateModel="true" height="500px" />
+                        </WizardStep>
+                        <WizardStep id="vobapproval2" complete="pricingComplete" validated="true" title="VOB-Approval2" activate="screen5activate">
+                            <core:ComponentContainer id="screen5" propagateModel="true" height="500px" />
+                        </WizardStep>
+                    </Wizard>
+                </content>
+                <footer>
+                    <OverflowToolbar id="oflow1">
+                        <Button id="sss" text="Cancel" press="handleWizardCancel" />
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </pages>
+    </NavContainer>
+</mvc:View>

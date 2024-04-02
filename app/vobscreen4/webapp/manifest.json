@@ -104,12 +104,12 @@
     "routing": {
       "routes": [
         {
-          "pattern": ":?query:",
+          "pattern": "list",
           "name": "VOB_Screen4List",
           "target": "VOB_Screen4List"
         },
         {
-          "pattern": "VOB_Screen4({key}):?query:",
+          "pattern": "VOB({key}):?query:",
           "name": "VOB_Screen4ObjectPage",
           "target": "VOB_Screen4ObjectPage"
         }
@@ -123,13 +123,6 @@
             "settings": {
               "contextPath": "/VOB_Screen4",
               "variantManagement": "Page",
-              "navigation": {
-                "VOB_Screen4": {
-                  "detail": {
-                    "route": "VOB_Screen4ObjectPage"
-                  }
-                }
-              },
               "initialLoad": "Enabled",
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {

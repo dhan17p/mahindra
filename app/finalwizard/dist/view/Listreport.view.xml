@@ -1,0 +1,44 @@
+<mvc:View controllerName="finalwizard.controller.Listreport"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+   <Page id="page" title="{i18n>title}">
+        <content>
+            <Table class="listReportClass" id="vobTable" mode="MultiSelect" items="{path: '/VOB'}">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="VOB Data"/>
+                        <ToolbarSpacer/>
+                        <Button text="Create" press="onCreatePressed"/>
+                        <Button text="Delete" press="onDeletePressed"></Button>
+                    </Toolbar>
+
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="ID"/>
+                    </Column>
+                    <Column>
+                        <Text text="Part System"/>
+                    </Column>
+                    <Column>
+                        <Text text="Project Code"/>
+                    </Column>
+                    <Column>
+                        <Text text="Project Description"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="onListItemPressed">
+                        <cells>
+                            <Text text="{id}"/>
+                            <Text text="{part_system}"/>
+                            <Text text="{project_code}"/>
+                            <Text text="{project_description}"/>
+
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

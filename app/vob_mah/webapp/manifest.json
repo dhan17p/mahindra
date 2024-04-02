@@ -103,7 +103,7 @@
         "routing": {
             "routes": [
                 {
-                    "pattern": ":?query:",
+                    "pattern": "list",
                     "name": "VOBList",
                     "target": "VOBList"
                 },
@@ -122,13 +122,6 @@
                         "settings": {
                             "contextPath": "/VOB",
                             "variantManagement": "Page",
-                            "navigation": {
-                                "VOB": {
-                                    "detail": {
-                                        "route": "VOBObjectPage"
-                                    }
-                                }
-                            },
                             "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView2",
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {

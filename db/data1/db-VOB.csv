@@ -1,0 +1,4 @@
+id,part_system,project_code,project_description,sop,sector,potential_suppliers,supplier_assessment_score,forum,presented_on_by,Team_Recommendation_with_Rationale,Decision_MOM_of_Forum,Development_Supply_Agreement_Whether_Signed,Tooling_Agreement_signed,Supplier_Code_of_Conduct,status
+9740d3d5-b69a-4731-92be-9c3aaaf1190d,PartSys1,ProjCode1,Project Description 1,SOP1,Sector1,Suppliers1,Score1,Forum1,Presenter1,Recommendation1,Decision1,Yes,Yes,Yes,n
+0715d66c-3408-449d-a7dd-f1722136e1a8,PartSys2,ProjCode2,Project Description 2,SOP2,Sector2,Suppliers2,Score2,Forum2,Presenter2,Recommendation2,Decision2,No,Yes,Yes,n
+679cd5c7-a17e-4f41-a5b0-dfe2f2749cce,PartSys3,ProjCode3,Project Description 3,SOP3,Sector3,Suppliers3,Score3,Forum3,Presenter3,Recommendation3,Decision3,Yes,No,Yes,n

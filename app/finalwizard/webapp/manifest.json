@@ -1,0 +1,195 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "finalwizard",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.13.1",
+      "toolsId": "50dfec91-c184-4465-9cc7-fba275c73ace"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/my/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "finalwizardsem-display": {
+          "semanticObject": "finalwizardsem",
+          "action": "display",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.122.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      },
+      "components": {
+        "vobmah": {
+          "lazy": false
+        },
+        "vobscreen2":{
+          "lazy": false
+        },
+        "vobscreen3":{
+          "lazy": false
+        },
+        "vobscreen4":{
+          "lazy": false
+        },
+        "vobscreen4bb":{
+          "lazy": false
+        }
+      }
+    },
+    "componentUsages": {
+      "screen1": {
+        "name": "vobmah",
+        "settings": {}
+      },
+      "screen2": {
+        "name": "vobscreen2",
+        "settings": {}
+      },
+      "screen3": {
+        "name": "vobscreen3",
+        "settings": {}
+      },
+      "screen4": {
+        "name": "vobscreen4",
+        "settings": {}
+      },
+      "screen5": {
+        "name": "vobscreen4bb",
+        "settings": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "finalwizard.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "finalwizard.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteListreport",
+          "pattern": ":?query:",
+          "target": [
+            "TargetListreport"
+          ]
+        },
+        {
+          "name": "RouteObjectPage",
+          "pattern": "VOB({id}):?query:",
+          "target": [
+            "TargetObjectPage"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetListreport": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Listreport",
+          "viewName": "Listreport"
+        },
+        "TargetObjectPage": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": true,
+          "viewId": "ObjectPage",
+          "viewName": "ObjectPage"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "finalwizard.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "mahindravendorapprouter"
+  }
+}
