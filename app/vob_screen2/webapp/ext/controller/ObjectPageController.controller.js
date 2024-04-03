@@ -333,7 +333,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					debugger
 					let oFunction = this.getView().getModel().bindContext("/vanddetails(...)");
 					var statusval = JSON.stringify({ id: id, status: "screen2get" })
-					oFunction.setParameter("status", statusval)
+					oFunction.setParameter("status", statusval);
 					await oFunction.execute()
 					var result = oFunction.getBoundContext().getValue();
 					// let oFunction1 = this.getView().getModel().bindContext("/vanddetails(...)");
