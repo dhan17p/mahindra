@@ -1,11 +1,13 @@
-const cds = require('@sap/cds');
+const cds = require('@sap/cds',);
 const { SELECT, INSERT, UPDATE, DELETE } = cds.ql
 module.exports =cds.service.impl( async function () {
     let {
         Files,
         draft_attachments,
         uploadset,
-        MediaFile,VOB_Screen2
+        MediaFile,VOB_Screen2,
+        YOY_Screen2,
+        potential_suplier_scr1
     }=this.entities;
     //   const cats = await cds.connect.to ('MyService');
 
@@ -19,6 +21,7 @@ module.exports =cds.service.impl( async function () {
         //check content-type
         console.log('content-type: ', req.headers['content-type'])
     });
+    //First Screen
     this.before('POST', 'VOB',  async req => {
         //check content-type
        var val33 =  await SELECT `*`.from(VOB_Screen2); 
@@ -27,21 +30,52 @@ module.exports =cds.service.impl( async function () {
         let entities1=[];
         entities1.push({
             id:req.data.id,
-            vob_yoy_scr2:[
-                {
-                id: 'd397e5d9-a0b9-4c9f-a550-93832173bc9c',
-                vob_id:req.data.id,
-                }
-            ]
-        })
-        // var insert1 = await INSERT.into (VOB_Screen2) .columns (
-        //     'id', 'part_system','project_description'
-        //  ) .values (
-        //     req.data.id, req.data.part_system, req.data.project_description
-        //  )
-         let ind44 =  await INSERT.into(VOB_Screen2).entries(entities1);
-           var val33 =  await SELECT.from(VOB_Screen2).where({id:req.data.id}); 
+            vob_suplier:req.data.vob_suplier,
+            vob_yoy:req.data.vob_yoy
+        });
+        req.data.vob_yoy_scr2 = req.data.vob_yoy;
+        var vob_yoydata =  req.data.vob_yoy;
+        delete req.data.vob_yoy;
+         let ind44 =  await INSERT.into(VOB_Screen2).entries(req.data);
+         var val33 =  await SELECT.from(VOB_Screen2).where({id:req.data.id}); 
         //  var val332 =  await SELECT `*`.from(VOB_Screen2.drafts); 
-        // ons?ole.log('content-type: ', req.headers['content-type'])
+        req.data.vob_yoy = vob_yoydata;
+        delete req.data.vob_yoy_scr2;
     });
+    this.on('vanddetails', async (req) => {
+        debugger
+         var reqdata = JSON.parse(req.data.status);
+        
+        if (reqdata.status == 'screen2get') {
+            let partdetails = await SELECT.from(YOY_Screen2);
+            let venordss = await SELECT.from(YOY_Screen2).where({vob_id:reqdata.id});
+            // let supp = await SELECT.from(potential_suplier_scr1).where({id:reqdata.id});
+            // let venordssString = JSON.stringify(venordss);
+            // let suppString = JSON.stringify(supp);
+
+            // // Concatenate both strings
+            // let combinedString = venordssString + '\n' + suppString;
+
+            // Return the combined string
+            return venordss;
+        }
+        if (req.data.status == 'screen2get1') {
+            let partdetails = await SELECT.from(YOY_Screen2);
+            // let venordss = await SELECT.from(YOY_Screen2).where({vob_id:reqdata.id});
+            let supp = await SELECT.from(potential_suplier_scr1).where({id:reqdata.id});
+            // let venordssString = JSON.stringify(venordss);
+            // let suppString = JSON.stringify(supp);
+
+            // // Concatenate both strings
+            // let combinedString = venordssString + '\n' + suppString;
+
+            // Return the combined string
+            return supp;
+        }
+          
+
+            // var data1
+      
+
+    })
 })
