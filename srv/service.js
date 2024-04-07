@@ -14,7 +14,8 @@ module.exports = cds.service.impl(async function () {
         VOB_Screen3,
         YOY_Screen3,
         VOB_Screen4,
-        YOY_Screen4
+        YOY_Screen4,
+        
 
     } = this.entities;
     //   const cats = await cds.connect.to ('MyService');
@@ -73,6 +74,25 @@ module.exports = cds.service.impl(async function () {
          delete req.data.vob_suplier4;
 
     });
+    // this.before('POST','VOB',async req =>{
+    //     let entities1 = [{
+    //         id: req.data.id,
+    //         part_system: req.data.part_system,
+    //         project_code: req.data.project_code,
+    //         project_description: req.data.project_description,
+    //         sop: req.data.sop,
+    //         sector: req.data.sector,
+    //         potential_suppliers: req.data.potential_suppliers,
+    //         supplier_assessment_score: req.data.supplier_assessment_score,
+    //         forum: req.data.forum,
+    //         presented_on_by: req.data.presented_on_by,
+    //         vob_yoy_scr2: req.data.vob_yoy
+    //     }];
+    //   await INSERT.into(VOB_Screen2).entries(entities1);
+    // })
+    this.before('SAVE','VOB',async req =>{
+        debugger
+    })
     this.on('commentfun', async (req) => {
 
         var reqdata = JSON.parse(req.data.status);
