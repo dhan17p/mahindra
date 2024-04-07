@@ -6,15 +6,22 @@ sap.ui.define([
     return {
         onPress: async function(oEvent) {
             debugger
-            var str = this.getBindingContext().sPath;
-            // Regular expression to match the UUID pattern within parentheses
-            var uuidRegex = /\(([^)]+)\)/;
+            // var str = this.getBindingContext().sPath;
+            // // Regular expression to match the UUID pattern within parentheses
+            // var uuidRegex = /\(([^)]+)\)/;
 
-            // Extracting the UUID from the string using match function and regex
-            var match = str.match(uuidRegex);
+            // // Extracting the UUID from the string using match function and regex
+            // var match = str.match(uuidRegex);
 
-            // Check if match is found and extract the UUID
-            var extractedUuid = match ? match[1] : null;
+            // // Check if match is found and extract the UUID
+            // var extractedUuid = match ? match[1] : null;
+
+
+            
+            var currentUrl = window.location.href;
+            var uuidRegex = /id=([0-9a-fA-F-]+),/;
+            var extractedUuid = currentUrl.match(uuidRegex)[1];
+
             var cdialog = new sap.m.Dialog({
                 title: "Comments",
                 endButton: new sap.m.Button({

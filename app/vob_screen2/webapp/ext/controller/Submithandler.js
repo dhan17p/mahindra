@@ -39,9 +39,13 @@ sap.ui.define([
                         var match = currentUrl.match(uuidPattern);
                         // Check if a match is found and extract the UUID
 
-                        if (match && match.length > 1) {
-                            var id = match[1];
-                        }
+                        var currentUrl = window.location.href;
+                        var uuidRegex = /id=([0-9a-fA-F-]+),/;
+                        var id = currentUrl.match(uuidRegex)[1];
+
+                        // if (match && match.length > 1) {
+                        //     var id = match[1];
+                        // }
                         var supplierVBox = sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSubSection::Vandorboard--mainHBox").getItems()[1]
                         var allsupplier = [];
                         if (supplierVBox) {

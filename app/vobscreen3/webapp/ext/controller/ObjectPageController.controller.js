@@ -189,13 +189,17 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					// let subsection = objectPage.getSections()[0].getSubSections()[0];
 					// subsection.addStyleClass("sectionClass");
 					// subsection.setShowTitle(false);
-					var spathid = oBindingContext.sPath;
-					var idRegex = /\(([^)]+)\)/;
-					var match = spathid.match(idRegex);
+					// var spathid = oBindingContext.sPath;
+					// var idRegex = /\(([^)]+)\)/;
+					// var match = spathid.match(idRegex);
 
-					if (match && match.length > 1) {
-						var id = match[1];
-					}
+					// if (match && match.length > 1) {
+					// 	var id = match[1];
+					// }
+					
+					var currentUrl = window.location.href;
+					var uuidRegex = /id=([0-9a-fA-F-]+),/;
+					var id = currentUrl.match(uuidRegex)[1];
 					if (id == "cf659f8c-3fbb-4c94-89be-1ec9d5244b72") {
 						var vendorNames = ["Infinity Auto", "Balaji Parts"]
 

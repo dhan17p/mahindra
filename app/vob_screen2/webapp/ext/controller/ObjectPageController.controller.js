@@ -140,12 +140,19 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 				onAfterBinding: async function (oBindingContext) {
 					debugger
 					let objectPage = this.base.getView().getContent()[0];
-					var spathid = oBindingContext.sPath;
-					var idRegex = /\(([^)]+)\)/;
-					var match = spathid.match(idRegex);
-					if (match && match.length > 1) {
-	                	id = match[1];
-					}
+					// var spathid = oBindingContext.sPath;
+					// var idRegex = /\(([^)]+)\)/;
+					// var match = spathid.match(idRegex);
+					// if (match && match.length > 1) {
+	                // 	id = match[1];
+					// }
+					var currentUrl = window.location.href;
+					// Extract the id from the URL
+					// Regular expression to match the UUID pattern
+					var uuidRegex = /id=([0-9a-fA-F-]+),/;
+
+					// Extracting the UUID from the URL using match function and regex
+					var id = currentUrl.match(uuidRegex)[1];
 					var vendorNames;
 					debugger
 					let oFunction1 = this.getView().getModel().bindContext("/vanddetails(...)");
