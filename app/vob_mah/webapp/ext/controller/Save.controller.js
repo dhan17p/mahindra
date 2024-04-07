@@ -42,6 +42,9 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension', 'sap/m/MessageToast', 'sap
 
                                         // Extracting the UUID from the URL using match function and regex
                                         var extractedUuid = currentUrl.match(uuidRegex)[1];
+                                        var partsystem = sap.ui.getCore().byId("vobmah::VOBObjectPage--fe::Form::GeneratedFacet1::Content").mAggregations.formContainers[0].mAggregations.formElements[0].mAggregations.fields[0].mAggregations.content.mAggregations.contentDisplay.mProperties.text
+                                        var supplier = sap.ui.getCore().byId("vobmah::VOBObjectPage--fe::Form::GeneratedFacet1::Content").mAggregations.formContainers[0].mAggregations.formElements[4].mAggregations.fields[0].mAggregations.items[0].mProperties.key
+                                        var table_value = sap.ui.getCore().byId("vobmah::VOBObjectPage--fe::table::vob_yoy::LineItem::YOYAnnualProjections").mAggregations._content.mAggregations.rows[0].mAggregations.cells[0].mAggregations.content.mAggregations.contentDisplay.mProperties.text
                                         var comment_value = sap.ui.getCore().byId("vobmah::VOBObjectPage--fe::CustomSection::Comments-innerGrid").mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mProperties.value
                                         let oFunction1 = that.base.getModel().bindContext("/commentfun(...)");
                                         var statusval1 = JSON.stringify({ id: extractedUuid, status: "screen1comment", comment: comment_value })
