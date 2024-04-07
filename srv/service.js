@@ -31,7 +31,7 @@ module.exports = cds.service.impl(async function () {
         console.log('content-type: ', req.headers['content-type'])
     });
     //First Screen
-    this.before('POST', 'VOB', async req => {
+    this.before('UPDATE', 'VOB', async req => {
         //check content-type
         var main_req = req.data
         var val33 = await SELECT`*`.from(VOB_Screen2);
@@ -90,9 +90,9 @@ module.exports = cds.service.impl(async function () {
     //     }];
     //   await INSERT.into(VOB_Screen2).entries(entities1);
     // })
-    this.before('SAVE','VOB',async req =>{
-        debugger
-    })
+    // this.before('SAVE','VOB',async req =>{
+    //     debugger
+    // })
     this.on('commentfun', async (req) => {
 
         var reqdata = JSON.parse(req.data.status);
