@@ -7,6 +7,7 @@ sap.ui.define(
 		var parentTable;
 		var orgmodel
 		var key_id
+		var extractedId;
 		return Controller.extend("finalwizard.controller.ObjectPage", {
 
 			onInit: function () {
@@ -14,9 +15,16 @@ sap.ui.define(
 				var currentUrl = window.location.href;
 
 				// Extract the id from the URL
-				var idRegex = /id=([a-f\d-]+)/;
-				var match = idRegex.exec(currentUrl);
-				var extractedId = match ? match[1] : null;
+				// var idRegex = /id=([a-f\d-]+)/;
+				// var match = idRegex.exec(currentUrl);
+			//  extractedId = match ? match[1] : null;
+			var id = currentUrl.match(/\/VOB\(id=([a-f\d-]+),IsActiveEntity=true\)/);
+			if (id) {
+				console.log(id[1]);
+				extractedId = id[1];// Output: a55567a3-a5a4-4b71-a9e1-858b73ae1cc2
+			} else {
+				console.log("ID not found");
+			}
 				// this._handleNavigationToStep(1);
 				var wizstep = this.byId("partrequest");
 				wizstep.destroyContent();
@@ -57,7 +65,7 @@ sap.ui.define(
 					function (ocustomerDetail) {
 						debugger
 						ocustomerDetail.getRouter().navTo("VOB_Screen2ObjectPage", {
-							key: `id=0715d66c-3408-449d-a7dd-f1722136e1a8,IsActiveEntity=true`
+							key: `id=${extractedId},IsActiveEntity=true`
 						})
 						compCont.setComponent(ocustomerDetail);
 						// this._customerDetailContainer = ocustomerDetail;
@@ -81,7 +89,7 @@ sap.ui.define(
 					function (ocustomerDetail) {
 						debugger
 						ocustomerDetail.getRouter().navTo("VOB_Screen3ObjectPage", {
-							key: `id=0715d66c-3408-449d-a7dd-f1722136e1a8,IsActiveEntity=true`
+							key: `id=${extractedId},IsActiveEntity=true`
 						})
 						compCont.setComponent(ocustomerDetail);
 						// this._customerDetailContainer = ocustomerDetail;
@@ -105,31 +113,7 @@ sap.ui.define(
 					function (ocustomerDetail) {
 						debugger
 						ocustomerDetail.getRouter().navTo("VOB_Screen4ObjectPage", {
-							key: `id=0715d66c-3408-449d-a7dd-f1722136e1a8,IsActiveEntity=true`
-						})
-						compCont.setComponent(ocustomerDetail);
-						// this._customerDetailContainer = ocustomerDetail;
-					}.bind(this)
-				);
-			},
-			screen5activate: function () {
-				debugger
-				// this._handleNavigationToStep(1);
-				var wizstep = this.byId("vobapproval2");
-				wizstep.destroyContent();
-				var compCont = new sap.ui.core.ComponentContainer({
-					propagateModel: true,
-					height: "500px"
-				})
-				wizstep.addContent(compCont);
-				var ocustomerDetailContainer = this.getOwnerComponent().createComponent({
-					usage: "screen5", async: true, manifest: true
-				});
-				ocustomerDetailContainer.then(
-					function (ocustomerDetail) {
-						debugger
-						ocustomerDetail.getRouter().navTo("VOB_Screen4bObjectPage", {
-							key: `id=0715d66c-3408-449d-a7dd-f1722136e1a8,IsActiveEntity=true`
+							key: `id=${extractedId},IsActiveEntity=true`
 						})
 						compCont.setComponent(ocustomerDetail);
 						// this._customerDetailContainer = ocustomerDetail;

@@ -1,16 +1,25 @@
 sap.ui.define([
     "sap/m/MessageToast"
-], function(MessageToast) {
+], function (MessageToast) {
     'use strict';
 
     return {
-        onPress: function(oEvent) {
+        onPress: async function (oEvent) {
             debugger
+            var str = this.getBindingContext().sPath;
+            // Regular expression to match the UUID pattern within parentheses
+            var uuidRegex = /\(([^)]+)\)/;
+
+            // Extracting the UUID from the string using match function and regex
+            var match = str.match(uuidRegex);
+
+            // Check if match is found and extract the UUID
+            var extractedUuid = match ? match[1] : null;
             var cdialog = new sap.m.Dialog({
                 title: "Comments",
                 endButton: new sap.m.Button({
                     text: "Close",
-                    press: async function() {
+                    press: async function () {
                         cdialog.close();
                     },
                     layoutData: new sap.m.FlexItemData({
@@ -21,7 +30,7 @@ sap.ui.define([
                 })
             });
             cdialog.addContent(new sap.m.VBox({
-                width:"60vw"
+                width: "60vw"
             }));
 
             function generateUniqueId() {
@@ -37,16 +46,28 @@ sap.ui.define([
                 return uniqueId;
             }
             debugger
-            var oTimelineItem = new sap.suite.ui.commons.TimelineItem(("thisuniqid1"+generateUniqueId()),{
-                dateTime: "12/3/34",
-                // title: "demo title1",
-                userNameClickable: false,
-                // userNameClicked: "onUserNameClick",
-                // select: "onPressItems",
-                // userPicture: "Photo",
-                text: 'Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat',
-                userName: "Comments"
-            });
+            // var comment_value = sap.ui.getCore().byId("vobmah::VOBObjectPage--fe::CustomSection::Comments-innerGrid").mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mProperties.value
+            let oFunction1 =this.getModel().bindContext("/commentfun(...)");
+            var statusval1 = JSON.stringify({ id: extractedUuid, status: "screen2commentview"})
+            oFunction1.setParameter("status", statusval1)
+            await oFunction1.execute()
+            var result1 = oFunction1.getBoundContext().getValue()?.value;
+					var comments = JSON.parse(result1);
+                    comments.forEach(function(entry) {
+                        var oTimelineItem = new sap.suite.ui.commons.TimelineItem(("thisuniqid1" + generateUniqueId()), {
+                            dateTime: entry.createdAt,
+                            // title: "demo title1",
+                            userNameClickable: false,
+                            // userNameClicked: "onUserNameClick",
+                            // select: "onPressItems",
+                            // userPicture: "Photo",
+                            text: entry.comment,
+                            userName: entry.createdBy
+                        });
+                        cdialog.addContent(oTimelineItem);
+                        debugger
+                        
+                    });
             // var oTimelineItem1 = new sap.suite.ui.commons.TimelineItem(("thisuniqid2"+generateUniqueId()),{
             //     dateTime: "12/3/34",
             //     // title: "demo title1",
@@ -67,13 +88,13 @@ sap.ui.define([
             //     text: 'Demo Comment Tooling Agreement signed',
             //     userName: "Tooling Agreement signed"                
             // });
-            
-            cdialog.addContent(oTimelineItem);
+
+            // cdialog.addContent(oTimelineItem);
             // cdialog.addContent(oTimelineItem1);
             // cdialog.addContent(oTimelineItem2);
-    
+
             cdialog.open(); // Open the dialog
-debugger
+            debugger
 
         }
     };

@@ -24,9 +24,6 @@
                         <WizardStep id="vobapproval1" complete="pricingComplete" validated="true" title="VOB-Approval" activate="screen4activate">
                             <core:ComponentContainer id="screen4" propagateModel="true" height="500px" />
                         </WizardStep>
-                        <WizardStep id="vobapproval2" complete="pricingComplete" validated="true" title="VOB-Approval2" activate="screen5activate">
-                            <core:ComponentContainer id="screen5" propagateModel="true" height="500px" />
-                        </WizardStep>
                     </Wizard>
                 </content>
                 <footer>

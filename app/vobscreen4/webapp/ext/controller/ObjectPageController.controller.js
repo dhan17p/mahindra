@@ -280,47 +280,59 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 					let oTable = oMainHbox.getItems()[0].getItems()[0];
 					debugger
-					oTable.destroyItems()
+					// oTable.destroyItems()
 
-					for (let i = 0; i < tableData.length; i++) {
+					// for (let i = 0; i < tableData.length; i++) {
 
-						oTable.addItem(new sap.m.ColumnListItem(`row${i}`))
-						let row = oTable.getItems()[i];
+					// 	oTable.addItem(new sap.m.ColumnListItem(`row${i}`))
+					// 	let row = oTable.getItems()[i];
 
-						let mgsp_part_no = new sap.m.Text({
-							text: tableData[i].mgsp_part_no
-						})
-						row.addCell(mgsp_part_no);
+					// 	let mgsp_part_no = new sap.m.Text({
+					// 		text: tableData[i].mgsp_part_no
+					// 	})
+					// 	row.addCell(mgsp_part_no);
 
-						let existing_mgsp_po_price = new sap.m.Text({
-							text: tableData[i].existing_mgsp_po_price
-						})
-						row.addCell(existing_mgsp_po_price);
+					// 	let existing_mgsp_po_price = new sap.m.Text({
+					// 		text: tableData[i].existing_mgsp_po_price
+					// 	})
+					// 	row.addCell(existing_mgsp_po_price);
 
-						let target_price = new sap.m.Text({
-							text: tableData[i].target_price
-						})
-						row.addCell(target_price);
-						let hboxswitch = new sap.m.HBox({
+					// 	let target_price = new sap.m.Text({
+					// 		text: tableData[i].target_price
+					// 	})
+					// 	row.addCell(target_price);
+					// 	let hboxswitch = new sap.m.HBox({
 
-						});
-						let text1 = new sap.m.Text({
-							text:"Approved:"
-						})
-						text1.addStyleClass("texttoggle")
-						let switchtoglle = new sap.m.Switch({
-							state: true,
-							customTextOff: "No",
-							customTextOn: "Yes"
-							// text: tableData[i].target_price
-						})
-						hboxswitch.addItem(text1);
-						hboxswitch.addItem(switchtoglle);
+					// 	});
+					// 	let text1 = new sap.m.Text({
+					// 		text:"Approved:"
+					// 	})
+					// 	text1.addStyleClass("texttoggle")
+					// 	let switchtoglle = new sap.m.Switch({
+					// 		state: true,
+					// 		customTextOff: "No",
+					// 		customTextOn: "Yes",
+					// 		change : function(){
+					// 			debugger
+					// 		}
+					// 		// text: tableData[i].target_price
+					// 	})
+					// 	hboxswitch.addItem(text1);
+					// 	hboxswitch.addItem(switchtoglle);
 
 						
-						row.addCell(hboxswitch);
+					// 	row.addCell(hboxswitch);
 
-					}
+					// }
+					debugger
+					let oFunction1 = this.getView().getModel().bindContext("/vanddetails(...)");
+					var statusval1 = JSON.stringify({ id: id, status: "screen3get1" })
+					oFunction1.setParameter("status", statusval1)
+					await oFunction1.execute()
+					debugger
+				var result1 = oFunction1.getBoundContext().getValue().value;
+				var finalsupp = JSON.parse(result1);
+				 vendorNames = finalsupp.supllier_detail_together
 
 
 					// let vendorNames = ["vendor1", "vendor2", "vendor3", "vendor4", "vendor5"]; // Add as many vendor names as needed
@@ -329,16 +341,18 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					for (let j = 0; j < vendorNames.length; j++) {
 						debugger
 						
-						let vendor_name = vendorNames[j];
+						let vendor_name = vendorNames[j].supplier;
 
 						// let oHbox = sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Vobobject--mainHBox").getItems()[1];
 						let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
 						let list_inp_field = [];
 						let input_field;
-						for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length + 15; i++) {
+						for (let i = 0; i < finalsupp.venordss.length + 18; i++) {
 							input_field = new sap.m.TextArea({
 								height: "41px",
-								wrapping: 'None'
+								wrapping: 'None',
+								value :vendorNames[j].rel[i].value,
+								textAlign:"Center"
 								// rows:1
 							});
 							input_field.addStyleClass("inpFieldClass ResetClass")
@@ -370,6 +384,8 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 								inp_vbox
 							]
 						});
+						inp_vbox.addStyleClass("inputcss");
+						vendor.addStyleClass("custColo1");
 						vendor.mAggregations.items[0].mAggregations.items[0].addStyleClass("vendorlabel");
 						if (vendorNames[j] == "Balaji Parts"  || vendorNames[j] == "Infinity Auto" ||  vendorNames[j] == "Kirloskar" ||  vendorNames[j] == "New India Parts") {
 							inp_vbox.addStyleClass("inputcss");

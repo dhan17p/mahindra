@@ -1,5 +1,6 @@
 sap.ui.define(['sap/ui/core/mvc/ControllerExtension', 'sap/m/MessageToast', 'sap/m/Dialog', 'sap/m/Button'], function (ControllerExtension, MessageToast, Dialog, Button) {
     'use strict';
+    var that;
 
     return ControllerExtension.extend('practise.ext.controller.Save', {
         // this section allows to extend lifecycle hooks or hooks provided by Fiori elements
@@ -12,6 +13,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension', 'sap/m/MessageToast', 'sap
             onInit: function () {
                 // you can access the Fiori elements extensionAPI via this.base.getExtensionAPI
                 var oModel = this.base.getExtensionAPI().getModel();
+                that = this;
             },
             editFlow: {
                 onBeforeSave: function (oEvent) {
@@ -21,8 +23,8 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension', 'sap/m/MessageToast', 'sap
                     });
                     oLabel.addStyleClass("customText");
                     return new Promise(function (resolve, reject) {
-                        
-                        
+
+
                         var oDialog = new Dialog({
                             title: "Submit",
                             resizable: true,
@@ -31,7 +33,20 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension', 'sap/m/MessageToast', 'sap
                             buttons: [
                                 new Button({
                                     text: "Yes",
-                                    press: function () {
+                                    press: async function () {
+                                        debugger
+                                        var currentUrl = window.location.href;
+                                        // Extract the id from the URL
+                                        // Regular expression to match the UUID pattern
+                                        var uuidRegex = /id=([0-9a-fA-F-]+),/;
+
+                                        // Extracting the UUID from the URL using match function and regex
+                                        var extractedUuid = currentUrl.match(uuidRegex)[1];
+                                        var comment_value = sap.ui.getCore().byId("vobmah::VOBObjectPage--fe::CustomSection::Comments-innerGrid").mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mProperties.value
+                                        let oFunction1 = that.base.getModel().bindContext("/commentfun(...)");
+                                        var statusval1 = JSON.stringify({ id: extractedUuid, status: "screen1comment", comment: comment_value })
+                                        oFunction1.setParameter("status", statusval1)
+                                        await oFunction1.execute()
                                         oDialog.close();
                                         oDialog.destroy();
                                         MessageToast.show("Saving...");
@@ -49,10 +64,14 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension', 'sap/m/MessageToast', 'sap
                                 })
                             ]
                         });
-                        
+
                         oDialog.open();
-                        
+
                     });
+                },
+                onAfterCreate: function (oEvent) {
+                    debugger
+                    var comment_section = sap.ui.getCore().byId("vobmah::VOBObjectPage--fe::CustomSection::Comments-innerGrid");
                 }
             }
         }
