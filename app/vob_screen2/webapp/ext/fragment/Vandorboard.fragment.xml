@@ -19,9 +19,9 @@
 				<items>
 				<ColumnListItem >
 				<cells>
-				<Text text= "{id}"></Text>
-				<Text text= "{id}"></Text>
-				<Text text= "ww"></Text>
+				<Text text= "{MGSP_Part_Nos}"></Text>
+				<Input value= " "></Input>
+				<Input value= " "></Input>
 				</cells>
 				</ColumnListItem>
 				</items>

@@ -6,7 +6,8 @@ service MyService {
      //   @odata.draft.enabled
     entity VOB2 as projection on db.VOB2;
     entity potential_suplier_scr1 as projection on db.potential_suplier_scr1;
-    
+    entity supplierdetails as projection on db.supplierdetails;
+    entity comment as projection on db.comment;
     entity YOY as projection on db.YOY;
      //     @odata.draft.enabled
     entity VOB_Screen2 as projection on db.VOB_Screen2;
@@ -35,4 +36,5 @@ service MyService {
 
 
     function vanddetails(status : String) returns String;
+    function commentfun(status : String) returns String;
 }
