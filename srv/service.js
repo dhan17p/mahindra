@@ -31,7 +31,7 @@ module.exports = cds.service.impl(async function () {
         console.log('content-type: ', req.headers['content-type'])
     });
     //First Screen
-    this.before('POST', 'VOB', async req => {
+    this.before('SAVE', 'VOB', async req => {
         //check content-type
         var main_req = req.data
         var val33 = await SELECT`*`.from(VOB_Screen2);
