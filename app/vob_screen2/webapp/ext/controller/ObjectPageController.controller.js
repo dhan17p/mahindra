@@ -146,6 +146,19 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					// if (match && match.length > 1) {
 	                // 	id = match[1];
 					// }
+					debugger
+					var odataCol = new sap.m.ColumnListItem({
+						cells:[
+							new sap.m.Text({text:"{MGSP_Part_Nos}"}),
+							new sap.m.Input(),
+							new sap.m.Input(),
+						]
+					})
+					sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSubSection::Vandorboard--parentTable").bindAggregation("items",{
+						path:"/YOY_Screen2",
+						template:odataCol,
+						templateShareable:false
+					})
 					var currentUrl = window.location.href;
 					// Extract the id from the URL
 					// Regular expression to match the UUID pattern
