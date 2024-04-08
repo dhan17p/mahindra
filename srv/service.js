@@ -141,6 +141,7 @@ module.exports = cds.service.impl(async function () {
             return venordss;
         }
         if (reqdata.status == 'screen2get1') {
+            console.log(reqdata);
             let partdetails = await SELECT.from(YOY_Screen2);
             let venordss = await SELECT.from(YOY_Screen2).where({ vob_id: reqdata.id });
             let supplier = await SELECT.from(potential_suplier_scr1).where({ id: reqdata.id });
