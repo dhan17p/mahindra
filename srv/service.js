@@ -31,9 +31,21 @@ module.exports = cds.service.impl(async function () {
         console.log('content-type: ', req.headers['content-type'])
     });
     //First Screen
-    // this.before('UPDATE', 'VOB', async req => {
-    //     //check content-type
-    //     var main_req = req.data
+    this.before('UPDATE', 'VOB', async req => {
+        console.log(req.data);
+        var entries =[{
+            id :req.data.id,
+            part_system:req.data.part_system,
+            project_code:req.data.project_code,
+            vob_yoy_scr2:[{
+                vob_id:req.data.vob_yoy[0].vob_id,
+                MGSP_Part_Nos:req.data.vob_yoy[0].MGSP_Part_Nos
+            }
+            ]
+        }
+        ]
+        let ind44 = await INSERT.into(VOB_Screen2).entries(entries);
+       
     //     var val33 = await SELECT`*`.from(VOB_Screen2);
     //     let sel_query = SELECT.from`VOB_Screen2`
     //     let sel2_query = SELECT.from('VOB_Screen2')
@@ -72,7 +84,7 @@ module.exports = cds.service.impl(async function () {
     //      req.data.vob_suplier = req.data.vob_suplier4;
     //      delete req.data.vob_suplier4;
 
-    // });
+    });
     this.on('createEntry', async (req) => {
         debugger
         var yoydata =req.data.status;
@@ -113,6 +125,7 @@ module.exports = cds.service.impl(async function () {
     this.on('vanddetails', async (req) => {
 
         var reqdata = JSON.parse(req.data.status);
+        console.log(req.data);
 
         if (reqdata.status == 'screen2get') {
             let partdetails = await SELECT.from(YOY_Screen2);
