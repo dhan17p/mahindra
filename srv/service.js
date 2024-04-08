@@ -31,49 +31,49 @@ module.exports = cds.service.impl(async function () {
         console.log('content-type: ', req.headers['content-type'])
     });
     //First Screen
-    // this.before('UPDATE', 'VOB', async req => {
-    //     //check content-type
-    //     var main_req = req.data
-    //     var val33 = await SELECT`*`.from(VOB_Screen2);
-    //     let sel_query = SELECT.from`VOB_Screen2`
-    //     let sel2_query = SELECT.from('VOB_Screen2')
-    //     let entities1 = [];
-    //     entities1.push({
-    //         id: req.data.id,
-    //         vob_suplier: req.data.vob_suplier,
-    //         vob_yoy: req.data.vob_yoy
-    //     });
-    //     req.data.vob_yoy_scr2 = req.data.vob_yoy;
-    //     var vob_yoydata = req.data.vob_yoy;
-    //     delete req.data.vob_yoy;
-    //     let ind44 = await INSERT.into(VOB_Screen2).entries(req.data);
-    //     var val33 = await SELECT.from(VOB_Screen2).where({ id: req.data.id });
-    //     //  var val332 =  await SELECT `*`.from(VOB_Screen2.drafts); 
-    //     req.data.vob_yoy = vob_yoydata;
-    //     delete req.data.vob_yoy_scr2;
+    this.before('CREATE', 'VOB', async req => {
+        //check content-type
+        var main_req = req.data
+        var val33 = await SELECT`*`.from(VOB_Screen2);
+        let sel_query = SELECT.from`VOB_Screen2`
+        let sel2_query = SELECT.from('VOB_Screen2')
+        let entities1 = [];
+        entities1.push({
+            id: req.data.id,
+            vob_suplier: req.data.vob_suplier,
+            vob_yoy: req.data.vob_yoy
+        });
+        req.data.vob_yoy_scr2 = req.data.vob_yoy;
+        var vob_yoydata = req.data.vob_yoy;
+        delete req.data.vob_yoy;
+        let ind44 = await INSERT.into(VOB_Screen2).entries(req.data);
+        var val33 = await SELECT.from(VOB_Screen2).where({ id: req.data.id });
+        //  var val332 =  await SELECT `*`.from(VOB_Screen2.drafts); 
+        req.data.vob_yoy = vob_yoydata;
+        delete req.data.vob_yoy_scr2;
 
-    //     var for_third_screen = req.data;
-    //     for_third_screen.vob_yoy_scr3 = for_third_screen.vob_yoy
-    //     delete for_third_screen.vob_yoy
-    //     for_third_screen.vob_suplier_scr3 = for_third_screen.vob_suplier
-    //     delete for_third_screen.vob_suplier
-    //   await INSERT.into(VOB_Screen3).entries(for_third_screen);
-    //       req.data.vob_yoy = req.data.vob_yoy_scr3;
-    //      delete req.data.vob_yoy_scr3;
-    //      req.data.vob_suplier = req.data.vob_suplier_scr3;
-    //      delete req.data.vob_suplier_scr3;
+        var for_third_screen = req.data;
+        for_third_screen.vob_yoy_scr3 = for_third_screen.vob_yoy
+        delete for_third_screen.vob_yoy
+        for_third_screen.vob_suplier_scr3 = for_third_screen.vob_suplier
+        delete for_third_screen.vob_suplier
+      await INSERT.into(VOB_Screen3).entries(for_third_screen);
+          req.data.vob_yoy = req.data.vob_yoy_scr3;
+         delete req.data.vob_yoy_scr3;
+         req.data.vob_suplier = req.data.vob_suplier_scr3;
+         delete req.data.vob_suplier_scr3;
 
-    //      req.data.vob_yoy_scr4 = req.data.vob_yoy
-    //      req.data.vob_suplier4 = req.data.vob_suplier
-    //      delete req.data.vob_yoy
-    //      delete req.data.vob_suplier
-    //      await INSERT.into(VOB_Screen4).entries(req.data);
-    //      req.data.vob_yoy = req.data.vob_yoy_scr4;
-    //      delete req.data.vob_yoy_scr4;
-    //      req.data.vob_suplier = req.data.vob_suplier4;
-    //      delete req.data.vob_suplier4;
+         req.data.vob_yoy_scr4 = req.data.vob_yoy
+         req.data.vob_suplier4 = req.data.vob_suplier
+         delete req.data.vob_yoy
+         delete req.data.vob_suplier
+         await INSERT.into(VOB_Screen4).entries(req.data);
+         req.data.vob_yoy = req.data.vob_yoy_scr4;
+         delete req.data.vob_yoy_scr4;
+         req.data.vob_suplier = req.data.vob_suplier4;
+         delete req.data.vob_suplier4;
 
-    // });
+    });
     // this.before('POST','VOB',async req =>{
     //     let entities1 = [{
     //         id: req.data.id,
