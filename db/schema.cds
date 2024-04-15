@@ -41,13 +41,14 @@ entity supplierdetails : managed {
         id_supplier                             : UUID;
         value_key                               : String;
         value                                   : String;
-        supplierdetails_to_potentialsuplierscr1 : Association to many potential_suplier_scr1;
+        supplierdetails_to_potentialsuplierscr1 : Association to many potential_suplier_scr4;
 };
 
 entity comment : managed {
-    key id_com  : UUID;
-        id      : UUID;
-        comment : String;
+    key id_com       : UUID;
+        id           : UUID;
+        comment      : String;
+        comment_vob4 : Association to VOB_Screen4;
 }
 
 entity VOB2 {
@@ -149,57 +150,68 @@ entity YOY_Screen3 {
 
 entity Files : cuid, managed {
     // key id1 : String;
+    vob_id           : UUID;
+
     @Core.MediaType  : mediaType
-    content   : LargeBinary;
+    content          : LargeBinary;
 
     @Core.IsMediaType: true
-    mediaType : String;
-    fileName  : String;
+    mediaType        : String;
+    fileName         : String;
     // size: Integer;
-    Folder    : String;
-    url       : String;
+    Folder           : String;
+    url              : String;
+    Files_to_screen4 : Association to one VOB_Screen4;
 }
 
 //Screen 4
 
 
 entity VOB_Screen4 {
-    key id                        : UUID;
-        part_system               : String;
-        project_code              : String;
-        project_description       : String;
-        sop                       : String;
-        sector                    : String;
-        potential_suppliers       : String;
-        supplier_assessment_score : String;
-        forum                     : String;
-        presented_on_by           : String;
-        vob_yoy_scr4              : Composition of many YOY_Screen4
-                                        on vob_yoy_scr4.vob_id = id;
-        vob_suplier4              : Composition of many potential_suplier_scr4
-                                        on vob_suplier4.id = id;
-}
+    key id                                         : UUID;
+        part_system                                : String;
+        project_code                               : String;
+        project_description                        : String;
+        sop                                        : String;
+        sector                                     : String;
+        potential_suppliers                        : String;
+        supplier_assessment_score                  : String;
+        forum                                      : String;
+        presented_on_by                            : String;
+        vob_yoy_scr4                               : Composition of many YOY_Screen4
+                                                         on vob_yoy_scr4.vob_id = id;
+        vob_suplier4                               : Composition of many potential_suplier_scr4
+                                                         on vob_suplier4.id = id;
+        vob_comments                               : Composition of many comment
+                                                         on vob_comments.id = id;
+        vob_files                                  : Composition of many Files
+                                                         on vob_files.vob_id = id;
+        vob_to_Workflow_History : Composition of many Workflow_History
+                                                         on vob_to_Workflow_History.vob_id = id;
+    }
 
 entity potential_suplier_scr4 {
-    key id_main : UUID;
-        id      : UUID;
-        suplier : String;
+    key id_main                                   : UUID;
+        id                                        : UUID;
+        suplier                                   : String;
+        potential_suplier_scr4_to_supplierdetails : Composition of many supplierdetails
+                                                        on potential_suplier_scr4_to_supplierdetails.id_supplier = id_main;
 }
 
 entity YOY_Screen4 {
-    key id                  : UUID;
-        vob_id              : UUID;
-        MGSP_Part_Nos       : String;
-        proposed_vf_part_no : String;
-        application_model   : String;
-        f24                 : String;
-        f25                 : String;
-        f26                 : String;
-        total               : String;
+    key id                     : UUID;
+        vob_id                 : UUID;
+        MGSP_Part_Nos          : String;
+        proposed_vf_part_no    : String;
+        application_model      : String;
+        f24                    : String;
+        f25                    : String;
+        f26                    : String;
+        total                  : String;
         Existing_MGSP_PO_Price : String;
         target_price           : String;
-        state:String;
-        yoy_vov_scr4        : Association to VOB_Screen4;
+        state                  : String;
+        yoy_vov_scr4           : Association to VOB_Screen4;
 }
 //Screen 4b
 
@@ -241,14 +253,16 @@ entity YOY_Screen4b {
 }
 
 
-// entity workflow_History {
-//         Level           : String;
-//         Title           : String;
-//         Employee_id     : String;
-//         Employee_Name   : String;
-//         Begin_Date_Time : String;
-//         End_Date_Time   : String;
-//         Days_Taken      : String;
-//         Approved_By     : String;
+entity Workflow_History {
+    key vob_id          : UUID;
+    key employee_id     : String;
+        level           : String;
+        title           : String;
+        employee_Name   : String;
+        begin_Date_Time : String;
+        end_Date_Time   : String;
+        days_Taken      : String;
+        approved_By     : String;
+        workflowtovob   : Association to many VOB_Screen4;
 
-// }
+}

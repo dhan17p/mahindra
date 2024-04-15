@@ -11,17 +11,17 @@
             <Page id="wizardContentPage" showHeader="false">
                 <content>
                     <Wizard id="CreateProductWizard" class="height1" renderMode="Page">
-                        <WizardStep id="partrequest" title="VOB-Part Request" validated="true">
+                        <WizardStep id="partrequest" title="VOB-Part Request" validated="true" icon ="sap-icon://request">
                         <!-- <Text text="sssss"></Text> -->
                            <core:ComponentContainer id="screen1" propagateModel="true" height="600px" />
                         </WizardStep>
-                        <WizardStep id="supplierdetails" validated="true" title="VOB-Supplier Details" activate="screen2activate">
+                        <WizardStep id="supplierdetails" validated="true" title="VOB-Supplier Details" activate="screen2activate" icon ="sap-icon://supplier">
                             <core:ComponentContainer id="screen2" propagateModel="true" height="600px" />
                         </WizardStep>
-                        <WizardStep id="OptionalInfoStep" validated="true" activate="screen3activate" title="VOB-Document Upload">
+                        <WizardStep id="OptionalInfoStep" validated="true" activate="screen3activate" title="VOB-Document Upload" icon="sap-icon://add-document">
                             <core:ComponentContainer id="screen3" propagateModel="true" height="600px" />
                         </WizardStep>
-                        <WizardStep id="vobapproval1" complete="pricingComplete" validated="true" title="VOB-Approval" activate="screen4activate">
+                        <WizardStep id="vobapproval1" complete="pricingComplete" validated="true" title="VOB-Approval" activate="screen4activate" icon="sap-icon://employee-approvals">
                             <core:ComponentContainer id="screen4" propagateModel="true" height="600px" />
                         </WizardStep>
                     </Wizard>

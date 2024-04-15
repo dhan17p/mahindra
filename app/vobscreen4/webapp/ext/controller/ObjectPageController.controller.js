@@ -200,6 +200,10 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 			routing: {
 				onAfterBinding: async function (oBindingContext) {
 					debugger
+					let header_content = sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::ObjectPage").mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations
+					header_content.content[0].setVisible(false);
+					header_content.content[1].setVisible(false);
+					header_content.content[2].setVisible(false);
 					let objectPage = this.base.getView().getContent()[0];
 					// objectPage.getSections()[0].getSubSections()[0].setShowTitle(false);
 					// let subsection = objectPage.getSections()[0].getSubSections()[0];

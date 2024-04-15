@@ -183,6 +183,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 			},
 			routing: {
 				onAfterBinding: async function (oBindingContext) {
+					sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::ObjectPage").mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[1].setVisible(false)
 					debugger
 					var currentUrl = window.location.href;
 					var uuidRegex = /id=([0-9a-fA-F-]+),/;
