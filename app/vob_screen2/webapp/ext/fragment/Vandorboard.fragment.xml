@@ -4,7 +4,7 @@
 
 	<HBox id="mainHBox">
 		<VBox>
-			<Table id="parentTable" class="tableClass"  >
+			<Table id="parentTable" class="tableClass" >
 				<columns>
 					<Column>
 						<Label text="MGSP Part No" />

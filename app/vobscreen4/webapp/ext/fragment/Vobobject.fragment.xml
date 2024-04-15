@@ -2,7 +2,7 @@
 
 	<HBox id="mainHBox">
 		<VBox>
-			<Table id="parentTable" class="tableClass" items="{path: '/YOY_Screen4'}">
+			<Table id="parentTable" class="tableClass" >
 				<columns>
 					<Column>
 						<Label text="MGSP Part No" />
@@ -14,19 +14,9 @@
 						<Label text="Target Price" />
 					</Column>
 					<Column>
-						<Label text="" />
+						<Label text=" " />
 					</Column>
 				</columns>
-							<items>
-				<ColumnListItem >
-				<cells>
-				<Text text="{MGSP_Part_Nos}"></Text>
-				<Text text="{Existing_MGSP_PO_Price}"></Text>
-				<Text text="{target_price}"></Text>
-				
-				</cells>
-				</ColumnListItem>
-				</items>
 			</Table>
 			<VBox  alignItems='End' class="vboxbelowtable">
 

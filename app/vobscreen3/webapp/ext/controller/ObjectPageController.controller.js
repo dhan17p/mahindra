@@ -184,6 +184,39 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 			routing: {
 				onAfterBinding: async function (oBindingContext) {
 					debugger
+					var currentUrl = window.location.href;
+					var uuidRegex = /id=([0-9a-fA-F-]+),/;
+					var id = currentUrl.match(uuidRegex)[1];
+
+					let oFunction2 = this.getView().getModel().bindContext("/vanddetails(...)");
+					var statusval2 = JSON.stringify({ id: id, status: "screen2get1" })
+					oFunction2.setParameter("status", statusval2)
+					await oFunction2.execute()
+				
+					var result2 = oFunction2.getBoundContext().getValue().value;
+					var finalsupp = JSON.parse(result2);
+					 vendorNames = finalsupp.supplier
+					var oTable1 = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--parentTable")
+					var tableData = finalsupp.venordss
+					for (let i = 0; i < tableData.length; i++) {
+						oTable1.addItem(new sap.m.ColumnListItem(`rowss${i}`))
+						let row = oTable1.getItems()[i];
+
+						let mgsp_part_no = new sap.m.Text({
+							text: tableData[i].MGSP_Part_Nos
+						})
+						row.addCell(mgsp_part_no);
+
+						let existing_mgsp_po_price = new sap.m.Text({
+							text: tableData[i].Existing_MGSP_PO_Price
+						})
+						row.addCell(existing_mgsp_po_price);
+
+						let target_price = new sap.m.Text({
+							text: tableData[i].target_price
+						})
+						row.addCell(target_price)
+					}
 					let objectPage = this.base.getView().getContent()[0];
 					// objectPage.getSections()[0].getSubSections()[0].setShowTitle(false);
 					// let subsection = objectPage.getSections()[0].getSubSections()[0];
@@ -196,10 +229,8 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					// if (match && match.length > 1) {
 					// 	var id = match[1];
 					// }
-					
-					var currentUrl = window.location.href;
-					var uuidRegex = /id=([0-9a-fA-F-]+),/;
-					var id = currentUrl.match(uuidRegex)[1];
+
+				
 					if (id == "cf659f8c-3fbb-4c94-89be-1ec9d5244b72") {
 						var vendorNames = ["Infinity Auto", "Balaji Parts"]
 
@@ -290,15 +321,15 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					oFunction1.setParameter("status", statusval1)
 					await oFunction1.execute()
 					debugger
-				var result1 = oFunction1.getBoundContext().getValue().value;
-				var finalsupp = JSON.parse(result1);
-				 vendorNames = finalsupp.supllier_detail_together
+					var result1 = oFunction1.getBoundContext().getValue().value;
+					var finalsupp = JSON.parse(result1);
+					vendorNames = finalsupp.supllier_detail_together
 					// let vendorNames = ["vendor1", "vendor2", "vendor3", "vendor4", "vendor5"]; // Add as many vendor names as needed
 					let oHbox = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--mainHBox").getItems()[1];
 					oHbox.destroyItems();
 					for (let j = 0; j < vendorNames.length; j++) {
 						debugger
-						let vendor_name =  vendorNames[j].supplier;
+						let vendor_name = vendorNames[j].supplier;
 						let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
 						let list_inp_field = [];
 						let input_field;
@@ -306,11 +337,11 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							input_field = new sap.m.TextArea({
 								height: "32px",
 								wrapping: 'None',
-								value:vendorNames[j].rel[i].value,
-								textAlign:"Center"
+								value: vendorNames[j].rel[i].value,
+								textAlign: "Center"
 								// rows:1
 							});
-							
+
 							input_field.addStyleClass("inpFieldClass ResetClass")
 							if (vendorNames[j] == "Balaji Parts" || vendorNames[j] == "Infinity Auto" || vendorNames[j] == "Kirloskar" || vendorNames[j] == "New India Parts") {
 								debugger
@@ -353,16 +384,17 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 					}
 					debugger
-					var pathfortablefilter = this.base.getView().mAggregations.content[0].mAggregations.sections[0].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mBindingInfos.items.binding
-					pathfortablefilter.filter(
-						new sap.ui.model.Filter({
-							path: "vob_id",
-							operator: sap.ui.model.FilterOperator.EQ,
-							value1: id
-						})
-					)
+					// var pathfortablefilter = this.base.getView().mAggregations.content[0].mAggregations.sections[0].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mBindingInfos.items.binding
+					// var pathfortablefilter = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--parentTable").mBindingInfos.items.binding
 
-
+					// pathfortablefilter.filter(
+					// 	new sap.ui.model.Filter({
+					// 		path: "vob_id",
+					// 		operator: sap.ui.model.FilterOperator.EQ,
+					// 		value1: id
+					// 	})
+					// )
+				
 				}
 			}
 		}

@@ -26,7 +26,6 @@ entity VOB {
                                                           on vob_yoy.vob_id = id;
         vob_suplier                                 : Composition of many potential_suplier_scr1
                                                           on vob_suplier.id = id;
-
 }
 
 entity potential_suplier_scr1 {
@@ -35,7 +34,6 @@ entity potential_suplier_scr1 {
         suplier                                : String;
         potentialsuplierscr_to_supplierdetails : Composition of many supplierdetails
                                                      on potentialsuplierscr_to_supplierdetails.id_supplier = id_main;
-
 }
 
 entity supplierdetails : managed {
@@ -200,6 +198,7 @@ entity YOY_Screen4 {
         total               : String;
         Existing_MGSP_PO_Price : String;
         target_price           : String;
+        state:String;
         yoy_vov_scr4        : Association to VOB_Screen4;
 }
 //Screen 4b

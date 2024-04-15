@@ -216,10 +216,6 @@ annotate service.VOB2 with @(
 );
 annotate service.VOB with @(
     UI.HeaderInfo : {
-        Title : {
-            $Type : 'UI.DataField',
-            Value : project_description,
-        },
         TypeName : '',
         TypeNamePlural : '',
     }

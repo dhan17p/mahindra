@@ -156,7 +156,6 @@
 .mainVboxComment {
     padding-top: 20px;
     gap: 20px !important;
-
 }
 
 .labelcomment {
@@ -216,4 +215,7 @@
 
 .colClass{
     border: solid 1px black;
+}
+.textstyleclass{
+    padding-top: 6px;
 }

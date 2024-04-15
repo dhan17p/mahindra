@@ -6,31 +6,31 @@
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
     	xmlns:upload="sap.m.upload">
-    <NavContainer id="wizardNavContainer" height="100vh">
+    <NavContainer id="wizardNavContainer" height="120vh">
         <pages>
             <Page id="wizardContentPage" showHeader="false">
                 <content>
                     <Wizard id="CreateProductWizard" class="height1" renderMode="Page">
                         <WizardStep id="partrequest" title="VOB-Part Request" validated="true">
                         <!-- <Text text="sssss"></Text> -->
-                           <core:ComponentContainer id="screen1" propagateModel="true" height="500px" />
+                           <core:ComponentContainer id="screen1" propagateModel="true" height="600px" />
                         </WizardStep>
                         <WizardStep id="supplierdetails" validated="true" title="VOB-Supplier Details" activate="screen2activate">
-                            <core:ComponentContainer id="screen2" propagateModel="true" height="500px" />
+                            <core:ComponentContainer id="screen2" propagateModel="true" height="600px" />
                         </WizardStep>
                         <WizardStep id="OptionalInfoStep" validated="true" activate="screen3activate" title="VOB-Document Upload">
-                            <core:ComponentContainer id="screen3" propagateModel="true" height="500px" />
+                            <core:ComponentContainer id="screen3" propagateModel="true" height="600px" />
                         </WizardStep>
                         <WizardStep id="vobapproval1" complete="pricingComplete" validated="true" title="VOB-Approval" activate="screen4activate">
-                            <core:ComponentContainer id="screen4" propagateModel="true" height="500px" />
+                            <core:ComponentContainer id="screen4" propagateModel="true" height="600px" />
                         </WizardStep>
                     </Wizard>
                 </content>
-                <footer>
+                <!-- <footer>
                     <OverflowToolbar id="oflow1">
                         <Button id="sss" text="Cancel" press="handleWizardCancel" />
                     </OverflowToolbar>
-                </footer>
+                </footer> -->
             </Page>
         </pages>
     </NavContainer>

@@ -32,11 +32,11 @@ sap.ui.define([
                         }
                         debugger
                         this.oDialog.close();
-                        var currentUrl = window.location.href;
-                        // Extract the id from the URL
-                        var uuidPattern = /\(([0-9a-fA-F-]+)\)/;
-                        // Extract UUID using match() function
-                        var match = currentUrl.match(uuidPattern);
+                        // var currentUrl = window.location.href;
+                        // // Extract the id from the URL
+                        // var uuidPattern = /\(([0-9a-fA-F-]+)\)/;
+                        // // Extract UUID using match() function
+                        // var match = currentUrl.match(uuidPattern);
                         // Check if a match is found and extract the UUID
 
                         var currentUrl = window.location.href;
@@ -79,13 +79,12 @@ sap.ui.define([
                                 var cells = item.getCells();
                                 cells[1].setEditable(false);
                                 cells[2].setEditable(false);
-                                var context = item.getBindingContext();
-                                // Use the context to get the data for the item
-                                var entry = context.getObject();
+                                // var context = item.getBindingContext();
+                                // var entry = context.getObject();
                                 // Extract the values from each entry and push them to the array
                                 tableData.push({
-                                    id: entry.id,
-                                    MGSP_Part_No: entry.MGSP_Part_Nos,
+                                    id: item.oModels.rowid.oData.rowid,
+                                    // MGSP_Part_No: entry.MGSP_Part_Nos,
                                     Existing_MGSP_PO_Price: item.getCells()[1].getValue(),
                                     Target_Price: item.getCells()[2].getValue()
                                 });
@@ -99,20 +98,21 @@ sap.ui.define([
                             var table_item_array = []
                             var table_length = table.getItems().length
                             var items_table = table.getItems();
-
+                    
                             items_table.forEach(function (item, index) {
                                 debugger
-
-
                                 var entry_table = item.getBindingContext().getObject();
+                                if( entry_table.id == id){
                                 var json_val = [
                                     {
-                                        value_key: entry_table.id,
+                                        // value_key: entry_table.id,
+                                        value_key : item.oModels.rowid.oData.rowid,
                                         value: entry.getItems()[1].getItems()[index].getValue(),
                                         supplier_name: entry.getItems()[0].getItems()[0].getText()
                                     }
                                 ]
                                 table_item_array = table_item_array.concat(json_val)
+                            }
                             })
                             var contvalue = entry.getItems()[1].getItems().length - 18
                             var json_val1 = [
@@ -189,7 +189,6 @@ sap.ui.define([
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue(),
                                     supplier_name: entry.getItems()[0].getItems()[0].getText(),
                                     supplier_id : entry?.oModels?.venorid?.oData?.vendorid?? null
-
                                 },
                             ]
                             table_item_array = table_item_array.concat(json_val1);

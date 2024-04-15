@@ -179,6 +179,16 @@
                       "type": "XMLFragment"
                     }
                   }
+                },
+                "footer": {
+                  "actions": {
+                    "summitid": {
+                      "press": "vobscreen3.ext.controller.Submithandler.submitmethod",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Submit"
+                    }
+                  }
                 }
               }
             }

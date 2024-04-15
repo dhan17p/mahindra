@@ -1,4 +1,3 @@
-
 sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExtension) {
 	'use strict';
 	var id;
@@ -154,19 +153,16 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							new sap.m.Input(),
 						]
 					})
-					sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSubSection::Vandorboard--parentTable").bindAggregation("items",{
-						path:"/YOY_Screen2",
-						template:odataCol,
-						templateShareable:false
-					})
+					// sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSubSection::Vandorboard--parentTable").bindAggregation("items",{
+					// 	path:"/YOY_Screen2",
+					// 	template:odataCol,
+					// 	templateShareable:true
+					// })
 					var currentUrl = window.location.href;
-					// Extract the id from the URL
-					// Regular expression to match the UUID pattern
 					var uuidRegex = /id=([0-9a-fA-F-]+),/;
-
-					// Extracting the UUID from the URL using match function and regex
 					var id = currentUrl.match(uuidRegex)[1];
 					var vendorNames;
+
 					debugger
 					let oFunction1 = this.getView().getModel().bindContext("/vanddetails(...)");
 					var statusval1 = JSON.stringify({ id: id, status: "screen2get1" })
@@ -176,8 +172,38 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					var result1 = oFunction1.getBoundContext().getValue().value;
 					var finalsupp = JSON.parse(result1);
 					 vendorNames = finalsupp.supplier
+					 
+
+
+					 
 					let oHbox = sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSubSection::Vandorboard--mainHBox").getItems()[1];
-					oHbox.destroyItems();
+					// oHbox.destroyItems();
+					var oTable = sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSubSection::Vandorboard--parentTable")
+					var tableData = finalsupp.venordss
+					for (let i = 0; i < tableData.length; i++) {
+						oTable.addItem(new sap.m.ColumnListItem(`row${i}`))
+						let row = oTable.getItems()[i];
+
+						let mgsp_part_no = new sap.m.Text({
+							text: tableData[i].MGSP_Part_Nos
+						})
+						row.addCell(mgsp_part_no);
+
+						let existing_mgsp_po_price = new sap.m.Input({
+							value: " "
+						})
+						row.addCell(existing_mgsp_po_price);
+
+						let target_price = new sap.m.Input({
+							value:" "
+						})
+						row.addCell(target_price);
+						var modelrow = new sap.ui.model.json.JSONModel({
+							rowid:  tableData[i].id
+						});
+						row.setModel(modelrow,'rowid')
+					}
+					
 					for (let j = 0; j < vendorNames.length; j++) {
 						let vendor_name = vendorNames[j].suplier;
 						let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
@@ -230,13 +256,13 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 					}
 					var pathfortablefilter = this.base.getView().mAggregations.content[0].mAggregations.sections[0].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mBindingInfos.items.binding
-					pathfortablefilter.filter(
-						new sap.ui.model.Filter({
-							path: "vob_id",
-							operator: sap.ui.model.FilterOperator.EQ,
-							value1: id
-						})
-					)
+					// pathfortablefilter.filter(
+					// 	new sap.ui.model.Filter({
+					// 		path: "vob_id",
+					// 		operator: sap.ui.model.FilterOperator.EQ,
+					// 		value1: id
+					// 	})
+					// )
 				}
 			}
 		}
