@@ -47,7 +47,12 @@ sap.ui.define(
 					}.bind(this)
 				);
 			},
-
+			onBeforeRendering: function (oEvent) {
+				debugger
+				var wizard = this.byId("CreateProductWizard");
+				var one = wizard.getSteps()[0]
+				wizard.discardProgress(one, false)
+			},
 			screen2activate: function () {
 				debugger
 				// this._handleNavigationToStep(1);
