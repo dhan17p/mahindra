@@ -133,7 +133,18 @@ sap.ui.define([
 
 
 				});
-		
+				function generateUniqueId() {
+                    // Generate a random number and convert it to base 36 (0-9a-z)
+                    const randomPart = Math.random().toString(36).substr(2, 9);
+
+                    // Get the current timestamp and convert it to base 36
+                    const timestampPart = Date.now().toString(36);
+
+                    // Concatenate the random part and timestamp part
+                    const uniqueId = randomPart + timestampPart;
+
+                    return uniqueId;
+                }
 				// Add VBox for content
 				var contentVBox = new sap.m.VBox({
 					width: "100%",
@@ -168,126 +179,126 @@ sap.ui.define([
 				// contentVBox.addItem(uploadedOnText);
 		
 				var vb1 = new sap.m.VBox("vb1");
-				vb1.addItem(
-					new sap.ui.webc.main.Tree("treee", {
-						itemClick: async function (params) {
-							let selectedItem = params.mParameters.item;
-							let path = '';
-							let currentFolder = selectedItem;
+				// vb1.addItem(
+				// 	new sap.ui.webc.main.Tree("treee", {
+				// 		itemClick: async function (params) {
+				// 			let selectedItem = params.mParameters.item;
+				// 			let path = '';
+				// 			let currentFolder = selectedItem;
 
-							// Traverse up the hierarchy and construct the path
-							while (currentFolder && currentFolder.getId() !== 'treee') {
-								// Get the icon and name of the current folder
-								// let icon = currentFolder.getIcon();
-								let name = currentFolder.getText();
+				// 			// Traverse up the hierarchy and construct the path
+				// 			while (currentFolder && currentFolder.getId() !== 'treee') {
+				// 				// Get the icon and name of the current folder
+				// 				// let icon = currentFolder.getIcon();
+				// 				let name = currentFolder.getText();
 
-								// Construct the path by adding the icon and name
-								path = `${name} / ${path}`;
+				// 				// Construct the path by adding the icon and name
+				// 				path = `${name} / ${path}`;
 
-								// Move to the parent folder
-								currentFolder = currentFolder.getParent();
-							}
+				// 				// Move to the parent folder
+				// 				currentFolder = currentFolder.getParent();
+				// 			}
 
-							// Set the footer text with the constructed path
-							sap.ui.getCore().byId("treee").setFooterText(path);
-						},
-						footerText: "Click on the folder to select path",
-						headerText: "Folders",
-						//=======================Folder1========================
-						items: [
-							new sap.ui.webc.main.TreeItem("folder_1", {
-								icon: "sap-icon://folder-full",
-								text: "Part No",
+				// 			// Set the footer text with the constructed path
+				// 			sap.ui.getCore().byId("treee").setFooterText(path);
+				// 		},
+				// 		footerText: "Click on the folder to select path",
+				// 		headerText: "Folders",
+				// 		//=======================Folder1========================
+				// 		items: [
+				// 			new sap.ui.webc.main.TreeItem("folder_1", {
+				// 				icon: "sap-icon://folder-full",
+				// 				text: "Part No",
 				
-								//=======================Vendor 1========================
-								items: [
-									new sap.ui.webc.main.TreeItem("folder_2", {
-										icon: "sap-icon://folder-full",
-										text: "Vendor 1",
+				// 				//=======================Vendor 1========================
+				// 				items: [
+				// 					new sap.ui.webc.main.TreeItem("folder_2", {
+				// 						icon: "sap-icon://folder-full",
+				// 						text: "Vendor 1",
 				
-										// Nested folders under Vendor 1
-										items: [
-											new sap.ui.webc.main.TreeItem("folder_2.1", {
-												icon: "sap-icon://folder-full",
-												text: "NDA",
-											}),
-											new sap.ui.webc.main.TreeItem("folder_2.2", {
-												icon: "sap-icon://folder-full",
-												text: "RFQ",
-											}),
+				// 						// Nested folders under Vendor 1
+				// 						items: [
+				// 							new sap.ui.webc.main.TreeItem("folder_2.1", {
+				// 								icon: "sap-icon://folder-full",
+				// 								text: "NDA",
+				// 							}),
+				// 							new sap.ui.webc.main.TreeItem("folder_2.2", {
+				// 								icon: "sap-icon://folder-full",
+				// 								text: "RFQ",
+				// 							}),
 
-											new sap.ui.webc.main.TreeItem("folder_2.3", {
-												icon: "sap-icon://folder-full",
-												text: "Quote and Quote Synthesis",
-											}),
+				// 							new sap.ui.webc.main.TreeItem("folder_2.3", {
+				// 								icon: "sap-icon://folder-full",
+				// 								text: "Quote and Quote Synthesis",
+				// 							}),
 
-											new sap.ui.webc.main.TreeItem("folder_2.4", {
-												icon: "sap-icon://folder-full",
-												text: "Quote Backup",
-											}),
+				// 							new sap.ui.webc.main.TreeItem("folder_2.4", {
+				// 								icon: "sap-icon://folder-full",
+				// 								text: "Quote Backup",
+				// 							}),
 											
-											new sap.ui.webc.main.TreeItem("folder_2.5", {
-                                                icon: "sap-icon://folder-full",
-                                                text: "Supplier Details",
-											}),
-											new sap.ui.webc.main.TreeItem("folder_2.6", {
-												icon: "sap-icon://folder-full",
-												text: "Offer price Approval from Bazzar Sales Team",
-											}),
-											new sap.ui.webc.main.TreeItem("folder_2.7", {
-												icon: "sap-icon://folder-full",
-												text: "SBU VOB FORUM",
+				// 							new sap.ui.webc.main.TreeItem("folder_2.5", {
+                //                                 icon: "sap-icon://folder-full",
+                //                                 text: "Supplier Details",
+				// 							}),
+				// 							new sap.ui.webc.main.TreeItem("folder_2.6", {
+				// 								icon: "sap-icon://folder-full",
+				// 								text: "Offer price Approval from Bazzar Sales Team",
+				// 							}),
+				// 							new sap.ui.webc.main.TreeItem("folder_2.7", {
+				// 								icon: "sap-icon://folder-full",
+				// 								text: "SBU VOB FORUM",
 
-												items: [
-													new sap.ui.webc.main.TreeItem("folder_2.7.1", {
-														icon: "sap-icon://folder-2",
-														text: "PPT",
-													}),
-													new sap.ui.webc.main.TreeItem("folder_9.2", {
-														icon: "sap-icon://folder-2",
-														text: "Backup data",
-													}),
-													new sap.ui.webc.main.TreeItem("folder_9.3", {
-														icon: "sap-icon://folder-2",
-														text: "Approval",
-													})
-												]
-											}),
-											new sap.ui.webc.main.TreeItem("folder_2.8", {
-												icon: "sap-icon://folder-full",
-												text: "Vendor Code Creation",
-											}),
-											new sap.ui.webc.main.TreeItem("folder_2.9", {
-												icon: "sap-icon://folder-full",
-												text: "NDA sign-off with Packagign Supplier",
-											}),
-											new sap.ui.webc.main.TreeItem("folder_3.0", {
-												icon: "sap-icon://folder-full",
-												text: "Packaging Sign-offr",
-											}),
-											new sap.ui.webc.main.TreeItem("folder_3.1", {
-												icon: "sap-icon://folder-full",
-												text: "Proposed and Approved Drawings",
-											}),
-											new sap.ui.webc.main.TreeItem("folder_3.2", {
-												icon: "sap-icon://folder-full",
-												text: "Validation Reports",
-											}),
-											new sap.ui.webc.main.TreeItem("folder_3.3", {
-												icon: "sap-icon://folder-full",
-												text: "Final Drawing Approval for Production",
-											}),
-											new sap.ui.webc.main.TreeItem("folder_3.4", {
-												icon: "sap-icon://folder-full",
-												text: "VPPAP",
-											})
-										]
-									})
-								]
-							})
-						]
-					})
-				);
+				// 								items: [
+				// 									new sap.ui.webc.main.TreeItem("folder_2.7.1", {
+				// 										icon: "sap-icon://folder-2",
+				// 										text: "PPT",
+				// 									}),
+				// 									new sap.ui.webc.main.TreeItem("folder_9.2", {
+				// 										icon: "sap-icon://folder-2",
+				// 										text: "Backup data",
+				// 									}),
+				// 									new sap.ui.webc.main.TreeItem("folder_9.3", {
+				// 										icon: "sap-icon://folder-2",
+				// 										text: "Approval",
+				// 									})
+				// 								]
+				// 							}),
+				// 							new sap.ui.webc.main.TreeItem("folder_2.8", {
+				// 								icon: "sap-icon://folder-full",
+				// 								text: "Vendor Code Creation",
+				// 							}),
+				// 							new sap.ui.webc.main.TreeItem("folder_2.9", {
+				// 								icon: "sap-icon://folder-full",
+				// 								text: "NDA sign-off with Packagign Supplier",
+				// 							}),
+				// 							new sap.ui.webc.main.TreeItem("folder_3.0", {
+				// 								icon: "sap-icon://folder-full",
+				// 								text: "Packaging Sign-offr",
+				// 							}),
+				// 							new sap.ui.webc.main.TreeItem("folder_3.1", {
+				// 								icon: "sap-icon://folder-full",
+				// 								text: "Proposed and Approved Drawings",
+				// 							}),
+				// 							new sap.ui.webc.main.TreeItem("folder_3.2", {
+				// 								icon: "sap-icon://folder-full",
+				// 								text: "Validation Reports",
+				// 							}),
+				// 							new sap.ui.webc.main.TreeItem("folder_3.3", {
+				// 								icon: "sap-icon://folder-full",
+				// 								text: "Final Drawing Approval for Production",
+				// 							}),
+				// 							new sap.ui.webc.main.TreeItem("folder_3.4", {
+				// 								icon: "sap-icon://folder-full",
+				// 								text: "VPPAP",
+				// 							})
+				// 						]
+				// 					})
+				// 				]
+				// 			})
+				// 		]
+				// 	})
+				// );
 				
 			
 				
@@ -346,9 +357,81 @@ sap.ui.define([
 // 				});
 		
 				// contentVBox.addItem(treeTable);
-				  
+				
+				vb1.addItem(
+					new sap.ui.webc.main.Tree("tree",{
+						itemClick: async function (params) {
+							debugger;
+							let selectedItem = params.mParameters.item;
+							let path = '';
+							let currentFolder = selectedItem;
+
+							// Traverse up the hierarchy and construct the path
+							while (currentFolder && currentFolder.getId() !== 'tree') {
+								// Get the icon and name of the current folder
+								// let icon = currentFolder.getIcon();
+								let name = currentFolder.getText();
+
+								// Construct the path by adding the icon and name
+								path = `${name} / ${path}`;
+
+								// Move to the parent folder
+								currentFolder = currentFolder.getParent();
+							}
+
+							// Set the footer text with the constructed path
+							sap.ui.getCore().byId("tree").setFooterText(path);
+						},
+						footerText: "Click on the folder to select path",
+						headerText: "Folders",
+						items: [
+							new sap.ui.webc.main.TreeItem(`fold1${generateUniqueId()}`, {
+								icon: "sap-icon://folder-full",
+								text: "Part No",
+
+								//=======================Vendor 1========================
+								items: [
+									new sap.ui.webc.main.TreeItem(`fold2${generateUniqueId()}`, {
+										icon: "sap-icon://folder-full",
+										text: "Vendor 1",
+									})]
+							})]
+					})
+				)
+				
+
+				debugger
 				cdialog.addContent(contentVBox);
 				cdialog.addContent(vb1);
+
+				var keyValuePairs = [
+					{ NDA: 'Demo1' },
+					{ RFQ: 'Demo2' },
+					{ RFQ: 'Demo3' }
+				];
+				debugger
+				var folders = [];
+
+				
+				for (var i = 0; i < keyValuePairs.length; i++) {
+					
+					for (var key in keyValuePairs[i]) {
+						if (keyValuePairs[i][key] === 'Demo1') {
+							folders.push(key);
+						}
+					}
+				}
+				debugger
+				var child = vb1.mAggregations.items[0].mAggregations.items[0].mAggregations.items[0];
+				for(let a = 0;a<folders.length;a++)
+				{
+					child.addItem(
+						new sap.ui.webc.main.TreeItem(`fold1.3${generateUniqueId()}`,{
+							icon: "sap-icon://folder-full",
+							text: folders[a],
+						})
+					)
+				}
 				cdialog.open();
 				
 			}				
