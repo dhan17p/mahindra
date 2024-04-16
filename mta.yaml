@@ -1,5 +1,4 @@
 _schema-version: "3.1"
-
 ID: mahindra
 description: A simple CAP project.
 version: 1.0.0
@@ -97,6 +96,10 @@ modules:
       - folderstructure.zip
       name: folderstructure
       target-path: resources/
+    - artifacts:
+      - folderstruc.zip
+      name: folderstruc
+      target-path: resources/
 - name: vobmah
   type: html5
   path: app/vob_mah
@@ -170,6 +173,16 @@ modules:
 - name: folderstructure
   type: html5
   path: app/folderstructure
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: folderstruc
+  type: html5
+  path: app/folderstruc
   build-parameters:
     build-result: dist
     builder: custom

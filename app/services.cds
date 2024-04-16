@@ -14,3 +14,5 @@ using from './vobscreen4bb/annotations';
 using from './finalwizard/annotations';
 
 using from './folderstructure/annotations';
+
+using from './folderstruc/annotations';

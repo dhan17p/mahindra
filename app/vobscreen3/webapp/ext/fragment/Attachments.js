@@ -296,57 +296,94 @@ sap.ui.define([
 				// Create the tree table
 				// Create the tree table
 				
-// var treeTable = new sap.ui.table.TreeTable({
-//     width: "100%",
-//     visibleRowCount: 5, // Adjust the number of visible rows as needed
-//     columns: [
-//         new sap.ui.table.Column({
-//             label: new sap.m.Label({ text: "Folder Name" }),
-//             template: new sap.m.HBox({
-//                 alignItems: sap.m.FlexAlignItems.Center, // Align items vertically center
-//                 items: [
-//                     new sap.m.Button({
-//                         icon: "sap-icon://navigation-right-arrow",
-//                         press: function(oEvent) {
-// 							deb
-// 							var obindingcontext = oEvent.getSource().getBindingContext()
-// 							var spath = obindingcontext.getPath();
-// 						var omodel = obindingcontext.getModel();
-// 						var oNode = omodel.getProperty(spath);
-// 							debugger
-//                             // Handle button press event here
-//                             console.log("Arrow button clicked");
-//                         }
-//                     }),
-//                     new sap.m.Text({ text: "{name}" })
-//                 ]
-//             })
-//         })
-//     ]
-// });
+var treeTable = new sap.ui.table.TreeTable({
+    width: "100%",
+    visibleRowCount: 5, // Adjust the number of visible rows as needed
+    columns: [
+        new sap.ui.table.Column({
+            label: new sap.m.Label({ text: "Folder Name" }),
+            template: new sap.m.HBox({
+                alignItems: sap.m.FlexAlignItems.Center, // Align items vertically center
+                items: [
+                    new sap.m.Button({
+                        icon: "sap-icon://navigation-right-arrow",
+                        press: function(oEvent) {
+							deb
+							var obindingcontext = oEvent.getSource().getBindingContext()
+							var spath = obindingcontext.getPath();
+						var omodel = obindingcontext.getModel();
+						var oNode = omodel.getProperty(spath);
+							debugger
+                            // Handle button press event here
+                            console.log("Arrow button clicked");
+                        }
+                    }),
+                    new sap.m.Text({ text: "{name}" })
+                ]
+            })
+        })
+    ]
+});
 
 		
-// 				// Create a JSON model with sample data for the tree table
-// 				var oModel = new sap.ui.model.json.JSONModel();
-// 				oModel.setData({
-// 					root: {
-// 						name: "Root Folder",
-// 						children: [
-// 							{ name: "Child Folder 1" },
-// 							{ name: "Child Folder 2" }
-// 						]
-// 					}
-// 				});
-// 				treeTable.setModel(oModel);
-// 				treeTable.bindRows({
-// 					path: "/root",
-// 					parameters: {
-// 						arrayNames: ["children"]
-// 					}
-// 				});
+				// Create a JSON model with sample data for the tree table
+				var oModel = new sap.ui.model.json.JSONModel();
+				oModel.setData({
+					root: {
+						name: "Root Folder",
+						children: [
+							{ name: "Child Folder 1" },
+							{ name: "Child Folder 2" }
+						]
+					}
+				});
+				treeTable.setModel(oModel);
+				treeTable.bindRows({
+					path: "/root",
+					parameters: {
+						arrayNames: ["children"]
+					}
+				});
 		
-				// contentVBox.addItem(treeTable);
-				  
+				contentVBox.addItem(treeTable);
+				
+				vb1.addItem(
+					new sap.ui.webc.main.Tree("tree",{
+						itemClick: async function (params) {
+							debugger;
+							let selectedItem = params.mParameters.item;
+							let path = '';
+							let currentFolder = selectedItem;
+
+							// Traverse up the hierarchy and construct the path
+							while (currentFolder && currentFolder.getId() !== 'tree') {
+								// Get the icon and name of the current folder
+								// let icon = currentFolder.getIcon();
+								let name = currentFolder.getText();
+
+								// Construct the path by adding the icon and name
+								path = `${name} / ${path}`;
+
+								// Move to the parent folder
+								currentFolder = currentFolder.getParent();
+							}
+
+							// Set the footer text with the constructed path
+							sap.ui.getCore().byId("tree").setFooterText(path);
+						},
+						footerText: "Click on the folder to select path",
+						headerText: "Folders",
+						items: [
+							new sap.ui.webc.main.TreeItem("folder_1", {
+								icon: "sap-icon://folder-full",
+								text: "Part No",
+							})]
+					})
+				)
+				for(let a=0;a<result.length;a++)
+				{
+				
+				}
 				cdialog.addContent(contentVBox);
 				cdialog.addContent(vb1);
 				cdialog.open();
