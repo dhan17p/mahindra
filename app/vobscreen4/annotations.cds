@@ -81,10 +81,6 @@ annotate service.VOB_Screen4 with @(
 );
 annotate service.VOB_Screen4 with @(
     UI.HeaderInfo : {
-        Title : {
-            $Type : 'UI.DataField',
-            Value : project_description,
-        },
         TypeName : '',
         TypeNamePlural : '',
     }
