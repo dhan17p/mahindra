@@ -265,7 +265,6 @@ entity Workflow_History {
         days_Taken      : String;
         approved_By     : String;
         workflowtovob   : Association to many VOB_Screen4;
-
 }
 
 
