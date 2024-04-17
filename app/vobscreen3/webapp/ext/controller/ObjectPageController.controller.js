@@ -189,6 +189,102 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					var uuidRegex = /id=([0-9a-fA-F-]+),/;
 					var id = currentUrl.match(uuidRegex)[1];
 
+
+					let oFunction3 = this.getView().getModel().bindContext("/vanddetails(...)");
+					var statusval2 = JSON.stringify({ id: id, status: "workflowhistoryget" })
+					oFunction3.setParameter("status", statusval2)
+					await oFunction3.execute()
+					var result = oFunction3.getBoundContext().getValue().value;
+					var result1 = JSON.parse(result);
+
+					var workflowhistoryarray = result1.workflowhistory;
+					var vBox = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Worflow_History").mAggregations._grid.mAggregations.content[0].mAggregations.content
+					vBox.destroyItems();
+					var groupedData = {};
+					workflowhistoryarray.forEach(function (item) {
+						if (!groupedData[item.level]) {
+							groupedData[item.level] = [];
+						}
+						groupedData[item.level].push(item);
+					});
+
+					// Iterate over the grouped data and create a fragment for each level
+					Object.keys(groupedData).forEach(function (level) {
+						var levelData = groupedData[level];
+
+						// Create a VBox for each level
+						var oVBox = new sap.m.VBox();
+
+						// Set the title dynamically
+						var oTitle = new sap.m.Title({ text: "Level " + level });
+						oVBox.addItem(oTitle);
+
+						// Create a ScrollContainer
+						var oScrollContainer = new sap.m.ScrollContainer({
+							height: "100%",
+							width: "100%"
+						});
+
+						// Create a Table
+						var oTable = new sap.m.Table({
+							fixedLayout: false,
+							width: "110vw"
+						});
+						oTable.addStyleClass("tableWithBorder");
+
+
+						// Define Table columns dynamically based on the first data item
+						var firstItem = levelData[0];
+						// Object.keys(firstItem).forEach(function(key) {
+						//   var oColumn = new sap.m.Column({ header: new sap.m.Text({ text: key }) });
+						// //   oColumn.addStyleClass("colClass")
+						//   oTable.addColumn(oColumn);
+						// });
+						var oColumn1 = new sap.m.Column({ header: new sap.m.Text({ text: "Level" }) });
+						var oColumn2 = new sap.m.Column({ header: new sap.m.Text({ text: "Title" }) });
+						var oColumn3 = new sap.m.Column({ header: new sap.m.Text({ text: "Employee ID" }) });
+						var oColumn4 = new sap.m.Column({ header: new sap.m.Text({ text: "Status" }) });
+						var oColumn5 = new sap.m.Column({ header: new sap.m.Text({ text: "Begin Date" }) });
+						var oColumn6 = new sap.m.Column({ header: new sap.m.Text({ text: "End Date" }) });
+						var oColumn7 = new sap.m.Column({ header: new sap.m.Text({ text: "Days Taken" }) });
+						var oColumn8 = new sap.m.Column({ header: new sap.m.Text({ text: "Approved By" }) });
+						oTable.addColumn(oColumn1);
+						oTable.addColumn(oColumn2);
+						oTable.addColumn(oColumn3);
+						oTable.addColumn(oColumn4);
+						oTable.addColumn(oColumn5);
+						oTable.addColumn(oColumn6);
+						oTable.addColumn(oColumn7);
+						oTable.addColumn(oColumn8);
+
+						// Iterate over the data for this level and add table rows
+						levelData.forEach(function (item) {
+							var oRow = new sap.m.ColumnListItem();
+							oRow.addCell(new sap.m.Text({ text: item.level }));
+							oRow.addCell(new sap.m.Text({ text: item.title }));
+							oRow.addCell(new sap.m.Text({ text: item.employee_id }));
+							oRow.addCell(new sap.m.Text({ text: item.status }));
+							oRow.addCell(new sap.m.Text({ text: item.begin_Date_Time }));
+							oRow.addCell(new sap.m.Text({ text: item.end_Date_Time }));
+							oRow.addCell(new sap.m.Text({ text: item.days_Taken }));
+							oRow.addCell(new sap.m.Text({ text: item.approved_By }));
+
+							// Object.keys(item).forEach(function (key) {
+							// 	oRow.addCell(new sap.m.Text({ text: item[key] }));
+							// });
+							oTable.addItem(oRow);
+						});
+
+						// Add the Table to the ScrollContainer
+						oScrollContainer.addContent(oTable);
+
+						// Add the ScrollContainer to the VBox
+						oVBox.addItem(oScrollContainer);
+
+						// Add the VBox to the main VBox container
+						vBox.addItem(oVBox);
+					});
+
 					let oFunction2 = this.getView().getModel().bindContext("/vanddetails(...)");
 					var statusval2 = JSON.stringify({ id: id, status: "screen2get1" })
 					oFunction2.setParameter("status", statusval2)

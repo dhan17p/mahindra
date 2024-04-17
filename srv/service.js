@@ -17,7 +17,8 @@ module.exports = cds.service.impl(async function () {
         VOB_Screen4,
         YOY_Screen4,
         Folder,
-        Data
+        Data,
+        Workflow_History
 
     } = this.entities;
     //   const cats = await cds.connect.to ('MyService');
@@ -211,6 +212,13 @@ module.exports = cds.service.impl(async function () {
         var reqdata = JSON.parse(req.data.status);
         console.log(req.data);
 
+        if(reqdata.status == 'workflowhistoryget'){
+            debugger;
+            //  let workflowhistory23 = await SELECT.from(Workflow_History)
+             let workflowhistory = await SELECT.from(Workflow_History).where({ vob_id: reqdata.id });
+             let workflowhistoryvalues = JSON.stringify({workflowhistory});
+             return workflowhistoryvalues;
+         }
         if (reqdata.status == 'screen2get') {
             let partdetails = await SELECT.from(YOY_Screen2);
             let venordss = await SELECT.from(YOY_Screen2).where({ id: reqdata.id });

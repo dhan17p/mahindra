@@ -256,15 +256,15 @@ entity YOY_Screen4b {
 entity Workflow_History {
     key vob_id          : UUID;
     key employee_id     : String;
-        level           : String;
+    key level           : String;
         title           : String;
+        status          : String;
         employee_Name   : String;
         begin_Date_Time : String;
         end_Date_Time   : String;
         days_Taken      : String;
         approved_By     : String;
         workflowtovob   : Association to many VOB_Screen4;
-
 }
 
 
