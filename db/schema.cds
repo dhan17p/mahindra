@@ -253,7 +253,6 @@ entity YOY_Screen4b {
         yoy_vov_scr4b       : Association to VOB_Screen4b;
 }
 entity Master_workflow {
-    key vob_id          : UUID;
     key employee_id     : String;
     key level           : String;
 }

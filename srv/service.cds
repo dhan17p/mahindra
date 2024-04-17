@@ -30,6 +30,7 @@ service MyService {
 
     entity Files as projection on db.Files;
     entity Workflow_History as projection on db.Workflow_History;
+    entity Master_workflow as projection on db.Master_workflow;
     // for 4bth screen
      // @odata.draft.enabled
     entity VOB_Screen4b as projection on db.VOB_Screen4b;
