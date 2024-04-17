@@ -8,23 +8,27 @@ sap.ui.define(
 		var orgmodel
 		var key_id
 		var extractedId;
+		var flag = true;
 		return Controller.extend("finalwizard.controller.ObjectPage", {
 
 			onInit: function () {
 				debugger
-				var currentUrl = window.location.href;
 
+				var currentUrl = window.location.href;
 				// Extract the id from the URL
 				// var idRegex = /id=([a-f\d-]+)/;
 				// var match = idRegex.exec(currentUrl);
-			//  extractedId = match ? match[1] : null;
-			var id = currentUrl.match(/\/VOB\(id=([a-f\d-]+),IsActiveEntity=true\)/);
-			if (id) {
-				console.log(id[1]);
-				extractedId = id[1];// Output: a55567a3-a5a4-4b71-a9e1-858b73ae1cc2
-			} else {
-				console.log("ID not found");
-			}
+				//  extractedId = match ? match[1] : null;
+				var id = currentUrl.match(/\/VOB\(id=([a-f\d-]+),IsActiveEntity=true\)/);
+				if (id) {
+					console.log(id[1]);
+					if(extractedId == id[1]){
+						flag = true;
+					}
+					extractedId = id[1];// Output: a55567a3-a5a4-4b71-a9e1-858b73ae1cc2
+				} else {
+					console.log("ID not found");
+				}
 				// this._handleNavigationToStep(1);
 				var wizstep = this.byId("partrequest");
 				wizstep.destroyContent();
@@ -49,9 +53,29 @@ sap.ui.define(
 			},
 			onBeforeRendering: function (oEvent) {
 				debugger
-				var wizard = this.byId("CreateProductWizard");
-				var one = wizard.getSteps()[0]
-				wizard.discardProgress(one, false)
+				// if(step != 1){
+				// 	var wizard = this.byId("CreateProductWizard");
+				// 	var one = wizard.getSteps()[0]
+				// 	wizard.discardProgress(one, false)
+				// 	flag = false;
+				// }
+				var currentUrl = window.location.href;
+				var id = currentUrl.match(/\/VOB\(id=([a-f\d-]+),IsActiveEntity=true\)/);
+				if (id) {
+					console.log(id[1]);
+					if(extractedId != id[1]){
+						flag = true;
+					}
+					extractedId = id[1];// Output: a55567a3-a5a4-4b71-a9e1-858b73ae1cc2
+				} else {
+					console.log("ID not found");
+				}
+				if (flag) {
+					var wizard = this.byId("CreateProductWizard");
+					var one = wizard.getSteps()[0]
+					wizard.discardProgress(one, false)
+					flag = false;
+				}
 			},
 			screen2activate: function () {
 				debugger
