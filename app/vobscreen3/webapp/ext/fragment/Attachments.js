@@ -429,9 +429,9 @@ sap.ui.define([
 
 				for (var i = 0; i < result1.length; i++) {
 
-					for (var key in result1[i]) {
-						if (result1[i][key] === mail) {
-							folders.push(key);
+					for (var i = 0; i < result1.length; i++) {
+						if (result1[i].Data === mail) { // Check if email matches
+							folders.push(result1[i].id); // Push the ID to folders array
 						}
 					}
 				}

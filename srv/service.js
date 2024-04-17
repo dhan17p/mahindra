@@ -442,11 +442,6 @@ module.exports = cds.service.impl(async function () {
      })
     this.on("fold_data_attach", async (req) => {
         let data = await SELECT`id,Data`.from(Data);
-        // var data = [
-        //     { NDA: 'rajendraakshay1@gmail.com' },
-        //     { RFQ: 'john@peolsolutions.com' },
-        //     { RFQ: 'rajendraakshay1@gmail.com' }
-        // ];
         return JSON.stringify(data);
      })
      
