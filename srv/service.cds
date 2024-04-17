@@ -48,4 +48,6 @@ service MyService {
     function remove(id:String,fold:String) returns String;
     function check(id: String, fold: String) returns String;
     function delete1(id: String) returns String;
+
+    function fold_data_attach(id:String) returns String;
 }

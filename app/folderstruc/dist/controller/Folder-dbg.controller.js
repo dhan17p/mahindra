@@ -107,7 +107,7 @@ sap.ui.define([
                 console.log(result);
 
                 var main = this.getView().byId("main");
-                var names = ["rajendraakshay1@gmail.com", "johnson.rozario@peolsolutions.com", "dhanush.k@peolsolutions.com"];
+                var names = ["John", "Ajay", "Dhanush", "Ranjana", "Dhanush g"];
                 var defaultValues = [];
                 var defaultValues_demo = ["John", "Ajay"]; // Example default values
 
