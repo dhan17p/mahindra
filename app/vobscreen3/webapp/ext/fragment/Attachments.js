@@ -45,7 +45,7 @@ sap.ui.define([
 		
 				// Create the dialog
 				var cdialog = new sap.m.Dialog({
-					// title: "Attachments",
+					title: "Attachments",
 					contentWidth : "40%",
 					endButton: new sap.m.Button({
 						text: "Cancel",
@@ -383,7 +383,7 @@ sap.ui.define([
 							sap.ui.getCore().byId("tree").setFooterText(path);
 						},
 						footerText: "Click on the folder to select path",
-						headerText: "Folders",
+						title: "Folders",
 						items: [
 							new sap.ui.webc.main.TreeItem(`fold1${generateUniqueId()}`, {
 								icon: "sap-icon://folder-full",
