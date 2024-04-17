@@ -266,3 +266,7 @@ entity Workflow_History {
         approved_By     : String;
         workflowtovob   : Association to many VOB_Screen4;
 }
+entity Master_workflow {
+    key employee_id     : String;
+        level           : String;
+}

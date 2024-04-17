@@ -217,6 +217,14 @@ sap.ui.define([
                         var statusval2 = JSON.stringify({ id: id, status: "screen1comment", comment: comment_value })
                         oFunction2.setParameter("status", statusval2)
                         await oFunction2.execute()
+
+
+                        let oFunction3 =  this.getModel().bindContext("/vanddetails(...)");
+                        var statusval2 = JSON.stringify({ id: id,status:"workflowtovob" })
+                        oFunction3.setParameter("status", statusval2)
+                        await oFunction3.execute()
+
+
                     }.bind(this)
                 }),
                 endButton: new sap.m.Button({
