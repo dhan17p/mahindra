@@ -217,4 +217,20 @@
   .tableWithBorder td:last-child, .tableWithBorder th:last-child {
     border: none; /* Remove right border for the last column */
   }
-  
+
+
+  .colClass{
+    border: solid 1px black !important;
+}
+.scrollvbox{
+    overflow-x: scroll;
+}
+
+
+#vobscreen3\:\:VOB_Screen3ObjectPage--fe\:\:FooterBar\:\:CustomAction\:\:summitid-inner{
+    background-image: none;
+    background-color: #0070f2;
+    border-color: #0070f2;
+    color: #fff;
+    text-shadow: 0 0 0.125rem transparent;
+}

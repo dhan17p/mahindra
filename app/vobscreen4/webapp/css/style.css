@@ -219,3 +219,6 @@
 .textstyleclass{
     padding-top: 6px;
 }
+.scrollvbox{
+    overflow-x: scroll;
+}

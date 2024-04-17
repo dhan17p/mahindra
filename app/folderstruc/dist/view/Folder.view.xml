@@ -19,7 +19,7 @@
     </VBox>
     <footer>
     <OverflowToolbar class="save" id="t1" style="Standard">
-    <Button id="b1" text="save" type="Emphasized" press="button" iconFirst="true" icon="sap-icon://save">
+    <Button id="b1" text="Save" type="Emphasized" press="button" iconFirst="true" icon="sap-icon://save">
     </Button>
     </OverflowToolbar>
     </footer>

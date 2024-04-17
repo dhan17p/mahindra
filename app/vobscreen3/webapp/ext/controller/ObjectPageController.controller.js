@@ -200,6 +200,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					var workflowhistoryarray = result1.workflowhistory;
 					var vBox = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Worflow_History").mAggregations._grid.mAggregations.content[0].mAggregations.content
 					vBox.destroyItems();
+					vBox.addStyleClass("scrollvbox")
 					var groupedData = {};
 					workflowhistoryarray.forEach(function (item) {
 						if (!groupedData[item.level]) {
@@ -214,16 +215,17 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 						// Create a VBox for each level
 						var oVBox = new sap.m.VBox();
+						
 
 						// Set the title dynamically
 						var oTitle = new sap.m.Title({ text: "Level " + level });
 						oVBox.addItem(oTitle);
 
 						// Create a ScrollContainer
-						var oScrollContainer = new sap.m.ScrollContainer({
-							height: "100%",
-							width: "100%"
-						});
+						// var oScrollContainer = new sap.m.ScrollContainer({
+						// 	height: "100%",
+						// 	width: "100%"
+						// });
 
 						// Create a Table
 						var oTable = new sap.m.Table({
@@ -240,14 +242,14 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						// //   oColumn.addStyleClass("colClass")
 						//   oTable.addColumn(oColumn);
 						// });
-						var oColumn1 = new sap.m.Column({ header: new sap.m.Text({ text: "Level" }) });
-						var oColumn2 = new sap.m.Column({ header: new sap.m.Text({ text: "Title" }) });
-						var oColumn3 = new sap.m.Column({ header: new sap.m.Text({ text: "Employee ID" }) });
-						var oColumn4 = new sap.m.Column({ header: new sap.m.Text({ text: "Status" }) });
-						var oColumn5 = new sap.m.Column({ header: new sap.m.Text({ text: "Begin Date" }) });
-						var oColumn6 = new sap.m.Column({ header: new sap.m.Text({ text: "End Date" }) });
-						var oColumn7 = new sap.m.Column({ header: new sap.m.Text({ text: "Days Taken" }) });
-						var oColumn8 = new sap.m.Column({ header: new sap.m.Text({ text: "Approved By" }) });
+						var oColumn1 = new sap.m.Column({ header: new sap.m.Text({ text: "Level" }),styleClass:"colClass" })
+						var oColumn2 = new sap.m.Column({ header: new sap.m.Text({ text: "Title" }),styleClass:"colClass" });
+						var oColumn3 = new sap.m.Column({ header: new sap.m.Text({ text: "Employee ID" }),styleClass:"colClass" });
+						var oColumn4 = new sap.m.Column({ header: new sap.m.Text({ text: "Status" }),styleClass:"colClass" });
+						var oColumn5 = new sap.m.Column({ header: new sap.m.Text({ text: "Begin Date" }) ,styleClass:"colClass"});
+						var oColumn6 = new sap.m.Column({ header: new sap.m.Text({ text: "End Date" }) ,styleClass:"colClass"});
+						var oColumn7 = new sap.m.Column({ header: new sap.m.Text({ text: "Days Taken" }),styleClass:"colClass" });
+						var oColumn8 = new sap.m.Column({ header: new sap.m.Text({ text: "Approved By" }) ,styleClass:"colClass"});
 						oTable.addColumn(oColumn1);
 						oTable.addColumn(oColumn2);
 						oTable.addColumn(oColumn3);
@@ -276,10 +278,10 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						});
 
 						// Add the Table to the ScrollContainer
-						oScrollContainer.addContent(oTable);
+						// oScrollContainer.addContent(oTable);
 
 						// Add the ScrollContainer to the VBox
-						oVBox.addItem(oScrollContainer);
+						oVBox.addItem(oTable);
 
 						// Add the VBox to the main VBox container
 						vBox.addItem(oVBox);

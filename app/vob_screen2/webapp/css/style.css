@@ -176,3 +176,11 @@
     .colClass{
         border: solid 1px black;
     }
+
+    #vobscreen2\:\:VOB_Screen2ObjectPage--fe\:\:FooterBar\:\:CustomAction\:\:summitid-inner{
+        background-image: none;
+        background-color: #0070f2;
+        border-color: #0070f2;
+        color: #fff;
+        text-shadow: 0 0 0.125rem transparent;
+    }

@@ -220,6 +220,8 @@ sap.ui.define([
                         var statusval2 = JSON.stringify({ id: id, status: "screen1comment", comment: comment_value })
                         oFunction2.setParameter("status", statusval2)
                         await oFunction2.execute()
+
+                        
                     }.bind(this)
                 }),
                 endButton: new sap.m.Button({
