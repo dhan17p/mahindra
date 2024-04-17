@@ -5,6 +5,7 @@ using {
     managed
 } from '@sap/cds/common';
 
+
 entity VOB {
     key id                                          : UUID;
         part_system                                 : String;
@@ -251,7 +252,11 @@ entity YOY_Screen4b {
         total               : String;
         yoy_vov_scr4b       : Association to VOB_Screen4b;
 }
-
+entity Master_workflow {
+    key vob_id          : UUID;
+    key employee_id     : String;
+    key level           : String;
+}
 
 entity Workflow_History {
     key vob_id          : UUID;
