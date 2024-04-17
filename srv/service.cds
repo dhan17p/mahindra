@@ -34,6 +34,8 @@ service MyService {
     entity VOB_Screen4b as projection on db.VOB_Screen4b;
     entity YOY_Screen4b as projection on db.YOY_Screen4b;
 
+    entity Workflow_History as projection on db.Workflow_History;
+
 
     function vanddetails(status : String) returns String;
     function commentfun(status : String) returns String;

@@ -198,3 +198,24 @@
 .colClass{
     border: solid 1px black;
 }
+
+.tableWithBorder {
+    border-collapse: collapse; /* Collapse borders */
+  }
+  
+  /* Define CSS class for the table cells */
+  .tableWithBorder td, .tableWithBorder th {
+    border: 1px solid #ccc; /* Add border to all table cells */
+   /* Add padding for better readability */
+  }
+  
+  /* Define CSS class for the first column */
+  .tableWithBorder td:first-child, .tableWithBorder th:first-child {
+    border: none; /* Remove left border for the first column */
+  }
+  
+  /* Define CSS class for the last column */
+  .tableWithBorder td:last-child, .tableWithBorder th:last-child {
+    border: none; /* Remove right border for the last column */
+  }
+  
