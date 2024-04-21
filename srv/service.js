@@ -23,15 +23,93 @@ module.exports = cds.service.impl(async function () {
 
     } = this.entities;
     //   const cats = await cds.connect.to ('MyService');
+    function decodeTimestamp(timestamp) {
+        // Create a new Date object using the timestamp
+        var date = new Date(timestamp);
+
+        // Extract the components of the date
+        var year = date.getFullYear();
+        var month = ('0' + (date.getMonth() + 1)).slice(-2); // Months are zero-based
+        var day = ('0' + date.getDate()).slice(-2);
+        var hours = ('0' + date.getHours()).slice(-2);
+        var minutes = ('0' + date.getMinutes()).slice(-2);
+        var seconds = ('0' + date.getSeconds()).slice(-2);
+
+        // Format the date as desired, for example: YYYY-MM-DD HH:MM:SS
+        var formattedDate = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+
+        return formattedDate;
+    }
 
     this.before('CREATE', 'Files', req => {
         console.log('Create called')
         console.log(JSON.stringify(req.data))
         req.data.url = `/odata/v4/my/Files(${req.data.ID})/content`
     })
+    this.on('UPDATE', Workflow_History, async (req) => {
+        debugger
+        console.log(req.data);
+        var commentsData = JSON.parse(req.data.title);
+        if (commentsData["approvalflow"] == "true") {
+            if (req.data.status == '3') {
+                console.log("Approved Call Triggered")
+                var data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
 
-    this.before('READ', 'Files', req => {
+                for (let i = 0; i < data.length; i++) {
+                    // await UPDATE(Workflow_History, { vob_id: data[i].vob_id, employee_id: data[i].employee_id, level: data[i].level }).with({
+                    //     status: 'Approved'
+                    // })
+                    var begin_Date_Time = new Date(data[i].begin_Date_Time);
+                    var currentDate = new Date();
+                    var timeDifference = currentDate - begin_Date_Time;
+                    var daysTaken = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                    var dateTimeStamp = Date.now();
+                    var formattedDateTime = decodeTimestamp(dateTimeStamp)
+                    await UPDATE(Workflow_History).set({
+                        status: 'Approved',
+                        end_Date_Time:`${formattedDateTime}`,
+                        days_Taken:`${daysTaken}`,
+                    }).where({
+                        vob_id: req.data.vob_id,
+                        level: req.data.level
+                    })
+                }
+
+                let numericVal = parseInt(req.data.level);
+
+                var nextLevel = await SELECT.from(Workflow_History).where({ level: `${numericVal}`, vob_id: req.data.vob_id });
+
+
+            }
+            else {
+                console.log("Rejected Call Triggered")
+                var data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
+
+                for (let i = 0; i < data.length; i++) {
+                    // await UPDATE(Workflow_History, { vob_id: data[i].vob_id, employee_id: data[i].employee_id, level: data[i].level }).with({
+                    //     status: 'Rejected'
+                    // })
+                    await UPDATE(Workflow_History).set({
+                        status: 'Rejected'
+                    }).where({
+                        vob_id: req.data.vob_id,
+                        level: req.data.level
+                    })
+
+                }
+            }
+
+
+            var modified_data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
+
+            return;
+        }
+
+    })
+
+    this.before('READ', 'Files', (req, res) => {
         //check content-type
+        debugger
         console.log('content-type: ', req.headers['content-type'])
     });
     //First Screen
@@ -207,28 +285,60 @@ module.exports = cds.service.impl(async function () {
             value = JSON.stringify(value)
             return value;
         }
+        if (reqdata.worlflowtriger == "triggered") {
+            var dateTimeStamp = Date.now();
+            var formattedDateTime = decodeTimestamp(dateTimeStamp)
+            await UPDATE(VOB_Screen4, reqdata.id).with({
+                flowStatus: "New", startedAt: formattedDateTime
+            });
+            await UPDATE(Workflow_History, reqdata.id).with({
+                begin_Date_Time: formattedDateTime
+            });
+
+        }
     })
     this.on('vanddetails', async (req) => {
+        console.log("vanddetails triggered");
 
         var reqdata = JSON.parse(req.data.status);
+        // var reqdata = req.data.status;
         console.log(req.data);
 
-        if(reqdata.status == 'workflowhistoryget'){
+        if (reqdata.status == 'workflowhistoryget') {
             debugger;
             //  let workflowhistory23 = await SELECT.from(Workflow_History)
-             let workflowhistory = await SELECT.from(Workflow_History).where({ vob_id: reqdata.id });
-             let workflowhistoryvalues = JSON.stringify({workflowhistory});
-             return workflowhistoryvalues;
-         }
-         if(reqdata.status == 'workflowtovob'){
-            debugger
-            let workflowmaster = await SELECT.from(Master_workflow);
-            workflowmaster.forEach(async function (entry1) {
-                var ee = await INSERT.into(Workflow_History).entries(
-                    { vob_id: reqdata.id, employee_id: entry1.employee_id, level: entry1.level })
-            })
+            let workflowhistory = await SELECT.from(Workflow_History).where({ vob_id: reqdata.id });
+            let workflowhistoryvalues = JSON.stringify({ workflowhistory });
+            return workflowhistoryvalues;
         }
+        //  if(reqdata == '42324e73-03f3-4ec4-826b-6df288522a6f'){
+        //     debugger
+        //     let workflowmaster = await SELECT.from(Master_workflow);
+        //         for(const entry1  of workflowmaster ){
+        //         var ee = await INSERT.into(Workflow_History).entries(
+        //             { vob_id: reqdata, employee_id: entry1.employee_id, level: entry1.level })
+        //         }
+        // }
+        if (reqdata.status == 'workflowtovob') {
+            debugger
+            console.log("inside workflowtovob ")
+            let workflowmaster = await SELECT.from(Master_workflow);
+            let workflowmaster_level1 = await SELECT.from(Master_workflow).where({ level: "1.0" });
+            var result = workflowmaster_level1.map(function (item) {
+                return item.employee_id;
+            }).join(' ,');
 
+            await UPDATE(VOB_Screen4, reqdata.id).with({
+                users: result,
+            });
+            for (const entry1 of workflowmaster) {
+                console.log('inside for loop')
+                console.log(entry1);
+                await INSERT.into(Workflow_History).entries(
+                    { vob_id: reqdata.id, employee_id: entry1.employee_id, level: entry1.level, employee_Name: entry1.employee_Name })
+                console.log("successfull");
+            }
+        }
         if (reqdata.status == 'screen2get') {
             let partdetails = await SELECT.from(YOY_Screen2);
             let venordss = await SELECT.from(YOY_Screen2).where({ id: reqdata.id });
@@ -250,7 +360,7 @@ module.exports = cds.service.impl(async function () {
             let venordssString = JSON.stringify({ supplier, venordss });
             return venordssString;
         }
-        if(reqdata.status == 'submitfourthscreen'){
+        if (reqdata.status == 'submitfourthscreen') {
             var screen4table = reqdata.tableData1 || [];
             if (screen4table.length > 0) {
                 for (const item of screen4table) {
@@ -399,11 +509,10 @@ module.exports = cds.service.impl(async function () {
     this.on("remove", async (req) => {
         console.log(req);
         let check = await SELECT.from(Data).where`id=${req.data.id} AND Data=${req.data.fold}`
-        if(check.length > 0)
-        {
+        if (check.length > 0) {
             await DELETE.from(Data).where`id=${req.data.id} AND Data=${req.data.fold}`;
-        } 
-          
+        }
+
         return "deleted"
     })
 
@@ -420,11 +529,9 @@ module.exports = cds.service.impl(async function () {
             }
         }
         console.log();
-        if(missingValues.length != 0)
-        {
-            for(let j = 0;j<missingValues.length;j++)
-            {
-               let deleted =  await DELETE.from(Data).where`id=${req.data.fold} AND Data=${missingValues[j]}`; 
+        if (missingValues.length != 0) {
+            for (let j = 0; j < missingValues.length; j++) {
+                let deleted = await DELETE.from(Data).where`id=${req.data.fold} AND Data=${missingValues[j]}`;
             }
         }
 
@@ -446,13 +553,13 @@ module.exports = cds.service.impl(async function () {
 
     this.on("delete1", async (req) => {
         console.log();
-        let deleted =  await DELETE.from(Data).where`id=${req.data.id}`;
+        let deleted = await DELETE.from(Data).where`id=${req.data.id}`;
         console.log(deleted);
         return "executed delete function"
-     })
+    })
     this.on("fold_data_attach", async (req) => {
         let data = await SELECT`id,Data`.from(Data);
         return JSON.stringify(data);
-     })
-     
+    })
+
 })

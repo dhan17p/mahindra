@@ -224,6 +224,7 @@
 }
 .scrollvbox{
     overflow-x: scroll;
+    gap: 40px;
 }
 
 

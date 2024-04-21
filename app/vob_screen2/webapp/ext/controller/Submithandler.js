@@ -117,71 +117,72 @@ sap.ui.define([
                             var contvalue = entry.getItems()[1].getItems().length - 18
                             var json_val1 = [
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "Total Landed Investment - Settled (Rs. lacs)",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "Total Business value (Rs. Lac) 1st 12months",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "Amount to be paid to M/s RKR (Lac) 1st 12 months",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "Amount to be paid to M/s RKR (Lac) 2nd + 3rd Year",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "YOY Reduction for 3 yrs (After SOP + 1 year)",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "FX Base Rate",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "Finished Weight of Part / System (kg)",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "DTB Packaging Cost Rs",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "Inco Terms",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "Payment Terms",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "Transport Cost",
+                                    value: entry.getItems()[1].getItems()[contvalue++].getValue()
+                                },
+                               
+                                {
+                                    value_key: "Tooling / Dies / Moulds / Fixtures",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "Inspection Gauges",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "Testing / Validation",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "Engg Fees",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "Proto Tooling",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {
-                                    value_key: "Total Landed Investment",
-                                    value: entry.getItems()[1].getItems()[contvalue++].getValue()
-                                },
-                                {
-                                    value_key: "Total Landed Investment",
+                                    value_key: "Logistics Trollies",
                                     value: entry.getItems()[1].getItems()[contvalue++].getValue()
                                 },
                                 {

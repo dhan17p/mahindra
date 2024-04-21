@@ -51,7 +51,7 @@ annotate service.VOB_Screen4 with @(
             {
                 $Type : 'UI.DataField',
                 Value : vob_suplier4.suplier,
-                Label : 'Potential Suppliers',
+                Label : 'Potentail Suppliers',
             },
             {
                 $Type : 'UI.DataField',

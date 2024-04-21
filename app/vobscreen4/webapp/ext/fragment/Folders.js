@@ -25,7 +25,7 @@ sap.ui.define([
 
                 // Create the dialog
                 var cdialog = new sap.m.Dialog(`Dialog${generateUniqueId()}`, {
-                    // title: "Attachments",
+                    title: "Folders",
                     contentWidth: "40%",
                     endButton: new sap.m.Button(`button2${generateUniqueId()}`, {
                         text: "Cancel",
@@ -93,7 +93,7 @@ sap.ui.define([
                         itemClick: async function (params) {
                             // Handle item click event
                         },
-                        headerText: "Folders",
+                        // headerText: "Folders",
 						//folder 1
                         items: [
                            new sap.ui.webc.main.TreeItemCustom(`fold1.1${generateUniqueId()}`,{

@@ -100,7 +100,7 @@ entity YOY_Screen2 {
         MGSP_Part_Nos          : String;
         proposed_vf_part_no    : String;
         application_model      : String;
-        f24                    : String;
+        f24                   : String;
         f25                    : String;
         f26                    : String;
         total                  : String;
@@ -169,27 +169,30 @@ entity Files : cuid, managed {
 
 
 entity VOB_Screen4 {
-    key id                                         : UUID;
-        part_system                                : String;
-        project_code                               : String;
-        project_description                        : String;
-        sop                                        : String;
-        sector                                     : String;
-        potential_suppliers                        : String;
-        supplier_assessment_score                  : String;
-        forum                                      : String;
-        presented_on_by                            : String;
-        vob_yoy_scr4                               : Composition of many YOY_Screen4
-                                                         on vob_yoy_scr4.vob_id = id;
-        vob_suplier4                               : Composition of many potential_suplier_scr4
-                                                         on vob_suplier4.id = id;
-        vob_comments                               : Composition of many comment
-                                                         on vob_comments.id = id;
-        vob_files                                  : Composition of many Files
-                                                         on vob_files.vob_id = id;
-        vob_to_Workflow_History : Composition of many Workflow_History
-                                                         on vob_to_Workflow_History.vob_id = id;
-    }
+    key id                        : UUID;
+        part_system               : String;
+        project_code              : String;
+        project_description       : String;
+        sop                       : String;
+        sector                    : String;
+        potential_suppliers       : String;
+        supplier_assessment_score : String;
+        forum                     : String;
+        presented_on_by           : String;
+        users                     : String;
+        startedAt                 : String;
+        flowStatus                : String;
+        vob_yoy_scr4              : Composition of many YOY_Screen4
+                                        on vob_yoy_scr4.vob_id = id;
+        vob_suplier4              : Composition of many potential_suplier_scr4
+                                        on vob_suplier4.id = id;
+        vob_comments              : Composition of many comment
+                                        on vob_comments.id = id;
+        vob_files                 : Composition of many Files
+                                        on vob_files.vob_id = id;
+        vob_to_Workflow_History   : Composition of many Workflow_History
+                                        on vob_to_Workflow_History.vob_id = id;
+}
 
 entity potential_suplier_scr4 {
     key id_main                                   : UUID;
@@ -252,9 +255,11 @@ entity YOY_Screen4b {
         total               : String;
         yoy_vov_scr4b       : Association to VOB_Screen4b;
 }
+
 entity Master_workflow {
-    key employee_id     : String;
-    key level           : String;
+    key employee_id   : String;
+    key level         : String;
+        employee_Name : String;
 }
 
 entity Workflow_History {
@@ -275,13 +280,15 @@ entity Workflow_History {
 //entity folder
 
 entity Folder {
-    key id : String;
-    Folder_Name : String;
-    P_TO_C : Composition of many Data on P_TO_C.id = Folder_Name;
+    key id          : String;
+        Folder_Name : String;
+        P_TO_C      : Composition of many Data
+                          on P_TO_C.id = Folder_Name;
 }
 
 entity Data {
-    id : String;
-    Data : String;
-    C_TO_P : Association to one Folder on C_TO_P.Folder_Name = id;
+    id     : String;
+    Data   : String;
+    C_TO_P : Association to one Folder
+                 on C_TO_P.Folder_Name = id;
 }

@@ -5,3 +5,17 @@
 #vobmah\:\:VOBObjectPage--__button5-internalBtn-inner{
     display: none !important;
 } */
+
+
+#application-finalwizardsem-display-component---ObjectPage--partrequest-nextButton{
+    float: right;   
+}
+#application-finalwizardsem-display-component---ObjectPage--supplierdetails-nextButton{
+    float: right;
+}
+#application-finalwizardsem-display-component---ObjectPage--OptionalInfoStep-nextButton{
+    float: right;
+}
+#application-finalwizardsem-display-component---ObjectPage--vobapproval1-nextButton{
+    display: none;
+}

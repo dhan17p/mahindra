@@ -275,11 +275,12 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						var oColumn1 = new sap.m.Column({ header: new sap.m.Text({ text: "Level" }),styleClass:"colClass" })
 						var oColumn2 = new sap.m.Column({ header: new sap.m.Text({ text: "Title" }),styleClass:"colClass" });
 						var oColumn3 = new sap.m.Column({ header: new sap.m.Text({ text: "Employee ID" }),styleClass:"colClass" });
-						var oColumn4 = new sap.m.Column({ header: new sap.m.Text({ text: "Status" }),styleClass:"colClass" });
-						var oColumn5 = new sap.m.Column({ header: new sap.m.Text({ text: "Begin Date" }) ,styleClass:"colClass"});
-						var oColumn6 = new sap.m.Column({ header: new sap.m.Text({ text: "End Date" }) ,styleClass:"colClass"});
-						var oColumn7 = new sap.m.Column({ header: new sap.m.Text({ text: "Days Taken" }),styleClass:"colClass" });
-						var oColumn8 = new sap.m.Column({ header: new sap.m.Text({ text: "Approved By" }) ,styleClass:"colClass"});
+						var oColumn4 = new sap.m.Column({ header: new sap.m.Text({ text: "Employee Name" }),styleClass:"colClass" });
+						var oColumn5 = new sap.m.Column({ header: new sap.m.Text({ text: "Status" }),styleClass:"colClass" });
+						var oColumn6 = new sap.m.Column({ header: new sap.m.Text({ text: "Begin Date" }) ,styleClass:"colClass"});
+						var oColumn7 = new sap.m.Column({ header: new sap.m.Text({ text: "End Date" }) ,styleClass:"colClass"});
+						var oColumn8 = new sap.m.Column({ header: new sap.m.Text({ text: "Days Taken" }),styleClass:"colClass" });
+						var oColumn9 = new sap.m.Column({ header: new sap.m.Text({ text: "Approved By" }) ,styleClass:"colClass"});
 						oTable.addColumn(oColumn1);
 						oTable.addColumn(oColumn2);
 						oTable.addColumn(oColumn3);
@@ -288,6 +289,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						oTable.addColumn(oColumn6);
 						oTable.addColumn(oColumn7);
 						oTable.addColumn(oColumn8);
+						oTable.addColumn(oColumn9);
 
 						// Iterate over the data for this level and add table rows
 						levelData.forEach(function (item) {
@@ -295,6 +297,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							oRow.addCell(new sap.m.Text({ text: item.level }));
 							oRow.addCell(new sap.m.Text({ text: item.title }));
 							oRow.addCell(new sap.m.Text({ text: item.employee_id }));
+							oRow.addCell(new sap.m.Text({ text: item.employee_Name }));
 							oRow.addCell(new sap.m.Text({ text: item.status }));
 							oRow.addCell(new sap.m.Text({ text: item.begin_Date_Time }));
 							oRow.addCell(new sap.m.Text({ text: item.end_Date_Time }));
