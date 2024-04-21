@@ -100,7 +100,7 @@ entity YOY_Screen2 {
         MGSP_Part_Nos          : String;
         proposed_vf_part_no    : String;
         application_model      : String;
-        f24                   : String;
+        f24                    : String;
         f25                    : String;
         f26                    : String;
         total                  : String;
@@ -123,6 +123,8 @@ entity VOB_Screen3 {
         presented_on_by           : String;
         vob_yoy_scr3              : Composition of many YOY_Screen3
                                         on vob_yoy_scr3.vob_id = id;
+        vob_suplier               : Composition of many potential_suplier_scr1
+                                        on vob_suplier.id = id;
         vob_suplier_scr3          : Composition of many potential_suplier_scr3
                                         on vob_suplier_scr3.id = id;
 }
