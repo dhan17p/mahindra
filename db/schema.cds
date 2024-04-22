@@ -123,10 +123,8 @@ entity VOB_Screen3 {
         presented_on_by           : String;
         vob_yoy_scr3              : Composition of many YOY_Screen3
                                         on vob_yoy_scr3.vob_id = id;
-        vob_suplier               : Composition of many potential_suplier_scr1
+        vob_suplier               : Composition of many potential_suplier_scr3
                                         on vob_suplier.id = id;
-        vob_suplier_scr3          : Composition of many potential_suplier_scr3
-                                        on vob_suplier_scr3.id = id;
 }
 
 entity potential_suplier_scr3 {
@@ -186,6 +184,8 @@ entity VOB_Screen4 {
         flowStatus                : String;
         vob_yoy_scr4              : Composition of many YOY_Screen4
                                         on vob_yoy_scr4.vob_id = id;
+        vob_suplier              : Composition of many potential_suplier_scr4
+                                        on vob_suplier.id = id;
         vob_suplier4              : Composition of many potential_suplier_scr4
                                         on vob_suplier4.id = id;
         vob_comments              : Composition of many comment
@@ -216,7 +216,7 @@ entity YOY_Screen4 {
         total                  : String;
         Existing_MGSP_PO_Price : String;
         target_price           : String;
-        state                  : String;
+        state                  : Boolean;
         yoy_vov_scr4           : Association to VOB_Screen4;
 }
 //Screen 4b

@@ -47,64 +47,171 @@ module.exports = cds.service.impl(async function () {
         req.data.url = `/odata/v4/my/Files(${req.data.ID})/content`
     })
     this.on('UPDATE', Workflow_History, async (req) => {
-        debugger
-        console.log(req.data);
-        var commentsData = JSON.parse(req.data.title);
-        if (commentsData["approvalflow"] == "true") {
-            if (req.data.status == '3') {
-                console.log("Approved Call Triggered")
-                var data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
 
-                for (let i = 0; i < data.length; i++) {
-                    // await UPDATE(Workflow_History, { vob_id: data[i].vob_id, employee_id: data[i].employee_id, level: data[i].level }).with({
-                    //     status: 'Approved'
-                    // })
-                    var begin_Date_Time = new Date(data[i].begin_Date_Time);
-                    var currentDate = new Date();
-                    var timeDifference = currentDate - begin_Date_Time;
-                    var daysTaken = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-                    var dateTimeStamp = Date.now();
-                    var formattedDateTime = decodeTimestamp(dateTimeStamp)
-                    await UPDATE(Workflow_History).set({
-                        status: 'Approved',
-                        end_Date_Time:`${formattedDateTime}`,
-                        days_Taken:`${daysTaken}`,
-                    }).where({
-                        vob_id: req.data.vob_id,
-                        level: req.data.level
-                    })
-                }
+        const decodeTimestamp = (timestamp) => {
+            // Create a new Date object using the timestamp
+            var date = new Date(timestamp);
 
-                let numericVal = parseInt(req.data.level);
+            // Extract the components of the date
+            var year = date.getFullYear();
+            var month = ('0' + (date.getMonth() + 1)).slice(-2); // Months are zero-based
+            var day = ('0' + date.getDate()).slice(-2);
+            var hours = ('0' + date.getHours()).slice(-2);
+            var minutes = ('0' + date.getMinutes()).slice(-2);
+            var seconds = ('0' + date.getSeconds()).slice(-2);
 
-                var nextLevel = await SELECT.from(Workflow_History).where({ level: `${numericVal}`, vob_id: req.data.vob_id });
+            // Format the date as desired, for example: YYYY-MM-DD HH:MM:SS
+            var formattedDate = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
 
-
-            }
-            else {
-                console.log("Rejected Call Triggered")
-                var data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
-
-                for (let i = 0; i < data.length; i++) {
-                    // await UPDATE(Workflow_History, { vob_id: data[i].vob_id, employee_id: data[i].employee_id, level: data[i].level }).with({
-                    //     status: 'Rejected'
-                    // })
-                    await UPDATE(Workflow_History).set({
-                        status: 'Rejected'
-                    }).where({
-                        vob_id: req.data.vob_id,
-                        level: req.data.level
-                    })
-
-                }
-            }
-
-
-            var modified_data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
-
-            return;
+            return formattedDate;
         }
 
+        debugger
+        // var data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
+
+        // for (let i = 0; i < data.length; i++) {
+        //     var begin_Date_Time = new Date(data[i].begin_Date_Time);
+        //     var currentDate = new Date();
+        //     // var currentDate = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+        //     var timeDifference = currentDate - begin_Date_Time;
+        //     var daysTaken = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        //     var dateTimeStamp = Date.now();
+        //     var formattedDateTime = decodeTimestamp(dateTimeStamp)
+        //     await UPDATE(Workflow_History).set({
+        //         status: 'Rejected',
+        //         end_Date_Time: `${formattedDateTime}`,
+        //         days_Taken: `${daysTaken}`,
+        //     }).where({
+        //         vob_id: req.data.vob_id,
+        //         level: req.data.level
+        //     })
+
+        // }
+
+
+        try {
+            debugger
+            console.log(req.data);
+            const isValidJson = (str) => {
+                try {
+                    JSON.parse(str);
+                    return true;
+                } catch (error) {
+                    return false;
+                }
+            }
+            console.log(isValidJson(req.data.title));
+            //Which means triggered by Approval BPA Form
+            if (isValidJson(req.data.title)) {
+                console.log("inside isvalidjson")
+                var commentsData = JSON.parse(req.data.title);
+                if (commentsData["approvalflow"] == "true") {
+                    if (req.data.status == '3') {
+                        console.log("Approved Call Triggered")
+
+                        ////Decision Pending 
+
+                        if (isValidJson(req.data.end_Date_Time)) {
+                            console.log("inside validjson approval")
+                            var approval_lineitem = req.data.end_Date_Time;
+                            approval_lineitem = JSON.parse(approval_lineitem);
+                            for (var key in approval_lineitem) {
+                                console.log("approval line")
+                                if (approval_lineitem[key] == 'true' || approval_lineitem[key] == true) {
+                                    await UPDATE(YOY_Screen4, { id: key }).with({
+                                        state: true
+                                    })
+                                }
+                                else if (approval_lineitem[key] == 'false' || approval_lineitem[key] == false) {
+                                    await UPDATE(YOY_Screen4, { id: key }).with({
+                                        state: false
+                                    })
+                                }
+                            }
+                        }
+
+
+                        var data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
+
+                        for (let i = 0; i < data.length; i++) {
+                            // await UPDATE(Workflow_History, { vob_id: data[i].vob_id, employee_id: data[i].employee_id, level: data[i].level }).with({
+                            //     status: 'Approved'
+                            // })
+                            var begin_Date_Time = new Date(data[i].begin_Date_Time);
+                            var currentDate = new Date();
+                            var timeDifference = currentDate - begin_Date_Time;
+                            var daysTaken = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                            var dateTimeStamp = Date.now();
+                            var formattedDateTime = decodeTimestamp(dateTimeStamp)
+                            console.log("insideWorkflow_History")
+                            await UPDATE(Workflow_History).set({
+                                status: 'Approved',
+                                end_Date_Time: `${formattedDateTime}`,
+                                days_Taken: `${daysTaken}`,
+                            }).where({
+                                vob_id: req.data.vob_id,
+                                level: req.data.level
+                            })
+                            console.log("end_date_updated")
+
+                        }
+                        console.log("updated status in workflow")
+                        let numericVal = parseFloat(req.data.level);
+                        numericVal = numericVal + 1;
+                        var levelString = numericVal.toFixed(1);
+                        console.log("levelString", levelString)
+                        debugger
+                        var nextLevelWFData = await SELECT.from(Workflow_History).where({ level: `${levelString}`, vob_id: req.data.vob_id });
+                        var usersdata = '';
+                        console.log("Got data from nextLevelWFData");
+                        for (let i = 0; i < nextLevelWFData.length; i++) {
+                            var empid = nextLevelWFData[i].employee_id;
+                            usersdata = usersdata + empid + ' ,';
+                        }
+                        console.log(usersdata);
+                        if (usersdata) {
+                            console.log("inside user data");
+                            await UPDATE(VOB_Screen4, { id: req.data.vob_id }).with({
+                                users: `${usersdata}`
+                            })
+                        }
+                        console.log("updated user details")
+
+
+                    }
+                    else {
+                        console.log("Rejected Call Triggered");
+
+                        var data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
+
+                        for (let i = 0; i < data.length; i++) {
+                            var begin_Date_Time = new Date(data[i].begin_Date_Time);
+                            var currentDate = new Date();
+                            var timeDifference = currentDate - begin_Date_Time;
+                            var daysTaken = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                            var dateTimeStamp = Date.now();
+                            var formattedDateTime = decodeTimestamp(dateTimeStamp)
+                            await UPDATE(Workflow_History).set({
+                                status: 'Rejected',
+                                end_Date_Time: `${formattedDateTime}`,
+                                days_Taken: `${daysTaken}`,
+                            }).where({
+                                vob_id: req.data.vob_id,
+                                level: req.data.level
+                            })
+
+                        }
+                    }
+
+
+                    var modified_data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
+
+                    return;
+                }
+            }
+        } catch (error) {
+            console.log("An error occurred:", error);
+        }
     })
 
     this.before('READ', 'Files', (req, res) => {
@@ -171,7 +278,7 @@ module.exports = cds.service.impl(async function () {
                 Existing_MGSP_PO_Price: yoyItem.Existing_MGSP_PO_Price,
                 target_price: yoyItem.target_price,
             })),
-            vob_suplier_scr3: req.data.vob_suplier.map(supitem => ({
+            vob_suplier: req.data.vob_suplier.map(supitem => ({
                 id: supitem.id,
                 suplier: supitem.suplier
             }))
@@ -200,7 +307,7 @@ module.exports = cds.service.impl(async function () {
                 Existing_MGSP_PO_Price: yoyItem.Existing_MGSP_PO_Price,
                 target_price: yoyItem.target_price,
             })),
-            vob_suplier4: req.data.vob_suplier.map(supitem => ({
+            vob_suplier: req.data.vob_suplier.map(supitem => ({
                 id: supitem.id,
                 suplier: supitem.suplier
             }))

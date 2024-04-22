@@ -109,8 +109,8 @@ annotate service.VOB_Screen3 with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value : vob_suplier_scr3.suplier,
-                Label : 'Potential Supplier',
+                Value : vob_suplier.suplier,
+                Label : 'Potential Suppliers',
             },
             {
                 $Type : 'UI.DataField',

@@ -24,6 +24,8 @@ sap.ui.define([
 
             edit: async function (oEvent) {
                 debugger
+                let sav_btn = this.getView().byId("b1").setVisible(true);
+                let edit_btn = this.getView().byId("b11").setVisible(false);
                 Fold_count = this.getView().mAggregations.content[0].mAggregations.content[1].mAggregations.items[0].mAggregations.items[0].mAggregations.items;
                 for (let a = 0; a < Fold_count.length; a++) {
                     Fold_count[a].mAggregations.content[0].mAggregations.items[1].mAggregations.items[1].setEditable(true);
@@ -32,6 +34,8 @@ sap.ui.define([
             },
 
             button: async function (oEvent) {
+                let sav_btn = this.getView().byId("b1").setVisible(false);
+                let edit_btn = this.getView().byId("b11").setVisible(true);
                 for (let a = 0; a < Fold_count.length; a++) {
                     Fold_count[a].mAggregations.content[0].mAggregations.items[1].mAggregations.items[1].setEditable(false);
                 }
