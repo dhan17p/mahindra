@@ -106,6 +106,7 @@ module.exports = cds.service.impl(async function () {
                 console.log("inside isvalidjson")
                 var commentsData = JSON.parse(req.data.title);
                 if (commentsData["approvalflow"] == "true") {
+                    var approvedby = commentsData["app_rej_by"];
                     if (req.data.status == '3') {
                         console.log("Approved Call Triggered")
 
@@ -137,22 +138,47 @@ module.exports = cds.service.impl(async function () {
                             // await UPDATE(Workflow_History, { vob_id: data[i].vob_id, employee_id: data[i].employee_id, level: data[i].level }).with({
                             //     status: 'Approved'
                             // })
-                            var begin_Date_Time = new Date(data[i].begin_Date_Time);
-                            var currentDate = new Date();
-                            var timeDifference = currentDate - begin_Date_Time;
-                            var daysTaken = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-                            var dateTimeStamp = Date.now();
-                            var formattedDateTime = decodeTimestamp(dateTimeStamp)
-                            console.log("insideWorkflow_History")
+                            function parseDateString(dateString) {
+                                var parts = dateString.split(/[\s/:,]+/); // Split the string by spaces, colons, slashes, and commas
+                                var day = parseInt(parts[0], 10);
+                                var month = parseInt(parts[1], 10) - 1; // Months are zero-based
+                                var year = parseInt(parts[2], 10);
+                                var hours = parseInt(parts[3], 10);
+                                var minutes = parseInt(parts[4], 10);
+                                var seconds = parseInt(parts[5], 10);
+                                var ampm = parts[6].toLowerCase();
+
+                                if (ampm === "pm" && hours < 12) {
+                                    hours += 12;
+                                } else if (ampm === "am" && hours === 12) {
+                                    hours = 0;
+                                }
+
+                                return new Date(year, month, day, hours, minutes, seconds);
+                            }
+                            // Example usage
+                            var startDateString = data[i].begin_Date_Time;
+                            var endDateString = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+
+                            var startDate = parseDateString(startDateString);
+                            var endDate = parseDateString(endDateString);
+
+                            // Calculate the difference in milliseconds
+                            var differenceInMilliseconds = endDate - startDate;
+
+                            // Convert milliseconds to days
+                            var differenceInDays = Math.round(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+
+                            console.log(approvedby)
                             await UPDATE(Workflow_History).set({
                                 status: 'Approved',
-                                end_Date_Time: `${formattedDateTime}`,
-                                days_Taken: `${daysTaken}`,
+                                end_Date_Time: `${endDateString}`,
+                                days_Taken: `${differenceInDays}`,
+                                approved_By: `${approvedby}`
                             }).where({
                                 vob_id: req.data.vob_id,
                                 level: req.data.level
                             })
-                            console.log("end_date_updated")
 
                         }
                         console.log("updated status in workflow")
@@ -163,6 +189,11 @@ module.exports = cds.service.impl(async function () {
                         debugger
                         var nextLevelWFData = await SELECT.from(Workflow_History).where({ level: `${levelString}`, vob_id: req.data.vob_id });
                         var usersdata = '';
+                        if (!nextLevelWFData.length) {
+                            await UPDATE(VOB_Screen4, { id: req.data.vob_id }).with({
+                                flowStatus: 'Approved'
+                            })
+                        }
                         console.log("Got data from nextLevelWFData");
                         for (let i = 0; i < nextLevelWFData.length; i++) {
                             var empid = nextLevelWFData[i].employee_id;
@@ -184,17 +215,46 @@ module.exports = cds.service.impl(async function () {
 
                         var data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
 
+                        await UPDATE(VOB_Screen4, { id: req.data.vob_id }).with({
+                            flowStatus: 'Rejected'
+                        })
+
                         for (let i = 0; i < data.length; i++) {
-                            var begin_Date_Time = new Date(data[i].begin_Date_Time);
-                            var currentDate = new Date();
-                            var timeDifference = currentDate - begin_Date_Time;
-                            var daysTaken = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-                            var dateTimeStamp = Date.now();
-                            var formattedDateTime = decodeTimestamp(dateTimeStamp)
+                            function parseDateString(dateString) {
+                                var parts = dateString.split(/[\s/:,]+/); // Split the string by spaces, colons, slashes, and commas
+                                var day = parseInt(parts[0], 10);
+                                var month = parseInt(parts[1], 10) - 1; // Months are zero-based
+                                var year = parseInt(parts[2], 10);
+                                var hours = parseInt(parts[3], 10);
+                                var minutes = parseInt(parts[4], 10);
+                                var seconds = parseInt(parts[5], 10);
+                                var ampm = parts[6].toLowerCase();
+
+                                if (ampm === "pm" && hours < 12) {
+                                    hours += 12;
+                                } else if (ampm === "am" && hours === 12) {
+                                    hours = 0;
+                                }
+
+                                return new Date(year, month, day, hours, minutes, seconds);
+                            }
+                            // Example usage
+                            var startDateString = data[i].begin_Date_Time;
+                            var endDateString = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+
+                            var startDate = parseDateString(startDateString);
+                            var endDate = parseDateString(endDateString);
+
+                            // Calculate the difference in milliseconds
+                            var differenceInMilliseconds = endDate - startDate;
+
+                            // Convert milliseconds to days
+                            var differenceInDays = Math.round(differenceInMilliseconds / (1000 * 60 * 60 * 24));
                             await UPDATE(Workflow_History).set({
                                 status: 'Rejected',
-                                end_Date_Time: `${formattedDateTime}`,
-                                days_Taken: `${daysTaken}`,
+                                end_Date_Time: `${endDateString}`,
+                                days_Taken: `${differenceInDays}`,
+                                approved_By: `${approvedby}`
                             }).where({
                                 vob_id: req.data.vob_id,
                                 level: req.data.level
@@ -213,6 +273,7 @@ module.exports = cds.service.impl(async function () {
             console.log("An error occurred:", error);
         }
     })
+
 
     this.before('READ', 'Files', (req, res) => {
         //check content-type
@@ -393,13 +454,13 @@ module.exports = cds.service.impl(async function () {
             return value;
         }
         if (reqdata.worlflowtriger == "triggered") {
-            var dateTimeStamp = Date.now();
-            var formattedDateTime = decodeTimestamp(dateTimeStamp)
+            var dateTimeStamp =  new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+            // var formattedDateTime = decodeTimestamp(dateTimeStamp)
             await UPDATE(VOB_Screen4, reqdata.id).with({
-                flowStatus: "New", startedAt: formattedDateTime
+                flowStatus: "Pending", startedAt: dateTimeStamp
             });
             await UPDATE(Workflow_History, reqdata.id).with({
-                begin_Date_Time: formattedDateTime
+                begin_Date_Time: dateTimeStamp
             });
 
         }
