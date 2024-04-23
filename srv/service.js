@@ -49,23 +49,16 @@ module.exports = cds.service.impl(async function () {
     this.on('UPDATE', Workflow_History, async (req) => {
 
         const decodeTimestamp = (timestamp) => {
-            // Create a new Date object using the timestamp
             var date = new Date(timestamp);
-
-            // Extract the components of the date
             var year = date.getFullYear();
             var month = ('0' + (date.getMonth() + 1)).slice(-2); // Months are zero-based
             var day = ('0' + date.getDate()).slice(-2);
             var hours = ('0' + date.getHours()).slice(-2);
             var minutes = ('0' + date.getMinutes()).slice(-2);
             var seconds = ('0' + date.getSeconds()).slice(-2);
-
-            // Format the date as desired, for example: YYYY-MM-DD HH:MM:SS
             var formattedDate = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
-
             return formattedDate;
         }
-
         debugger
         // var data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
 
