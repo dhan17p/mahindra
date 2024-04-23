@@ -38,7 +38,21 @@
     },
     "cds": {
         "requires": {
-            "auth": "dummy"
+            "auth": "dummy",
+            "destinations":true,
+            "BPA_trigger": {
+                "kind": "odata-v2",
+                "csrf": true,
+                "csrfInBatch": true,
+                "credentials": {
+                    "destination": "sap_bpa_trigger",
+                    "requestTimeout": 120000
+                },
+                "destinationOptions": {
+                    "selectionStrategy": "alwaysProvider",
+                    "jwt": null
+                }
+            }
         }
     },
     "sapux": [

@@ -42,3 +42,5 @@ app/vobscreen4b/dist
 app/vobscreen4bb/dist
 
 resources
+# auto generated wildcard
+.env

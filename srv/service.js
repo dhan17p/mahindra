@@ -22,6 +22,11 @@ module.exports = cds.service.impl(async function () {
         Master_workflow
 
     } = this.entities;
+    var BPA = await cds.connect.to("BPA_trigger");
+    var response = await BPA.get('/workflow/rest/v1/workflow-instances');
+
+    console.log( response);
+    
     //   const cats = await cds.connect.to ('MyService');
     function decodeTimestamp(timestamp) {
         // Create a new Date object using the timestamp
@@ -41,7 +46,8 @@ module.exports = cds.service.impl(async function () {
         return formattedDate;
     }
 
-    this.before('CREATE', 'Files', req => {
+    this.
+    before('CREATE', 'Files', req => {
         console.log('Create called')
         console.log(JSON.stringify(req.data))
         req.data.url = `/odata/v4/my/Files(${req.data.ID})/content`
@@ -268,9 +274,28 @@ module.exports = cds.service.impl(async function () {
     })
 
 
-    this.before('READ', 'Files', (req, res) => {
+    this.before('READ', 'Files', async ( req, res)  => {
         //check content-type
         debugger
+        var body={
+            "definitionId": "us10.3ebeb48ctrial.triggerbpa11.myProcess",
+            "context": {
+                "vob_id": `31b42ea4-4b36-48d4-84c2-256c1571d02e`,
+                "level_fil": "level eq '",
+                "vobid_fil": "' and vob_id eq ",
+                "emp": "",
+                "filter_for_vobentity": `id eq 31b42ea4-4b36-48d4-84c2-256c1571d02e`
+            }
+        }
+        // var response = await BPA.post('/workflow/rest/v1/workflow-instances',body);
+        try {
+            var response = await BPA.get('/workflow/rest/v1/workflow-instances');
+            // Success: Process the response
+            console.log("Response:", response);
+        } catch (error) {
+            // Error: Handle the error
+            console.log("Error:", error);
+        }
         console.log('content-type: ', req.headers['content-type'])
     });
     //First Screen
@@ -455,7 +480,25 @@ module.exports = cds.service.impl(async function () {
             await UPDATE(Workflow_History, reqdata.id).with({
                 begin_Date_Time: dateTimeStamp
             });
-
+            var body={
+                "definitionId": "us10.3ebeb48ctrial.triggerbpa11.myProcess",
+                "context": {
+                    "vob_id": `${reqdata.id}`,
+                    "level_fil": "level eq '",
+                    "vobid_fil": "' and vob_id eq ",
+                    "emp": "",
+                    "filter_for_vobentity": `id eq ${reqdata.id}`
+                }
+            }
+            // var response = await BPA.post('/workflow/rest/v1/workflow-instances',body);
+            try {
+                var response = await BPA.post('/workflow/rest/v1/workflow-instances', body);
+                // Success: Process the response
+                console.log("Response:", response);
+            } catch (error) {
+                // Error: Handle the error
+                console.log("Error:", error);
+            }
         }
     })
     this.on('vanddetails', async (req) => {

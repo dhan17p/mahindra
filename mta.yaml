@@ -9,6 +9,7 @@ modules:
   requires:
   - name: mahindra-db
   - name: uaa_mahindra
+  - name: TLP_Connectivity
   provides:
   - name: srv-api
     properties:
@@ -229,6 +230,11 @@ resources:
     service: html5-apps-repo
     service-name: mahindra-html5-app-host-service
     service-plan: app-host
+- name: TLP_Connectivity
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite
 - name: uaa_mahindra
   type: org.cloudfoundry.managed-service
   parameters:

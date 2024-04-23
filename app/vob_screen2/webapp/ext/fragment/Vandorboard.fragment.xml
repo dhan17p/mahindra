@@ -32,7 +32,6 @@
 					<Label text="Payment Terms"> </Label>
 					<Label text="Transport Cost"> </Label>
 				</VBox>
-
 				<VBox class = "hboxcontainer">
 					<HBox class = "innerhbox1">
 						<Label class = "hboxlabel1" text="Capex">  </Label>
@@ -41,7 +40,6 @@
 							<Label text="Inspection Gauges"> </Label>
 						</VBox>
 					</HBox>
-
 					<HBox class="innerhbox2">
 						<Label class = "hboxlabel2" text="Revenue"> </Label>
 						<VBox class="innervbox2">
@@ -53,9 +51,7 @@
 					</HBox>
 				</VBox>
 				<Label text="Total Landed Investment Settled"> </Label>
-
 			</VBox>
-
 		</VBox>
 		<HBox class="VendorHBoxClass"></HBox>
 	</HBox>
