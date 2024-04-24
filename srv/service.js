@@ -23,10 +23,10 @@ module.exports = cds.service.impl(async function () {
 
     } = this.entities;
     var BPA = await cds.connect.to("BPA_trigger");
-    var vcvv= process.env.VCAP_SERVICES;
+    var vcvv = process.env.VCAP_SERVICES;
     console.log(vcvv);
     var response = await BPA.get('/workflow/rest/v1/workflow-instances');
-    console.log( response);
+    console.log(response);
     //   const cats = await cds.connect.to ('MyService');
     function decodeTimestamp(timestamp) {
         // Create a new Date object using the timestamp
@@ -47,11 +47,11 @@ module.exports = cds.service.impl(async function () {
     }
 
     this.
-    before('CREATE', 'Files', req => {
-        console.log('Create called')
-        console.log(JSON.stringify(req.data))
-        req.data.url = `/odata/v4/my/Files(${req.data.ID})/content`
-    })
+        before('CREATE', 'Files', req => {
+            console.log('Create called')
+            console.log(JSON.stringify(req.data))
+            req.data.url = `/odata/v4/my/Files(${req.data.ID})/content`
+        })
     this.on('UPDATE', Workflow_History, async (req) => {
 
         const decodeTimestamp = (timestamp) => {
@@ -274,7 +274,7 @@ module.exports = cds.service.impl(async function () {
     })
 
 
-    this.before('READ', 'Files', async ( req, res)  => {
+    this.before('READ', 'Files', async (req, res) => {
         //check content-type
         debugger
 
@@ -454,7 +454,7 @@ module.exports = cds.service.impl(async function () {
             return value;
         }
         if (reqdata.worlflowtriger == "triggered") {
-            var dateTimeStamp =  new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+            var dateTimeStamp = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
             // var formattedDateTime = decodeTimestamp(dateTimeStamp)
             await UPDATE(VOB_Screen4, reqdata.id).with({
                 flowStatus: "Pending", startedAt: dateTimeStamp
@@ -617,7 +617,20 @@ module.exports = cds.service.impl(async function () {
             //         });
             //     });
             // }
-
+            if (supplierdetails1.length > 0) {
+                console.log("supplierdetails1 inside");
+                for (const entry of supplierdetails1) {
+                    let id_main1 = uuidv4();
+                    await INSERT.into(potential_suplier_scr1).entries(
+                        { id_main: id_main1, id: reqdata.id, suplier: entry[entry.length - 1].supplier_name }
+                    );
+                    for (const entry1 of entry) {
+                        console.log("supplierdetails1 inside");
+                        await INSERT.into(supplierdetails).entries(
+                            { id_supplier: id_main1, value_key: entry1.value_key, value: entry1.value })
+                    }
+                }
+            }
             if (supplierdetails2.length > 0) {
                 for (const entry of supplierdetails2) {
                     var id_main_new = entry[entry.length - 1].supplier_id
@@ -643,7 +656,7 @@ module.exports = cds.service.impl(async function () {
             let partdetails = await SELECT.from(YOY_Screen3);
             let venordss = await SELECT.from(YOY_Screen3).where({ vob_id: reqdata.id });
             let suppliers = await SELECT.from(potential_suplier_scr1).where({ id: reqdata.id });
-            let vob_details = await SELECT.from(VOB_Screen4).where({id:reqdata.id})
+            let vob_details = await SELECT.from(VOB_Screen4).where({ id: reqdata.id })
             var supllier_detail_together = []
             for (let supplier of suppliers) {
                 // Fetch the supplier details for the current supplier
@@ -659,7 +672,7 @@ module.exports = cds.service.impl(async function () {
                 supllier_detail_together.push(newObj);
             }
             // let supplier_detais = await SELECT.from(supplierdetails).where({ vob_id: reqdata.id });
-            let venordssString = JSON.stringify({ suppliers, venordss, supllier_detail_together,vob_details });
+            let venordssString = JSON.stringify({ suppliers, venordss, supllier_detail_together, vob_details });
             return venordssString;
         }
     })
