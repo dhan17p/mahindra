@@ -181,7 +181,7 @@ entity VOB_Screen4 {
         presented_on_by           : String;
         users                     : String;
         startedAt                 : String;
-        flowStatus                : String;
+        flowStatus                : String default 'New';
         vob_yoy_scr4              : Composition of many YOY_Screen4
                                         on vob_yoy_scr4.vob_id = id;
         vob_suplier              : Composition of many potential_suplier_scr4

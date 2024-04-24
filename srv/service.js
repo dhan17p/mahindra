@@ -23,10 +23,10 @@ module.exports = cds.service.impl(async function () {
 
     } = this.entities;
     var BPA = await cds.connect.to("BPA_trigger");
+    var vcvv= process.env.VCAP_SERVICES;
+    console.log(vcvv);
     var response = await BPA.get('/workflow/rest/v1/workflow-instances');
-
     console.log( response);
-    
     //   const cats = await cds.connect.to ('MyService');
     function decodeTimestamp(timestamp) {
         // Create a new Date object using the timestamp
@@ -277,25 +277,7 @@ module.exports = cds.service.impl(async function () {
     this.before('READ', 'Files', async ( req, res)  => {
         //check content-type
         debugger
-        var body={
-            "definitionId": "us10.3ebeb48ctrial.triggerbpa11.myProcess",
-            "context": {
-                "vob_id": `31b42ea4-4b36-48d4-84c2-256c1571d02e`,
-                "level_fil": "level eq '",
-                "vobid_fil": "' and vob_id eq ",
-                "emp": "",
-                "filter_for_vobentity": `id eq 31b42ea4-4b36-48d4-84c2-256c1571d02e`
-            }
-        }
-        // var response = await BPA.post('/workflow/rest/v1/workflow-instances',body);
-        try {
-            var response = await BPA.get('/workflow/rest/v1/workflow-instances');
-            // Success: Process the response
-            console.log("Response:", response);
-        } catch (error) {
-            // Error: Handle the error
-            console.log("Error:", error);
-        }
+
         console.log('content-type: ', req.headers['content-type'])
     });
     //First Screen
@@ -480,25 +462,25 @@ module.exports = cds.service.impl(async function () {
             await UPDATE(Workflow_History, reqdata.id).with({
                 begin_Date_Time: dateTimeStamp
             });
-            var body={
-                "definitionId": "us10.3ebeb48ctrial.triggerbpa11.myProcess",
-                "context": {
-                    "vob_id": `${reqdata.id}`,
-                    "level_fil": "level eq '",
-                    "vobid_fil": "' and vob_id eq ",
-                    "emp": "",
-                    "filter_for_vobentity": `id eq ${reqdata.id}`
-                }
-            }
-            // var response = await BPA.post('/workflow/rest/v1/workflow-instances',body);
-            try {
-                var response = await BPA.post('/workflow/rest/v1/workflow-instances', body);
-                // Success: Process the response
-                console.log("Response:", response);
-            } catch (error) {
-                // Error: Handle the error
-                console.log("Error:", error);
-            }
+            // var body={
+            //     "definitionId": "us10.3ebeb48ctrial.triggerbpa11.myProcess",
+            //     "context": {
+            //         "vob_id": `${reqdata.id}`,
+            //         "level_fil": "level eq '",
+            //         "vobid_fil": "' and vob_id eq ",
+            //         "emp": "",
+            //         "filter_for_vobentity": `id eq ${reqdata.id}`
+            //     }
+            // }
+            // // var response = await BPA.post('/workflow/rest/v1/workflow-instances',body);
+            // try {
+            //     var response = await BPA.post('/workflow/rest/v1/workflow-instances',body);
+            //     // Success: Process the response
+            //     console.log("Response:", response);
+            // } catch (error) {
+            //     // Error: Handle the error
+            //     console.log("Error:", error);
+            // }
         }
     })
     this.on('vanddetails', async (req) => {
@@ -661,6 +643,7 @@ module.exports = cds.service.impl(async function () {
             let partdetails = await SELECT.from(YOY_Screen3);
             let venordss = await SELECT.from(YOY_Screen3).where({ vob_id: reqdata.id });
             let suppliers = await SELECT.from(potential_suplier_scr1).where({ id: reqdata.id });
+            let vob_details = await SELECT.from(VOB_Screen4).where({id:reqdata.id})
             var supllier_detail_together = []
             for (let supplier of suppliers) {
                 // Fetch the supplier details for the current supplier
@@ -676,7 +659,7 @@ module.exports = cds.service.impl(async function () {
                 supllier_detail_together.push(newObj);
             }
             // let supplier_detais = await SELECT.from(supplierdetails).where({ vob_id: reqdata.id });
-            let venordssString = JSON.stringify({ suppliers, venordss, supllier_detail_together });
+            let venordssString = JSON.stringify({ suppliers, venordss, supllier_detail_together,vob_details });
             return venordssString;
         }
     })

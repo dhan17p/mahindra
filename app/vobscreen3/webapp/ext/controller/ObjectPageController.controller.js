@@ -429,6 +429,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					var result1 = oFunction1.getBoundContext().getValue().value;
 					var finalsupp = JSON.parse(result1);
 					vendorNames = finalsupp.supllier_detail_together
+					var vendor_details = finalsupp.vob_details;
 					// let vendorNames = ["vendor1", "vendor2", "vendor3", "vendor4", "vendor5"]; // Add as many vendor names as needed
 					let oHbox = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--mainHBox").getItems()[1];
 					oHbox.destroyItems();
@@ -487,6 +488,13 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						oHbox.addItem(vendor);
 						// vendor.addStyleClass("")
 
+					}
+					var footer = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::FooterBar");
+					if(vendor_details[0].flowStatus == "New" || vendor_details[0].flowStatus == "Rejected"){
+						footer.setVisible(true)
+					}
+					else{
+						footer.setVisible(false);
 					}
 					debugger
 					// var pathfortablefilter = this.base.getView().mAggregations.content[0].mAggregations.sections[0].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mBindingInfos.items.binding

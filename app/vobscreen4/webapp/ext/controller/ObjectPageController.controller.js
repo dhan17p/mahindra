@@ -319,10 +319,6 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						// Add the VBox to the main VBox container
 						vBox.addItem(oVBox);
 					});
-
-
-
-
 					let oFunction2 = this.getView().getModel().bindContext("/vanddetails(...)");
 					var statusval2 = JSON.stringify({ id: id, status: "screen2get1" })
 					oFunction2.setParameter("status", statusval2)

@@ -18,7 +18,6 @@
 				</columns>
 			</Table>
 			<VBox  alignItems='End' class="vboxbelowtable">
-
 				<VBox  class="vboxupper">
 					<Label text="Total Landed Investment - Settled (Rs. lacs)"> </Label>
 					<Label text="Total Business value (Rs. Lac) 1st 12months"> </Label>
