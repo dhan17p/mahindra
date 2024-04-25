@@ -10,6 +10,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 			 * @memberOf vobscreen4.ext.controller.ObjectPageController
 			 */
 			onInit: function () {
+				sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSection::Worflow_History").setVisible(false)
 				// function generateUniqueId() {
 
 				// 	// Generate a random number
@@ -248,7 +249,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						
 
 						// Set the title dynamically
-						var oTitle = new sap.m.Title({ text: "Level " + level });
+						var oTitle = new sap.m.Title({ text: "Level " + `${parseInt(level)}`});
 						oVBox.addItem(oTitle);
 
 						// Create a ScrollContainer
@@ -294,7 +295,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						// Iterate over the data for this level and add table rows
 						levelData.forEach(function (item) {
 							var oRow = new sap.m.ColumnListItem();
-							oRow.addCell(new sap.m.Text({ text: item.level }));
+							oRow.addCell(new sap.m.Text({ text: `${parseInt(item.level)}` }));
 							oRow.addCell(new sap.m.Text({ text: item.title }));
 							oRow.addCell(new sap.m.Text({ text: item.employee_id }));
 							oRow.addCell(new sap.m.Text({ text: item.employee_Name }));
@@ -347,27 +348,28 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							text: tableData[i].target_price
 						})
 						row.addCell(target_price)
-						var hboxw = new sap.m.HBox (`hboc${i}`);
+						// var hboxw = new sap.m.HBox (`hboc${i}`);
 						let switchtoglle = new sap.m.Switch({
-							state: true,
+							state: tableData[i].state,
 							customTextOff: "No",
 							customTextOn: "Yes",
+							blocked:true,
 							change : function(){
 								debugger
 							}
 							// text: tableData[i].target_price
 						})
-						var text = new sap.m.Text({
-							text:"Approved"
-						})	
+						// var text = new sap.m.Text({
+						// 	text:"Approved"
+						// })	
 						var modelrow = new sap.ui.model.json.JSONModel({
 							rowid:  tableData[i].id
 						});
 						row.setModel(modelrow,'rowid')
 						text.addStyleClass("textstyleclass")
-						hboxw.addItem(text);
-						hboxw.addItem(switchtoglle);
-						row.addCell(hboxw);
+						// hboxw.addItem(text);
+						// hboxw.addItem(switchtoglle);
+						row.addCell(switchtoglle);
 					}
 					if (id == "cf659f8c-3fbb-4c94-89be-1ec9d5244b72") {
 						var vendorNames = ["Infinity Auto", "Balaji Parts"]

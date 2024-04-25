@@ -11,9 +11,11 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension', 'sap/m/MessageToast', 'sap
              * @memberOf practise.ext.controller.Save
              */
             onInit: function () {
+
                 // you can access the Fiori elements extensionAPI via this.base.getExtensionAPI
                 var oModel = this.base.getExtensionAPI().getModel();
                 that = this;
+                sap.ui.getCore().byId("vobmah::VOBObjectPage--fe::CustomSection::Worflow_History").setVisible(false)
             },
             editFlow: {
                 onBeforeSave: function (oEvent) {

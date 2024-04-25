@@ -14,7 +14,7 @@
 						<Label text="Target Price" />
 					</Column>
 					<Column>
-						<Label text=" " />
+						<Label text="Approved" />
 					</Column>
 				</columns>
 			</Table>

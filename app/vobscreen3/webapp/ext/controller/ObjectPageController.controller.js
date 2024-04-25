@@ -221,7 +221,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						
 
 						// Set the title dynamically
-						var oTitle = new sap.m.Title({ text: "Level " + level });
+						var oTitle = new sap.m.Title({ text: "Level " + `${parseInt(level)}` });
 						oVBox.addItem(oTitle);
 
 						// Create a ScrollContainer
@@ -267,7 +267,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						// Iterate over the data for this level and add table rows
 						levelData.forEach(function (item) {
 							var oRow = new sap.m.ColumnListItem();
-							oRow.addCell(new sap.m.Text({ text: item.level }));
+							oRow.addCell(new sap.m.Text({ text: `${parseInt(item.level)}` }));
 							oRow.addCell(new sap.m.Text({ text: item.title }));
 							oRow.addCell(new sap.m.Text({ text: item.employee_id }));
 							oRow.addCell(new sap.m.Text({ text: item.employee_Name }));

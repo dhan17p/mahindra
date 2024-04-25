@@ -226,6 +226,7 @@ sap.ui.define([
                         var statusval2 = JSON.stringify({ id: id,status:"workflowtovob" })
                         oFunction3.setParameter("status", statusval2)
                         await oFunction3.execute()
+                        sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::FooterBar").setVisible(false)
 
 
                         

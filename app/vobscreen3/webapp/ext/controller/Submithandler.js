@@ -18,6 +18,7 @@ sap.ui.define([
             var statusval2 = JSON.stringify({ id: id, status: "screen1comment", comment: comment_value,worlflowtriger:"triggered" })
             oFunction2.setParameter("status", statusval2)
             await oFunction2.execute()
+            sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::FooterBar").setVisible(false);
         }
     };
 });
