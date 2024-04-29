@@ -15,7 +15,7 @@ sap.ui.define([
             MessageToast.show("Custom handler invoked.");
             var comment_value = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSection::Comment").mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mProperties.value
             let oFunction2 =  this.getModel().bindContext("/commentfun(...)");
-            var statusval2 = JSON.stringify({ id: id, status: "screen1comment", comment: comment_value,worlflowtriger:"triggered" })
+            var statusval2 = JSON.stringify({ id: id, status: "screen1comment", comment: comment_value,worlflowtriger:"triggered", createdBy:`${new sap.ushell.services.UserInfo().getEmail()}`})
             oFunction2.setParameter("status", statusval2)
             await oFunction2.execute()
             sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::FooterBar").setVisible(false);

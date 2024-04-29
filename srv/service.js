@@ -1,4 +1,5 @@
 const cds = require('@sap/cds',);
+const { select } = require('@sap/cds/libx/_runtime/hana/execute');
 const { v4: uuidv4 } = require('uuid');
 const { SELECT, INSERT, UPDATE, DELETE } = cds.ql
 module.exports = cds.service.impl(async function () {
@@ -46,25 +47,14 @@ module.exports = cds.service.impl(async function () {
         return formattedDate;
     }
 
-    this.
-        before('CREATE', 'Files', req => {
-            console.log('Create called')
-            console.log(JSON.stringify(req.data))
-            req.data.url = `/odata/v4/my/Files(${req.data.ID})/content`
-        })
+    this.before('CREATE', 'Files', req => {
+        console.log('Create called')
+        console.log(JSON.stringify(req.data))
+        req.data.url = `/odata/v4/my/Files(${req.data.ID})/content`
+    })
     this.on('UPDATE', Workflow_History, async (req) => {
 
-        const decodeTimestamp = (timestamp) => {
-            var date = new Date(timestamp);
-            var year = date.getFullYear();
-            var month = ('0' + (date.getMonth() + 1)).slice(-2); // Months are zero-based
-            var day = ('0' + date.getDate()).slice(-2);
-            var hours = ('0' + date.getHours()).slice(-2);
-            var minutes = ('0' + date.getMinutes()).slice(-2);
-            var seconds = ('0' + date.getSeconds()).slice(-2);
-            var formattedDate = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
-            return formattedDate;
-        }
+
         debugger
         // var data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
 
@@ -104,7 +94,39 @@ module.exports = cds.service.impl(async function () {
             if (isValidJson(req.data.title)) {
                 console.log("inside isvalidjson")
                 var commentsData = JSON.parse(req.data.title);
+
+
+
+
                 if (commentsData["approvalflow"] == "true") {
+
+                    //Comment Section
+                    var commentKeyValue
+                    var entry = [];
+                    for (var key in commentsData) {
+                        if (key == 'approvalflow' || key == 'app_rej_by') {
+                            console.log("Not added to comments table", key);
+                            continue;
+                        }
+                        commentKeyValue = `${key} : ${commentsData[key]}`;
+                        entry.push({
+                            id: `${req.data.vob_id}`,
+                            comment: `${commentKeyValue}`,
+                            createdBy: `${commentsData["app_rej_by"]}`
+
+                        })
+                        console.log("Entry for Comment:", entry);
+
+                    }
+                    if (entry.length) {
+                        console.log("Inside comment insert statement");
+                        await INSERT.into(comment).entries(entry);
+                        entry = [];
+                        console.log("Comment insert statement is completed");
+                    }
+
+                    //Approve or reject If condition
+
                     var approvedby = commentsData["app_rej_by"];
                     if (req.data.status == '3') {
                         console.log("Approved Call Triggered")
@@ -215,7 +237,7 @@ module.exports = cds.service.impl(async function () {
                         var data = await SELECT.from(Workflow_History).where({ level: req.data.level, vob_id: req.data.vob_id });
 
                         await UPDATE(VOB_Screen4, { id: req.data.vob_id }).with({
-                            flowStatus: 'Rejected'
+                            flowStatus: 'Pending'
                         })
 
                         for (let i = 0; i < data.length; i++) {
@@ -260,6 +282,33 @@ module.exports = cds.service.impl(async function () {
                             })
 
                         }
+
+                        //fetching previous level approvers email id
+                        let numericVal = parseFloat(req.data.level);
+                        numericVal = numericVal - 1;
+                        var levelString = numericVal.toFixed(1);
+                        console.log("levelString", levelString)
+                        debugger
+                        var nextLevelWFData = await SELECT.from(Workflow_History).where({ level: `${levelString}`, vob_id: req.data.vob_id });
+                        var usersdata = '';
+                        if (!nextLevelWFData.length) {
+                            await UPDATE(VOB_Screen4, { id: req.data.vob_id }).with({
+                                flowStatus: 'Rejected'
+                            })
+                        }
+                        console.log("Got data from nextLevelWFData");
+                        for (let i = 0; i < nextLevelWFData.length; i++) {
+                            var empid = nextLevelWFData[i].employee_id;
+                            usersdata = usersdata + empid + ' ,';
+                        }
+                        console.log(usersdata);
+                        if (usersdata) {
+                            console.log("inside user data");
+                            await UPDATE(VOB_Screen4, { id: req.data.vob_id }).with({
+                                users: `${usersdata}`
+                            })
+                        }
+                        console.log("updated user details")
                     }
 
 
@@ -292,6 +341,8 @@ module.exports = cds.service.impl(async function () {
         //         MGSP_Part_Nos:req.data.vob_yoy[0].MGSP_Part_Nos
         //     }]
         // }]
+        var values = await SELECT.from `VOB_Screen4` .columns `{sequentialVobId}}`
+        
         var entries2 = [{
             id: req.data.id,
             part_system: req.data.part_system,
@@ -446,7 +497,7 @@ module.exports = cds.service.impl(async function () {
     this.on('commentfun', async (req) => {
         var reqdata = JSON.parse(req.data.status);
         if (reqdata.status == "screen1comment") {
-            let ind44 = await INSERT.into(comment).entries({ id: reqdata.id, comment: reqdata.comment });
+            let ind44 = await INSERT.into(comment).entries({ id: reqdata.id, comment: reqdata.comment, createdBy: reqdata.createdBy });
         }
         if (reqdata.status == "screen2commentview") {
             let value = await SELECT.from(comment).where({ id: reqdata.id });
@@ -462,25 +513,57 @@ module.exports = cds.service.impl(async function () {
             await UPDATE(Workflow_History, reqdata.id).with({
                 begin_Date_Time: dateTimeStamp
             });
-            // var body={
-            //     "definitionId": "us10.3ebeb48ctrial.triggerbpa11.myProcess",
-            //     "context": {
-            //         "vob_id": `${reqdata.id}`,
-            //         "level_fil": "level eq '",
-            //         "vobid_fil": "' and vob_id eq ",
-            //         "emp": "",
-            //         "filter_for_vobentity": `id eq ${reqdata.id}`
-            //     }
-            // }
-            // // var response = await BPA.post('/workflow/rest/v1/workflow-instances',body);
-            // try {
-            //     var response = await BPA.post('/workflow/rest/v1/workflow-instances',body);
-            //     // Success: Process the response
-            //     console.log("Response:", response);
-            // } catch (error) {
-            //     // Error: Handle the error
-            //     console.log("Error:", error);
-            // }
+            var files_content = await SELECT`content,ID`.from(Files).where({ vob_id: reqdata.id });
+            function streamToBase64(stream) {
+                return new Promise((resolve, reject) => {
+                    const chunks = [];
+                    stream.on('data', chunk => {
+                        chunks.push(chunk);
+                    });
+                    stream.on('end', () => {
+                        const binaryData = Buffer.concat(chunks);
+                        // binaryData1 = binaryData;
+                        const base64String = binaryData.toString('base64');
+                        // base64String1 = base64String;
+                        // fs.writeFile(AttachmentFile, binaryData1, 'binary', (err) => {
+                        // fs.writeFile(AttachmentFile, Buffer.from(binaryData1), (err) => {
+                        //     if (err) {
+                        //         console.error('Error writing file:', err);
+                        //         return;
+                        //     }
+                        //     console.log('File saved successfully');
+                        // });
+                        resolve(base64String);
+
+                    });
+                    stream.on('error', reject);
+                });
+            }
+            for (let entry of files_content) {
+                var base64data = streamToBase64(entry.content);
+                await UPDATE(Files, entry.ID).with({
+                    contentString: base64data
+                });
+            }
+            var body = {
+                "definitionId": "us10.2890861ctrial.triggerbpa.myProcess",
+                "context": {
+                    "vob_id": `${reqdata.id}`,
+                    "level_fil": "level eq '",
+                    "vobid_fil": "' and vob_id eq ",
+                    "emp": "",
+                    "filter_for_vobentity": `id eq ${reqdata.id}`
+                }
+            }
+            // var response = await BPA.post('/workflow/rest/v1/workflow-instances',body);
+            try {
+                var response = await BPA.post('/workflow/rest/v1/workflow-instances', body);
+                // Success: Process the response
+                console.log("Response:", response);
+            } catch (error) {
+                // Error: Handle the error
+                console.log("Error:", error);
+            }
         }
     })
     this.on('vanddetails', async (req) => {

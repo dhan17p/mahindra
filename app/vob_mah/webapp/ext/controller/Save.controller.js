@@ -46,7 +46,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension', 'sap/m/MessageToast', 'sap
                                         var extractedUuid = currentUrl.match(uuidRegex)[1];
                                         var comment_value = sap.ui.getCore().byId("vobmah::VOBObjectPage--fe::CustomSection::Comments-innerGrid").mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mProperties.value
                                         let oFunction1 = that.base.getModel().bindContext("/commentfun(...)");
-                                        var statusval1 = JSON.stringify({ id: extractedUuid, status: "screen1comment", comment: comment_value })
+                                        var statusval1 = JSON.stringify({ id: extractedUuid, status: "screen1comment", comment: comment_value , createdBy:`${new sap.ushell.services.UserInfo().getEmail()}` })
                                         oFunction1.setParameter("status", statusval1)
                                         await oFunction1.execute()
                                         oDialog.close();

@@ -27,13 +27,13 @@ sap.ui.define([
             var comments = sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Comments").mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations;
 
             // Iterate over comments
-            for (var i = 1; i <= 5; i++) {
-                var comment = comments.items[i].mAggregations.items[1].mProperties.value;
-                let oFunction = this.getModel().bindContext("/commentfun(...)");
-                var statusval = JSON.stringify({ id: id, status: "screen1comment", comment: comment });
-                oFunction.setParameter("status", statusval);
-                await oFunction.execute();
-            }
+            // for (var i = 1; i <= 5; i++) {
+            //     var comment = comments.items[i].mAggregations.items[1].mProperties.value;
+            //     let oFunction = this.getModel().bindContext("/commentfun(...)");
+            //     var statusval = JSON.stringify({ id: id, status: "screen1comment", comment: comment });
+            //     oFunction.setParameter("status", statusval);
+            //     await oFunction.execute();
+            // }
 
             var table = sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Vobobject--parentTable");
             var items = table.mAggregations.items;

@@ -162,13 +162,14 @@ entity Files : cuid, managed {
     // size: Integer;
     Folder           : String;
     url              : String;
+    contentString    : LargeString;
     Files_to_screen4 : Association to one VOB_Screen4;
 }
 
 //Screen 4
 
 
-entity VOB_Screen4 {
+entity VOB_Screen4:managed {
     key id                        : UUID;
         part_system               : String;
         project_code              : String;
@@ -182,9 +183,10 @@ entity VOB_Screen4 {
         users                     : String;
         startedAt                 : String;
         flowStatus                : String default 'New';
+        sequentialVobId                : String;
         vob_yoy_scr4              : Composition of many YOY_Screen4
                                         on vob_yoy_scr4.vob_id = id;
-        vob_suplier              : Composition of many potential_suplier_scr4
+        vob_suplier               : Composition of many potential_suplier_scr4
                                         on vob_suplier.id = id;
         vob_suplier4              : Composition of many potential_suplier_scr4
                                         on vob_suplier4.id = id;
