@@ -1,5 +1,6 @@
 const cds = require('@sap/cds',);
 const { v4: uuidv4 } = require('uuid');
+const Sequelize = require('sequelize');
 const { SELECT, INSERT, UPDATE, DELETE } = cds.ql
 module.exports = cds.service.impl(async function () {
     let {
@@ -17,7 +18,7 @@ module.exports = cds.service.impl(async function () {
         YOY_Screen4,
         Workflow_History,
         Master_workflow
-        
+
 
     } = this.entities;
     //   const cats = await cds.connect.to ('MyService');
@@ -28,9 +29,9 @@ module.exports = cds.service.impl(async function () {
         req.data.url = `/odata/v4/my/Files(${req.data.ID})/content`
     })
 
-    this.before('READ', 'Files', req => {
-        //check content-type
-        console.log('content-type: ', req.headers['content-type'])
+    this.before('READ', 'Files', async req => {
+        console.log('content-type: ', req.headers['content-type']);
+        // var values = await SELECT.from`VOB_Screen4`.columns`{ sequentialVobId}`;
     });
     //First Screen
     this.before('CREATE', 'VOB', async req => {
@@ -59,21 +60,21 @@ module.exports = cds.service.impl(async function () {
         delete for_third_screen.vob_yoy
         for_third_screen.vob_suplier_scr3 = for_third_screen.vob_suplier
         delete for_third_screen.vob_suplier
-      await INSERT.into(VOB_Screen3).entries(for_third_screen);
-          req.data.vob_yoy = req.data.vob_yoy_scr3;
-         delete req.data.vob_yoy_scr3;
-         req.data.vob_suplier = req.data.vob_suplier_scr3;
-         delete req.data.vob_suplier_scr3;
+        await INSERT.into(VOB_Screen3).entries(for_third_screen);
+        req.data.vob_yoy = req.data.vob_yoy_scr3;
+        delete req.data.vob_yoy_scr3;
+        req.data.vob_suplier = req.data.vob_suplier_scr3;
+        delete req.data.vob_suplier_scr3;
 
-         req.data.vob_yoy_scr4 = req.data.vob_yoy
-         req.data.vob_suplier4 = req.data.vob_suplier
-         delete req.data.vob_yoy
-         delete req.data.vob_suplier
-         await INSERT.into(VOB_Screen4).entries(req.data);
-         req.data.vob_yoy = req.data.vob_yoy_scr4;
-         delete req.data.vob_yoy_scr4;
-         req.data.vob_suplier = req.data.vob_suplier4;
-         delete req.data.vob_suplier4;
+        req.data.vob_yoy_scr4 = req.data.vob_yoy
+        req.data.vob_suplier4 = req.data.vob_suplier
+        delete req.data.vob_yoy
+        delete req.data.vob_suplier
+        await INSERT.into(VOB_Screen4).entries(req.data);
+        req.data.vob_yoy = req.data.vob_yoy_scr4;
+        delete req.data.vob_yoy_scr4;
+        req.data.vob_suplier = req.data.vob_suplier4;
+        delete req.data.vob_suplier4;
 
     });
     // this.before('POST','VOB',async req =>{
@@ -112,14 +113,14 @@ module.exports = cds.service.impl(async function () {
     this.on('vanddetails', async (req) => {
 
         var reqdata = JSON.parse(req.data.status);
-        if(reqdata.status == 'workflowhistoryget'){
-           debugger;
+        if (reqdata.status == 'workflowhistoryget') {
+            debugger;
             let workflowhistory23 = await SELECT.from(Workflow_History)
             let workflowhistory = await SELECT.from(Workflow_History).where({ vob_id: reqdata.id });
-            let workflowhistoryvalues = JSON.stringify({workflowhistory});
+            let workflowhistoryvalues = JSON.stringify({ workflowhistory });
             return workflowhistoryvalues;
         }
-        if(reqdata.status == 'workflowtovob'){
+        if (reqdata.status == 'workflowtovob') {
             debugger
             let workflowmaster = await SELECT.from(Master_workflow);
             workflowmaster.forEach(async function (entry1) {
@@ -186,7 +187,7 @@ module.exports = cds.service.impl(async function () {
                 var id_main_new = entry[entry.length - 1].supplier_id
                 var dddd = await SELECT.from(potential_suplier_scr1);
 
-    
+
                 entry.forEach(async function (entry1) {
                     var ee = await INSERT.into(supplierdetails).entries(
                         { id_supplier: id_main_new, value_key: entry1.value_key, value: entry1.value })
@@ -201,18 +202,18 @@ module.exports = cds.service.impl(async function () {
             for (let supplier of suppliers) {
                 // Fetch the supplier details for the current supplier
                 let supplierDetails = await SELECT.from(supplierdetails).where({ id_supplier: supplier.id_main });
-        
+
                 // Create a new object for the current supplier
                 let newObj = {
                     supplier: supplier.suplier, // Assuming suplier is the property containing the supplier name
                     rel: supplierDetails
                 };
-        
+
                 // Push the new object into the array
                 supllier_detail_together.push(newObj);
             }
             // let supplier_detais = await SELECT.from(supplierdetails).where({ vob_id: reqdata.id });
-            let venordssString = JSON.stringify({ suppliers, venordss, supllier_detail_together});
+            let venordssString = JSON.stringify({ suppliers, venordss, supllier_detail_together });
             return venordssString;
         }
     })

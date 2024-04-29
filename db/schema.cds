@@ -176,6 +176,7 @@ entity VOB_Screen4 {
         supplier_assessment_score : String;
         forum                     : String;
         presented_on_by           : String;
+        sequentialVobId           : String;
         vob_yoy_scr4              : Composition of many YOY_Screen4
                                         on vob_yoy_scr4.vob_id = id;
         vob_suplier4              : Composition of many potential_suplier_scr4
@@ -189,18 +190,18 @@ entity potential_suplier_scr4 {
 }
 
 entity YOY_Screen4 {
-    key id                  : UUID;
-        vob_id              : UUID;
-        MGSP_Part_Nos       : String;
-        proposed_vf_part_no : String;
-        application_model   : String;
-        f24                 : String;
-        f25                 : String;
-        f26                 : String;
-        total               : String;
+    key id                     : UUID;
+        vob_id                 : UUID;
+        MGSP_Part_Nos          : String;
+        proposed_vf_part_no    : String;
+        application_model      : String;
+        f24                    : String;
+        f25                    : String;
+        f26                    : String;
+        total                  : String;
         Existing_MGSP_PO_Price : String;
         target_price           : String;
-        yoy_vov_scr4        : Association to VOB_Screen4;
+        yoy_vov_scr4           : Association to VOB_Screen4;
 }
 //Screen 4b
 
@@ -266,7 +267,8 @@ entity Workflow_History {
         approved_By     : String;
         workflowtovob   : Association to many VOB_Screen4;
 }
+
 entity Master_workflow {
-    key employee_id     : String;
-        level           : String;
+    key employee_id : String;
+        level       : String;
 }
