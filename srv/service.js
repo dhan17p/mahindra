@@ -341,8 +341,21 @@ module.exports = cds.service.impl(async function () {
         //         MGSP_Part_Nos:req.data.vob_yoy[0].MGSP_Part_Nos
         //     }]
         // }]
-        var values = await SELECT.from `VOB_Screen4` .columns `{sequentialVobId}}`
-        
+        var values = await SELECT.from`VOB_Screen4`.columns`{sequentialVobId}}`
+        var values = await SELECT.from(VOB_Screen4)
+            .columns(b => { b.sequentialVobId })
+        console.log(values);
+        const sequentialVobIds = values.map(obj => obj.sequentialVobId);
+        const validNumbers = sequentialVobIds
+            .map(str => parseInt(str, 10))
+            .filter(num => !isNaN(num));
+        if (validNumbers.length > 0) {
+            var maxSequentialVobId = Math.max(...validNumbers);
+            console.log("Max sequentialVobId:", maxSequentialVobId);
+        } else {
+            console.log("No valid sequentialVobId values found.");
+        }
+
         var entries2 = [{
             id: req.data.id,
             part_system: req.data.part_system,
@@ -406,6 +419,7 @@ module.exports = cds.service.impl(async function () {
             potential_suppliers: req.data.potential_suppliers,
             forum: req.data.forum,
             presented_on_by: req.data.presented_on_by,
+            SequentialVobId: maxSequentialVobId,
             supplier_assessment_score: req.data.supplier_assessment_score,
             vob_yoy_scr4: req.data.vob_yoy.map(yoyItem => ({
                 vob_id: yoyItem.vob_id,
