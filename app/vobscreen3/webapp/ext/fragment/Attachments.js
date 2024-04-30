@@ -74,6 +74,9 @@ sap.ui.define([
 					beginButton: new sap.m.Button({
 						text: "Ok",
 						press: function (oEvent) {
+							var currentUrl = window.location.href;
+							var uuidRegex = /id=([0-9a-fA-F-]+),/;
+							var id = currentUrl.match(uuidRegex)[1];
 							foldername = oEvent.getSource().getParent().mAggregations.content[1].mAggregations.items[0].mProperties.footerText;
 							if (foldername == "Click on the folder to select path") {
 								var oMessageBox = sap.m.MessageBox.warning("No folder selected.", {
@@ -93,7 +96,7 @@ sap.ui.define([
 										fileName: item.getFileName(),
 										// size: item.getFileObject().size,
 										Folder: foldername,
-
+										vob_id:id
 									};
 
 									var settings = {

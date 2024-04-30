@@ -366,7 +366,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							rowid:  tableData[i].id
 						});
 						row.setModel(modelrow,'rowid')
-						text.addStyleClass("textstyleclass")
+						// text.addStyleClass("textstyleclass")
 						// hboxw.addItem(text);
 						// hboxw.addItem(switchtoglle);
 						row.addCell(switchtoglle);
@@ -523,7 +523,6 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						let inp_vbox = new sap.m.VBox({
 							items: list_inp_field
 						});
-
 						inp_vbox.addStyleClass("ResetClass inpVboxClass")
 						let vendor = new sap.m.VBox({
 							items: [

@@ -326,7 +326,6 @@ module.exports = cds.service.impl(async function () {
     this.before('READ', 'Files', async (req, res) => {
         //check content-type
         debugger
-
         console.log('content-type: ', req.headers['content-type'])
     });
     //First Screen
@@ -341,7 +340,7 @@ module.exports = cds.service.impl(async function () {
         //         MGSP_Part_Nos:req.data.vob_yoy[0].MGSP_Part_Nos
         //     }]
         // }]
-        var values = await SELECT.from`VOB_Screen4`.columns`{sequentialVobId}}`
+        // var values = await SELECT.from`VOB_Screen4`.columns`{sequentialVobId}`
         var values = await SELECT.from(VOB_Screen4)
             .columns(b => { b.sequentialVobId })
         console.log(values);
@@ -351,6 +350,8 @@ module.exports = cds.service.impl(async function () {
             .filter(num => !isNaN(num));
         if (validNumbers.length > 0) {
             var maxSequentialVobId = Math.max(...validNumbers);
+            maxSequentialVobId= maxSequentialVobId + 1
+
             console.log("Max sequentialVobId:", maxSequentialVobId);
         } else {
             console.log("No valid sequentialVobId values found.");
@@ -419,7 +420,7 @@ module.exports = cds.service.impl(async function () {
             potential_suppliers: req.data.potential_suppliers,
             forum: req.data.forum,
             presented_on_by: req.data.presented_on_by,
-            SequentialVobId: maxSequentialVobId,
+            SequentialVobId: `${maxSequentialVobId}`,
             supplier_assessment_score: req.data.supplier_assessment_score,
             vob_yoy_scr4: req.data.vob_yoy.map(yoyItem => ({
                 vob_id: yoyItem.vob_id,
@@ -528,7 +529,8 @@ module.exports = cds.service.impl(async function () {
                 begin_Date_Time: dateTimeStamp
             });
             var files_content = await SELECT`content,ID`.from(Files).where({ vob_id: reqdata.id });
-            function streamToBase64(stream) {
+            console.log(`CONTENTOF :${files_content}`)
+            async function streamToBase64(stream) {
                 return new Promise((resolve, reject) => {
                     const chunks = [];
                     stream.on('data', chunk => {
@@ -554,7 +556,8 @@ module.exports = cds.service.impl(async function () {
                 });
             }
             for (let entry of files_content) {
-                var base64data = streamToBase64(entry.content);
+                var base64data = await streamToBase64(entry.content);
+                console.log(`BASE64DATA:${base64data}`);
                 await UPDATE(Files, entry.ID).with({
                     contentString: base64data
                 });
@@ -570,14 +573,14 @@ module.exports = cds.service.impl(async function () {
                 }
             }
             // var response = await BPA.post('/workflow/rest/v1/workflow-instances',body);
-            try {
-                var response = await BPA.post('/workflow/rest/v1/workflow-instances', body);
-                // Success: Process the response
-                console.log("Response:", response);
-            } catch (error) {
-                // Error: Handle the error
-                console.log("Error:", error);
-            }
+            // try {
+            //     var response = await BPA.post('/workflow/rest/v1/workflow-instances', body);
+            //     // Success: Process the response
+            //     console.log("Response:", response);
+            // } catch (error) {
+            //     // Error: Handle the error
+            //     console.log("Error:", error);
+            // }
         }
     })
     this.on('vanddetails', async (req) => {
