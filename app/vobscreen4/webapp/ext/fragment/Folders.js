@@ -8,670 +8,171 @@ sap.ui.define([
         folder: function (oEvent) {
             debugger;
             function generateUniqueId() {
-                // Generate a random number and convert it to base 36 (0-9a-z)
                 const randomPart = Math.random().toString(36).substr(2, 9);
-
-                // Get the current timestamp and convert it to base 36
                 const timestampPart = Date.now().toString(36);
-
-                // Concatenate the random part and timestamp part
                 const uniqueId = randomPart + timestampPart;
-
                 return uniqueId;
             }
-
-            // if (!dialogOpen) {
-            //     dialogOpen = true;
-
-                // Create the dialog
-                var cdialog = new sap.m.Dialog(`Dialog${generateUniqueId()}`, {
-                    // title: "Attachments",
-                    contentWidth: "40%",
-                    endButton: new sap.m.Button(`button2${generateUniqueId()}`, {
-                        text: "Cancel",
-                        press: function (oEvent) {
-                            debugger
-                            cdialog.close();
-                            // dialogOpen = false; // Reset the flag when dialog is closed
-                            cdialog.destroy();
-                        },
+            // Create the dialog
+            var cdialog = new sap.m.Dialog(`Dialog${generateUniqueId()}`, {
+                title: "Folders",
+                contentWidth: "40%",
+                endButton: new sap.m.Button(`button2${generateUniqueId()}`, {
+                    text: "Cancel",
+                    press: function (oEvent) {
+                        debugger
+                        cdialog.close();
+                        // dialogOpen = false; // Reset the flag when dialog is closed
+                        cdialog.destroy();
+                    },
 
 
-                    }),
-                    beginButton: new sap.m.Button(`button1${generateUniqueId()}`, {
-                        text: "Ok",
-                        press: function (oEvent) {
-                            debugger
-                            cdialog.close();
-                            // dialogOpen = false;
-                            cdialog.destroy();
-                        }
-                    })
+                }),
+                beginButton: new sap.m.Button(`button1${generateUniqueId()}`, {
+                    text: "Ok",
+                    press: function (oEvent) {
+                        debugger
+                        cdialog.close();
+                        cdialog.destroy();
+                    }
+                })
+            });
+            // Add VBox for content
+            var contentVBox = new sap.m.VBox(`vbox${generateUniqueId()}`, {
+                width: "100%",
+                height: "100%"
+            });
 
-
-                });
-
-                // Add VBox for content
-                var contentVBox = new sap.m.VBox(`vbox${generateUniqueId()}`, {
-                    width: "100%",
-                    height: "100%"
-                });
-
-                contentVBox.addStyleClass("vboxclass");
-
-                // Add PDF icon and name to an HBox for alignment
-                var pdfHBox = new sap.m.HBox();
-                contentVBox.addItem(pdfHBox);
-                var vb1 = new sap.m.VBox(("vb1" + generateUniqueId()));
-                let customTreeHbox = new sap.m.HBox(`custtreehbox${generateUniqueId()}`, {
-
-                    justifyContent: "SpaceBetween",
+            contentVBox.addStyleClass("vboxclass");
+            var pdfHBox = new sap.m.HBox();
+            contentVBox.addItem(pdfHBox);
+            var vb1 = new sap.m.VBox(("vb1" + generateUniqueId()));
+            var data = ["Vendor 1", 
+             "NDA", 
+             "RFQ",
+             "Quote and Quote Synthesis", 
+             "Quote Backup", 
+             "Supplier Details", 
+             "Offer price Approval from Bazzar Sales Team", 
+             "SBU VOB FORUM", 
+             "Vendor Code Creation", 
+             "NDA sign-off with Packagign Supplier", 
+             "Packaging Sign-off", 
+             "Proposed and Approved Drawings", 
+             "Validation Reports", 
+             "Final Drawing Approval for Production", 
+             "VPPAP",
+            ]
+            var data1 = [
+                "PPT",
+                "Backup Data",
+                "Approval"
+            ]
+            debugger;
+            vb1.addItem(
+                new sap.ui.webc.main.Tree(`tree${generateUniqueId()}`, {
+                    itemClick: async function (params) {
+                        // Handle item click event
+                    },
                     items: [
-
-
-                        new sap.m.Text({ text: "Part No" }),
-                        // new sap.ui.core.Icon({
-                        //     src: "sap-icon://show",
-                        //     activeColor: "black",
-                        //     press: async function (oEvent) {
-                        //         var pdfLink = 'pdf_link.pdf';
-
-                        //         // Open a new window with the PDF link
-                        //         window.open(pdfLink, '_blank');
-                        //         MessageToast.show("Icon pressed")
-                        //     }
-                        // }),
+                        new sap.ui.webc.main.TreeItemCustom(`fold1.1${generateUniqueId()}`, {
+                            content: [
+                                new sap.m.HBox({
+                                    items: [
+                                        new sap.ui.core.Icon({
+                                            src: "sap-icon://folder-full"
+                                        }),
+                                        new sap.m.HBox({
+                                            justifyContent: "SpaceBetween",
+                                            items: [ // Customize child folder appearance as needed
+                                                new sap.m.Text({ text: "Part No" }),
+                                            ]
+                                        }).addStyleClass("child")
+                                    ]
+                                })
+                            ]
+                        })
                     ]
-                });
+                })
+            )
+            debugger
 
-
-                customTreeHbox.addStyleClass("customtreeInnerHbox");
-
-
-                vb1.addItem(
-                    new sap.ui.webc.main.Tree(`tree${generateUniqueId()}`, {
-                        itemClick: async function (params) {
-                            // Handle item click event
-                        },
-                        headerText: "Folders",
-						//folder 1
-                        items: [
-                           new sap.ui.webc.main.TreeItemCustom(`fold1.1${generateUniqueId()}`,{
-										content: [
-											new sap.m.HBox({
-												items: [
-													new sap.ui.core.Icon({
-														src: "sap-icon://folder-full"
-													}),
-													new sap.m.HBox({
-														justifyContent: "SpaceBetween",
-														items: [ // Customize child folder appearance as needed
-															new sap.m.Text({ text: "Part No" }),
-                                                            // new sap.ui.core.Icon({
-                                                            //     src : "sap-icon://decline",
-                                                            //     color : "red",
-                                                            // }),
-														]
-													}).addStyleClass("child")
-												]
-											})
-										],
-
-
-
-
-								items: [ 
-									new sap.ui.webc.main.TreeItemCustom(`fold1.1${generateUniqueId()}`,{
-										content: [
-											new sap.m.HBox({
-												items: [
-													new sap.ui.core.Icon({
-														src: "sap-icon://folder-full"
-													}),
-													new sap.m.HBox({
-														justifyContent: "SpaceBetween",
-														items: [ // Customize child folder appearance as needed
-															new sap.m.Text({ text: "Vendor 1" }),
-                                                            new sap.ui.core.Icon({
-                                                                src : "sap-icon://decline",
-                                                                color : "red",
-                                                            }),
-														]
-													}).addStyleClass("child")
-												]
-											})
-										],
-
-
-                                        
-								items: [ 
-									new sap.ui.webc.main.TreeItemCustom(`fold1.1${generateUniqueId()}`,{
-										content: [
-											new sap.m.HBox({
-												items: [
-													new sap.ui.core.Icon({
-														src: "sap-icon://folder-full"
-													}),
-													new sap.m.HBox(`custtreehbox2${generateUniqueId()}`,{
-														justifyContent: "SpaceBetween",
-														items: [ // Customize child folder appearance as needed
-															new sap.m.Text({ text: "NDA" }),
-                                                            new sap.ui.core.Icon({
-                                                                src : "sap-icon://message-success",
-                                                                color : "green",
-                                                            }),
-														]
-													}).addStyleClass("child")
-                                                    
-												]
-											})
-										],
-                                        
-									}),
-
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.2${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox(`custtreehbox3${generateUniqueId()}`,{
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "RFQ" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ]
-                                    }),
-
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.3${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox(`custtreehbox4${generateUniqueId()}`,{
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "Quote and Quote Synthesis" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ]
-                                    }),
-
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.4${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox(`custtreehbox4${generateUniqueId()}`,{
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "Quote Backup" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ]
-                                    }),
-
-
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.5${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox(`custtreehbox5${generateUniqueId()}`,{
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "Supplier Details" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ]
-                                    }),
-
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.4${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox(`custtreehbox6${generateUniqueId()}`,{
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "Quote Backup" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ]
-                                    }),
-
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.5${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox(`custtreehbox7${generateUniqueId()}`,{
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "Supplier Details" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ]
-                                    }),
-
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.6${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox(`custtreehbox8${generateUniqueId()}`,{
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "Offer price Approval from Bazzar Sales Team" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ]
-                                    }),
-
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.7${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox(`custtreehbox9${generateUniqueId()}`,{
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "SBU VOB FORUM" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ],
-
-                                        items : [
-                                            new sap.ui.webc.main.TreeItemCustom(`fold1.7.1${generateUniqueId()}`, {
-                                                content: [
-                                                    new sap.m.HBox({
-                                                        items: [
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://folder-2"
-                                                            }),
-                                                            new sap.m.HBox(`custtreehbox10${generateUniqueId()}`,{
-                                                                justifyContent: "SpaceBetween",
-                                                                items: [
-                                                                    new sap.m.Text({ text: "PPT" }),
-                                                                    new sap.ui.core.Icon({
-                                                                        src: "sap-icon://decline",
-                                                                        color: "red",
-                                                                    }),
-                                                                ]
-                                                            }).addStyleClass("child")
-                                
-                                                        ]
-                                                    })
-                                                ]
+            for (let a = 0; a < data.length; a++) {
+                var check = data[a];
+                let sub_F = vb1.getItems()[0].getItems()[0];
+                sub_F.addItem(
+                            new sap.ui.webc.main.TreeItemCustom(`fold1.2${generateUniqueId()}`, {
+                                content: [
+                                    new sap.m.HBox({
+                                        items: [
+                                            new sap.ui.core.Icon({
+                                                src: "sap-icon://folder-full"
                                             }),
-
-                                            new sap.ui.webc.main.TreeItemCustom(`fold1.7.2${generateUniqueId()}`, {
-                                                content: [
-                                                    new sap.m.HBox({
-                                                        items: [
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://folder-2"
-                                                            }),
-                                                            new sap.m.HBox(`custtreehbox11${generateUniqueId()}`,{
-                                                                justifyContent: "SpaceBetween",
-                                                                items: [
-                                                                    new sap.m.Text({ text: "Backup data" }),
-                                                                    new sap.ui.core.Icon({
-                                                                        src: "sap-icon://decline",
-                                                                        color: "red",
-                                                                    }),
-                                                                ]
-                                                            }).addStyleClass("child")
-                                
-                                                        ]
-                                                    })
+                                            new sap.m.HBox({
+                                                justifyContent: "SpaceBetween",
+                                                items: [ // Customize child folder appearance as needed
+                                                    new sap.m.Text({ text: data[a] }),
                                                 ]
-                                            }),
+                                            }).addStyleClass("child")
+                                        ]
+                                    })
+                                ]
+                            })
 
-                                            new sap.ui.webc.main.TreeItemCustom(`fold1.7.3${generateUniqueId()}`, {
-                                                content: [
-                                                    new sap.m.HBox({
-                                                        items: [
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://folder-2"
-                                                            }),
-                                                            new sap.m.HBox(`custtreehbox12${generateUniqueId()}`,{
-                                                                justifyContent: "SpaceBetween",
-                                                                items: [
-                                                                    new sap.m.Text({ text: "Approval" }),
-                                                                    new sap.ui.core.Icon({
-                                                                        src: "sap-icon://decline",
-                                                                        color: "red",
-                                                                    }),
-                                                                ]
-                                                            }).addStyleClass("child")
-                                
-                                                        ]
-                                                    })
-                                                ]
-                                            }),
-        
-        
-        
-                                        ],
-
-                                        
-                                    }),
-
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.8${generateUniqueId()}`, {
+                )
+                if(check == "SBU VOB FORUM")
+                {
+                    debugger;
+                    let child = vb1.getItems()[0].getItems()[0].getItems()[7]
+                    for(let b = 0;b<data1.length;b++)
+                    {
+                        child.addItem(
+                                    new sap.ui.webc.main.TreeItemCustom(`childfold1.2${generateUniqueId()}`, {
                                         content: [
                                             new sap.m.HBox({
                                                 items: [
                                                     new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
+                                                        src: "sap-icon://open-folder"
                                                     }),
                                                     new sap.m.HBox({
                                                         justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "Vendor Code Creation" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
+                                                        items: [ // Customize child folder appearance as needed
+                                                            new sap.m.Text({ text: data1[b] }),
                                                         ]
                                                     }).addStyleClass("child")
-                        
                                                 ]
                                             })
                                         ]
-                                    }),
+                                    })
+                        )
+                    }
 
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.4${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox({
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "NDA sign-off with Packagign Supplier" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ]
-                                    }),
-
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.4${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox({
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "Packaging Sign-off" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ]
-                                    }),
+                }
+            }
+            debugger;
+            var folder_data = [];
+            let folders = vb1.getItems()[0].getItems()[0].getItems();
+            var folders_assgn = ['Final Drawing Approval for Production', 'Quote and Quote Synthesis'];
 
 
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.4${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox({
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "Proposed and Approved Drawings" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ]
-                                    }),
+        for (let a = 0; a < folders.length; a++) {
+            let folderName = folders[a].mAggregations.content[0].mAggregations.items[1].mAggregations.items[0].getText();
+            let iconSrc = folders_assgn.includes(folderName) ? "sap-icon://message-success" : "sap-icon://decline";
+            let iconColor = folders_assgn.includes(folderName) ? "green" : "red";
 
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.4${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox({
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "Validation Reports" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ]
-                                    }),
+            // Create and add the icon to the folder
+            let icon = new sap.ui.core.Icon({
+                src: iconSrc,
+                color: iconColor
+            });
+            folders[a].mAggregations.content[0].mAggregations.items[1].addItem(icon);
+        }
 
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.4${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox({
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "Final Drawing Approval for Production" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ]
-                                    }),
+            console.log(folder_data);
+            cdialog.addContent(contentVBox);
+            cdialog.addContent(vb1);
 
-                                    new sap.ui.webc.main.TreeItemCustom(`fold1.4${generateUniqueId()}`, {
-                                        content: [
-                                            new sap.m.HBox({
-                                                items: [
-                                                    new sap.ui.core.Icon({
-                                                        src: "sap-icon://folder-full"
-                                                    }),
-                                                    new sap.m.HBox({
-                                                        justifyContent: "SpaceBetween",
-                                                        items: [
-                                                            new sap.m.Text({ text: "VPPAP" }),
-                                                            new sap.ui.core.Icon({
-                                                                src: "sap-icon://decline",
-                                                                color: "red",
-                                                            }),
-                                                        ]
-                                                    }).addStyleClass("child")
-                        
-                                                ]
-                                            })
-                                        ]
-                                    }),
-
-
-								],
-
-                                
-
-                                
-
-                                
-
-                                        
-								// items: [ 
-								// 	new sap.ui.webc.main.TreeItemCustom({
-								// 		content: [
-								// 			new sap.m.HBox({
-								// 				items: [
-								// 					new sap.ui.core.Icon({
-								// 						src: "sap-icon://folder-full"
-								// 					}),
-								// 					new sap.m.HBox({
-								// 						justifyContent: "SpaceBetween",
-								// 						items: [ // Customize child folder appearance as needed
-								// 							new sap.m.Text({ text: "NDA" }),
-                                //                             new sap.ui.core.Icon({
-                                //                                 src : "sap-icon://decline",
-                                //                                 color : "red",
-                                //                             }),
-								// 						]
-								// 					}).addStyleClass("child")
-								// 				]
-								// 			})
-								// 		],
-                                        
-                                        
-								// 	})
-								// ]
-                                        
-									})
-								]
-
-                            }),
-                            // Add new parent folder below the existing folders
-                            // new sap.ui.webc.main.TreeItemCustom({
-                            //     content: [
-                            //         new sap.m.HBox({
-                            //             items: [
-                            //                 new sap.ui.core.Icon({
-                            //                     src: "sap-icon://folder-full"
-                            //                 }),
-                            //                 new sap.m.HBox({
-                            //                     justifyContent: "SpaceBetween",
-                            //                     items: [
-                            //                         new sap.m.Text({ text: "NDA" }),
-                            //                         // new sap.m.Text({ text: " not Uploaded" }),
-                            //                         new sap.ui.core.Icon({
-                            //                             src : "sap-icon://message-success",
-                            //                             color : "green",
-                            //                         }),
-                            //                         // new sap.ui.core.Icon({
-                            //                         //     src: "sap-icon://show",
-                            //                         //     activeColor: "black",
-                            //                         //     press: async function (oEvent) {
-                            //                         //         // Handle icon press
-                            //                         //     }
-                            //                         // })
-                            //                     ]
-                            //                 }).addStyleClass("customtreeInnerHbox")
-                            //             ]
-                            //         })
-                            //     ]
-                            // })
-                        ]
-                    })
-                );
-
-
-
-                cdialog.addContent(contentVBox);
-                cdialog.addContent(vb1);
-                
-                cdialog.open();
+            cdialog.open();
 
             // }
         }
