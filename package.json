@@ -11,6 +11,7 @@
         "@sap/cds": "^7",
         "@sap/cds-hana": "^2",
         "@sap/xssec": "^3.3.5",
+        "cors": "^2.8.5",
         "express": "^4",
         "passport": "^0.6.0",
         "uuid": "^9.0.1"
@@ -39,7 +40,8 @@
     "cds": {
         "requires": {
             "auth": "dummy",
-            "destinations":true,
+            "db":"hana",
+            "destinations": true,
             "BPA_trigger": {
                 "kind": "odata-v2",
                 "csrf": true,

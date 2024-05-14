@@ -192,9 +192,9 @@ entity VOB_Screen4 : managed {
                                         on vob_suplier4.id = id;
         vob_comments              : Composition of many comment
                                         on vob_comments.id = id;
-        vob_files                 : Composition of many Files
+        vob_files                 : Association to many Files
                                         on vob_files.vob_id = id;
-        vob_to_Workflow_History   : Composition of many Workflow_History
+        vob_to_Workflow_History   : Association to many Workflow_History
                                         on vob_to_Workflow_History.vob_id = id;
 }
 
@@ -218,7 +218,7 @@ entity YOY_Screen4 {
         total                  : String;
         Existing_MGSP_PO_Price : String;
         target_price           : String;
-        state                  : Boolean;
+        state                  : Boolean default true;
         yoy_vov_scr4           : Association to VOB_Screen4;
 }
 //Screen 4b

@@ -427,10 +427,6 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							}
 						]
 					}
-
-
-
-
 					var oMainHbox = objectPage.mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content;
 
 					let oTable = oMainHbox.getItems()[0].getItems()[0];
@@ -551,6 +547,16 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 
 					}
+					
+					var attachfilter = this.base.getView().getContent()[0].getSections()[3].mAggregations._grid.getContent()[0].mAggregations._grid.getContent()[0].getContent().getItems()[1].mBindingInfos.items.binding;
+					attachfilter.filter(
+						new sap.ui.model.Filter({
+							path: "vob_id",
+							operator: sap.ui.model.FilterOperator.EQ,
+							value1: id
+						})
+					);
+					// sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Comments").mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[4].mAggregations.items[1].setText("")
 					// var pathfortablefilter = sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Vobobject--parentTable").mBindingInfos.items.binding
 
 					// pathfortablefilter.filter(

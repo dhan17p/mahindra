@@ -93,9 +93,11 @@
       }
     },
     "resources": {
-      "css": [{
-        "uri": "css/style.css"
-      }]
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
     },
     "routing": {
       "routes": [
@@ -173,7 +175,6 @@
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
-              "editableHeaderContent": false,
               "contextPath": "/VOB_Screen4/vob_yoy_scr4"
             }
           }

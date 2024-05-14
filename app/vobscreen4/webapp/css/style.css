@@ -222,3 +222,6 @@
 .scrollvbox{
     overflow-x: scroll;
 }
+#vobscreen4\:\:VOB_Screen4ObjectPage--fe\:\:CustomSubSection\:\:Attachments--uploadSet-uploader-fu_button-inner{
+    visibility: hidden;
+}

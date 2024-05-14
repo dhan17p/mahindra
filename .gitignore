@@ -44,3 +44,5 @@ app/vobscreen4bb/dist
 resources
 # auto generated wildcard
 .env
+# auto generated wildcard
+db/.env

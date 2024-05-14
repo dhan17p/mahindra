@@ -497,6 +497,15 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						footer.setVisible(false);
 					}
 					debugger
+
+					var attachfilter = this.base.getView().getContent()[0].getSections()[3].mAggregations._grid.getContent()[0].mAggregations._grid.getContent()[0].getContent().getItems()[1].mBindingInfos.items.binding;
+					attachfilter.filter(
+						new sap.ui.model.Filter({
+							path: "vob_id",
+							operator: sap.ui.model.FilterOperator.EQ,
+							value1: id
+						})
+					);
 					// var pathfortablefilter = this.base.getView().mAggregations.content[0].mAggregations.sections[0].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mBindingInfos.items.binding
 					// var pathfortablefilter = sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Vobforthirdobj--parentTable").mBindingInfos.items.binding
 
