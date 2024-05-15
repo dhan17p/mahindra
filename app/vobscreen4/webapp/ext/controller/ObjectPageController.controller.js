@@ -220,7 +220,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					var currentUrl = window.location.href;
 					var uuidRegex = /id=([0-9a-fA-F-]+),/;
 					var id = currentUrl.match(uuidRegex)[1];
-					
+
 					let oFunction3 = this.getView().getModel().bindContext("/vanddetails(...)");
 					var statusval2 = JSON.stringify({ id: id, status: "workflowhistoryget" })
 					oFunction3.setParameter("status", statusval2)
@@ -246,10 +246,10 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 						// Create a VBox for each level
 						var oVBox = new sap.m.VBox();
-						
+
 
 						// Set the title dynamically
-						var oTitle = new sap.m.Title({ text: "Level " + `${parseInt(level)}`});
+						var oTitle = new sap.m.Title({ text: "Level " + `${parseInt(level)}` });
 						oVBox.addItem(oTitle);
 
 						// Create a ScrollContainer
@@ -273,15 +273,15 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						// //   oColumn.addStyleClass("colClass")
 						//   oTable.addColumn(oColumn);
 						// });
-						var oColumn1 = new sap.m.Column({ header: new sap.m.Text({ text: "Level" }),styleClass:"colClass" })
-						var oColumn2 = new sap.m.Column({ header: new sap.m.Text({ text: "Title" }),styleClass:"colClass" });
-						var oColumn3 = new sap.m.Column({ header: new sap.m.Text({ text: "Employee ID" }),styleClass:"colClass" });
-						var oColumn4 = new sap.m.Column({ header: new sap.m.Text({ text: "Employee Name" }),styleClass:"colClass" });
-						var oColumn5 = new sap.m.Column({ header: new sap.m.Text({ text: "Status" }),styleClass:"colClass" });
-						var oColumn6 = new sap.m.Column({ header: new sap.m.Text({ text: "Begin Date" }) ,styleClass:"colClass"});
-						var oColumn7 = new sap.m.Column({ header: new sap.m.Text({ text: "End Date" }) ,styleClass:"colClass"});
-						var oColumn8 = new sap.m.Column({ header: new sap.m.Text({ text: "Days Taken" }),styleClass:"colClass" });
-						var oColumn9 = new sap.m.Column({ header: new sap.m.Text({ text: "Approved By" }) ,styleClass:"colClass"});
+						var oColumn1 = new sap.m.Column({ header: new sap.m.Text({ text: "Level" }), styleClass: "colClass" })
+						var oColumn2 = new sap.m.Column({ header: new sap.m.Text({ text: "Title" }), styleClass: "colClass" });
+						var oColumn3 = new sap.m.Column({ header: new sap.m.Text({ text: "Employee ID" }), styleClass: "colClass" });
+						var oColumn4 = new sap.m.Column({ header: new sap.m.Text({ text: "Employee Name" }), styleClass: "colClass" });
+						var oColumn5 = new sap.m.Column({ header: new sap.m.Text({ text: "Status" }), styleClass: "colClass" });
+						var oColumn6 = new sap.m.Column({ header: new sap.m.Text({ text: "Begin Date" }), styleClass: "colClass" });
+						var oColumn7 = new sap.m.Column({ header: new sap.m.Text({ text: "End Date" }), styleClass: "colClass" });
+						var oColumn8 = new sap.m.Column({ header: new sap.m.Text({ text: "Days Taken" }), styleClass: "colClass" });
+						var oColumn9 = new sap.m.Column({ header: new sap.m.Text({ text: "Approved By" }), styleClass: "colClass" });
 						oTable.addColumn(oColumn1);
 						oTable.addColumn(oColumn2);
 						oTable.addColumn(oColumn3);
@@ -324,10 +324,10 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					var statusval2 = JSON.stringify({ id: id, status: "screen2get1" })
 					oFunction2.setParameter("status", statusval2)
 					await oFunction2.execute()
-				
+
 					var result2 = oFunction2.getBoundContext().getValue().value;
 					var finalsupp = JSON.parse(result2);
-					 vendorNames = finalsupp.supplier
+					vendorNames = finalsupp.supplier
 					var oTable1 = sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Vobobject--parentTable")
 					var tableData = finalsupp.venordss
 					for (let i = 0; i < tableData.length; i++) {
@@ -353,8 +353,8 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							state: tableData[i].state,
 							customTextOff: "No",
 							customTextOn: "Yes",
-							blocked:true,
-							change : function(){
+							blocked: true,
+							change: function () {
 								debugger
 							}
 							// text: tableData[i].target_price
@@ -363,9 +363,9 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						// 	text:"Approved"
 						// })	
 						var modelrow = new sap.ui.model.json.JSONModel({
-							rowid:  tableData[i].id
+							rowid: tableData[i].id
 						});
-						row.setModel(modelrow,'rowid')
+						row.setModel(modelrow, 'rowid')
 						// text.addStyleClass("textstyleclass")
 						// hboxw.addItem(text);
 						// hboxw.addItem(switchtoglle);
@@ -484,6 +484,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					var result1 = oFunction1.getBoundContext().getValue().value;
 					var finalsupp = JSON.parse(result1);
 					vendorNames = finalsupp.supllier_detail_together
+					var commentsdesc = finalsupp.commentsdesc;
 
 
 					// let vendorNames = ["vendor1", "vendor2", "vendor3", "vendor4", "vendor5"]; // Add as many vendor names as needed
@@ -547,7 +548,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 
 					}
-					
+
 					var attachfilter = this.base.getView().getContent()[0].getSections()[3].mAggregations._grid.getContent()[0].mAggregations._grid.getContent()[0].getContent().getItems()[1].mBindingInfos.items.binding;
 					attachfilter.filter(
 						new sap.ui.model.Filter({
@@ -556,6 +557,38 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							value1: id
 						})
 					);
+
+
+					var key1Comment = commentsdesc.find(item => item.comment.includes("Team Recommendation with Rationale :"));
+					if (key1Comment) {
+						var valueteam = key1Comment.comment.split(':')[1].trim();
+						sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Comments").mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[1].mAggregations.items[1].setValue(`${valueteam}`);
+					}
+					var key2Comment = commentsdesc.find(item => item.comment.includes("Decision and MOM of Forum :"));
+					if (key2Comment) {
+						var valueDecision = key2Comment.comment.split(':')[1].trim();
+						sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Comments").mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[2].mAggregations.items[1].setValue(`${valueDecision}`);
+					}
+					var key3Comment = commentsdesc.find(item => item.comment.includes("Development Supply Agreement Whether Signed ? (If no- LoBA will share after DSA agreement.) :"));
+					if (key3Comment) {
+						var valueDevelopment = key3Comment.comment.split(':')[1].trim();
+						sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Comments").mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[3].mAggregations.items[1].setValue(`${valueDevelopment}`);
+					}
+					var key4Comment = commentsdesc.find(item => item.comment.includes("Tooling Agreement signed? (If applicable) :"));
+					if (key4Comment) {
+						var valueTooling = key4Comment.comment.split(':')[1].trim();
+						sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Comments").mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[4].mAggregations.items[1].setValue(`${valueTooling}`);
+					}
+					var key5Comment = commentsdesc.find(item => item.comment.includes("Supplier Code of Conduct declaration if submitted ? :"));
+					if (key5Comment) {
+						var valueSupplier = key5Comment.comment.split(':')[1].trim();
+						sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Comments").mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[5].mAggregations.items[1].setValue(`${valueSupplier}`);
+					}
+
+
+
+
+
 					// sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Comments").mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[4].mAggregations.items[1].setText("")
 					// var pathfortablefilter = sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Vobobject--parentTable").mBindingInfos.items.binding
 

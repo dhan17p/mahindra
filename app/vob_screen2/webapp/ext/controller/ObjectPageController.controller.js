@@ -172,10 +172,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					var result1 = oFunction1.getBoundContext().getValue().value;
 					var finalsupp = JSON.parse(result1);
 					 vendorNames = finalsupp.supplier
-					 
-
-
-					 
+					 var vendor4details= finalsupp.vob_details;
 					let oHbox = sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSubSection::Vandorboard--mainHBox").getItems()[1];
 					// oHbox.destroyItems();
 					var oTable = sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSubSection::Vandorboard--parentTable")
@@ -255,6 +252,14 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						// vendor.addStyleClass("")
 
 					}
+					var footer = sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::FooterBar")
+					if(vendor4details[0].flowStatus == "New" || vendor4details[0].flowStatus == "Rejected"){
+						footer.setVisible(true)
+					}
+					else{
+						footer.setVisible(false);
+					}
+					sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::FooterBar").setVisible(false)
 					var pathfortablefilter = this.base.getView().mAggregations.content[0].mAggregations.sections[0].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mBindingInfos.items.binding
 					// pathfortablefilter.filter(
 					// 	new sap.ui.model.Filter({
