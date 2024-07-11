@@ -161,15 +161,6 @@
                       },
                       "type": "XMLFragment",
                       "title": "Comments"
-                    },
-                    "Worflow_History": {
-                      "template": "vobscreen2.ext.fragment.Worflow_History",
-                      "position": {
-                        "placement": "After",
-                        "anchor": "Comments"
-                      },
-                      "title": "Workflow History",
-                      "type": "XMLFragment"
                     }
                   }
                 },

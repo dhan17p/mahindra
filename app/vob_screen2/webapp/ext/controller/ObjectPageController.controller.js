@@ -62,9 +62,6 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 									let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
 									let list_inp_field = [];
 									let input_field;
-
-
-
 									for (let i = 0; i < oTable.getItems().length + oTableVbox.getItems().length + 15; i++) {
 										input_field = new sap.m.TextArea({
 											height: "42px",
@@ -253,13 +250,19 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 					}
 					var footer = sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::FooterBar")
-					if(vendor4details[0].flowStatus == "New" || vendor4details[0].flowStatus == "Rejected"){
-						footer.setVisible(true)
+					// if(vendor4details[0].flowStatus == "New" || vendor4details[0].flowStatus == "Rejected"){
+					// 	footer.setVisible(true)
+					// }
+					// else{
+					// 	footer.setVisible(false);
+					// }
+					debugger
+					if(vendor4details[0].flowStatus != "New"){
+						footer.setVisible(false)
 					}
-					else{
-						footer.setVisible(false);
-					}
-					sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::FooterBar").setVisible(false)
+		
+					
+					// sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::FooterBar").setVisible(false)
 					var pathfortablefilter = this.base.getView().mAggregations.content[0].mAggregations.sections[0].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].mBindingInfos.items.binding
 					// pathfortablefilter.filter(
 					// 	new sap.ui.model.Filter({

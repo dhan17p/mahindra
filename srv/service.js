@@ -26,10 +26,24 @@ module.exports = cds.service.impl(async function () {
 
     } = this.entities;
     var BPA = await cds.connect.to("BPA_trigger");
-    var vcvv = process.env.VCAP_SERVICES;
-    console.log(vcvv);
-    var response = await BPA.get('/workflow/rest/v1/workflow-instances');
-    console.log(response);
+    // var vcvv = process.env.VCAP_SERVICES;
+    // console.log(vcvv);
+    var srvUrl;
+    if (process.env.VCAP_APPLICATION) {
+        console.log(process.env.VCAP_APPLICATION)
+        if (typeof (process.env.VCAP_APPLICATION) == 'string') {
+            var testvapp = JSON.parse(process.env.VCAP_APPLICATION)
+            console.log(testvapp.uris[0]);
+            srvUrl = testvapp.uris[0]
+        }
+        else {
+            var testvapp = process.env.VCAP_APPLICATION
+            console.log(testvapp.uris[0]);
+            srvUrl = testvapp.uris[0]
+        }
+    }
+    // var response = await BPA.get('/workflow/rest/v1/workflow-instances');
+    // console.log(response);
     //   const cats = await cds.connect.to ('MyService');
     function decodeTimestamp(timestamp) {
         // Create a new Date object using the timestamp
@@ -533,6 +547,7 @@ module.exports = cds.service.impl(async function () {
             let value = await SELECT.from(comment).where({ id: reqdata.id });
             value = JSON.stringify(value)
             return value;
+
         }
         if (reqdata.worlflowtriger == "triggered") {
             var dateTimeStamp = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
@@ -543,40 +558,41 @@ module.exports = cds.service.impl(async function () {
             await UPDATE(Workflow_History, reqdata.id).with({
                 begin_Date_Time: dateTimeStamp
             });
-            var files_content = await SELECT`content,ID`.from(Files).where({ vob_id: reqdata.id });
-            console.log(`CONTENTOF :${files_content}`)
-            async function streamToBase64(stream) {
-                return new Promise((resolve, reject) => {
-                    const chunks = [];
-                    stream.on('data', chunk => {
-                        chunks.push(chunk);
-                    });
-                    stream.on('end', () => {
-                        const binaryData = Buffer.concat(chunks);
-                        // binaryData1 = binaryData;
-                        const base64String = binaryData.toString('base64');
-                        // base64String1 = base64String;
-                        // fs.writeFile(AttachmentFile, binaryData1, 'binary', (err) => {
-                        // fs.writeFile(AttachmentFile, Buffer.from(binaryData1), (err) => {
-                        //     if (err) {
-                        //         console.error('Error writing file:', err);
-                        //         return;
-                        //     }
-                        //     console.log('File saved successfully');
-                        // });
-                        resolve(base64String);
+            // var files_content = await SELECT`content,ID`.from(Files).where({ vob_id: reqdata.id });
+            // console.log(`CONTENTOF :${files_content}`)
+            // async function streamToBase64(stream) {
+            //     return new Promise((resolve, reject) => {
+            //         const chunks = [];
+            //         stream.on('data', chunk => {
+            //             chunks.push(chunk);
+            //         });
+            //         stream.on('end', () => {
+            //             const binaryData = Buffer.concat(chunks);
+            //             // binaryData1 = binaryData;
+            //             const base64String = binaryData.toString('base64');
+            //             // base64String1 = base64String;
+            //             // fs.writeFile(AttachmentFile, binaryData1, 'binary', (err) => {
+            //             // fs.writeFile(AttachmentFile, Buffer.from(binaryData1), (err) => {
+            //             //     if (err) {
+            //             //         console.error('Error writing file:', err);
+            //             //         return;
+            //             //     }
+            //             //     console.log('File saved successfully');
+            //             // });
+            //             resolve(base64String);
 
-                    });
-                    stream.on('error', reject);
-                });
-            }
-            for (let entry of files_content) {
-                var base64data = await streamToBase64(entry.content);
-                console.log(`BASE64DATA:${base64data}`);
-                await UPDATE(Files, entry.ID).with({
-                    contentString: base64data
-                });
-            }
+            //         });
+            //         stream.on('error', reject);
+            //     });
+            // }
+            // // for (let entry of files_content) {
+            // //     var base64data = await streamToBase64(entry.content);
+            // //     console.log(`BASE64DATA:${base64data}`);
+            // //     await UPDATE(Files, entry.ID).with({
+            // //         contentString: base64data
+            // //     });
+            // // }
+            console.log("Updated")
             let workflowmaster_level1 = await SELECT.from(Master_workflow).where({ level: "1.0" });
             var result = workflowmaster_level1.map(function (item) {
                 return item.employee_id;
@@ -587,12 +603,12 @@ module.exports = cds.service.impl(async function () {
 
 
             var body = {
-                "definitionId": "us10.3ebeb48ctrial.vobworkflowc.worfkflowprocess",
+                "definitionId": "us10.361d517ftrial.vobworkflowmahindra.worfkflowprocess",
                 "context": {
                     "vobid": `${sequentialvobid[0].id}`,
                     "level": "1.0",
                     "users": `${sequentialvobid[0].users}`,
-                    "mainurl": "",
+                    "mainurl": `https://${srvUrl}`,
                     "sequentialvobid": `VOB${seqId}`
                 }
             }
@@ -657,7 +673,7 @@ module.exports = cds.service.impl(async function () {
         if (reqdata.status == 'screen2get1') {
             console.log(reqdata);
             let partdetails = await SELECT.from(YOY_Screen2);
-            let venordss = await SELECT.from(YOY_Screen2).where({ vob_id: reqdata.id });
+            let venordss = await SELECT.from(YOY_Screen4).where({ vob_id: reqdata.id });
             let supplier = await SELECT.from(potential_suplier_scr1).where({ id: reqdata.id });
             let vob_details = await SELECT.from(VOB_Screen4).where({ id: reqdata.id })
             let venordssString = JSON.stringify({ supplier, venordss, vob_details });
@@ -918,7 +934,7 @@ module.exports = cds.service.impl(async function () {
 
 
 
-                
+
                 var startDate = parseDateString(startDateString);
                 var endDate = parseDateString(endDateString);
 

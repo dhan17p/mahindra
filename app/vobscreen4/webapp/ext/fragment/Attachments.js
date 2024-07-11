@@ -66,7 +66,7 @@ sap.ui.define([
 							if (foldername === "Click on the folder to select path") {
 								var oMessageBox = sap.m.MessageBox.warning("No folder selected.", {
 									title: "Warning",
-									onClose: function() {
+									onClose: function () {
 										oMessageBox.close();
 										debugger;
 									}
@@ -74,62 +74,62 @@ sap.ui.define([
 							}
 
 							else {
-														
-							debugger
-							var _createEntity = function (item) {
+
 								debugger
-								var data = {
-									mediaType: item.getMediaType(),
-									fileName: item.getFileName(),
-									// size: item.getFileObject().size,
-									Folder: foldername,
-
-								};
-
-								var settings = {
-									url: baseuri + "odata/v4/my/Files",
-									// url: "/odata/v4/my/Files",
-									method: "POST",
-									headers: {
-										"Content-type": "application/json"
-									},
-									data: JSON.stringify(data)
-								};
-
-								return new Promise((resolve, reject) => {
-									$.ajax(settings)
-										.done((results, textStatus, request) => {
-											resolve(results.ID);
-										})
-										.fail((err) => {
-											reject(err);
-										});
-								});
-							};
-
-							_createEntity(item)
-								.then((id) => {
+								var _createEntity = function (item) {
 									debugger
-									var url = baseuri + `odata/v4/my/Files(${id})/content`;
-									// var url = `/odata/v4/my/Files(${id})/content`;
-									item.setUploadUrl(url);
-									cdialog.close();
-									cdialog.destroyContent();
-									dialogOpen = false;
-									// var oUploadSet = this.byId("uploadSet");
-									var oUploadSet = sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Attachments--11").mAggregations.items[1];
-									oUploadSet.setHttpRequestMethod("PUT");
-									oUploadSet.uploadItem(item);
-								})
-								.catch((err) => {
-									console.log(err);
-								});
-							debugger
+									var data = {
+										mediaType: item.getMediaType(),
+										fileName: item.getFileName(),
+										// size: item.getFileObject().size,
+										Folder: foldername,
+
+									};
+
+									var settings = {
+										url: baseuri + "odata/v4/my/Files",
+										// url: "/odata/v4/my/Files",
+										method: "POST",
+										headers: {
+											"Content-type": "application/json"
+										},
+										data: JSON.stringify(data)
+									};
+
+									return new Promise((resolve, reject) => {
+										$.ajax(settings)
+											.done((results, textStatus, request) => {
+												resolve(results.ID);
+											})
+											.fail((err) => {
+												reject(err);
+											});
+									});
+								};
+
+								_createEntity(item)
+									.then((id) => {
+										debugger
+										var url = baseuri + `odata/v4/my/Files(${id})/content`;
+										// var url = `/odata/v4/my/Files(${id})/content`;
+										item.setUploadUrl(url);
+										cdialog.close();
+										cdialog.destroyContent();
+										dialogOpen = false;
+										// var oUploadSet = this.byId("uploadSet");
+										var oUploadSet = sap.ui.getCore().byId("vobscreen4::VOB_Screen4ObjectPage--fe::CustomSubSection::Attachments--11").mAggregations.items[1];
+										oUploadSet.setHttpRequestMethod("PUT");
+										oUploadSet.uploadItem(item);
+									})
+									.catch((err) => {
+										console.log(err);
+									});
+								debugger
+							}
 						}
-					}
 					})
 
-					
+
 				});
 
 				// Add VBox for content
@@ -196,13 +196,13 @@ sap.ui.define([
 							new sap.ui.webc.main.TreeItem("folder_1", {
 								icon: "sap-icon://folder-full",
 								text: "Part No",
-				
+
 								//=======================Vendor 1========================
 								items: [
 									new sap.ui.webc.main.TreeItem("folder_2", {
 										icon: "sap-icon://folder-full",
 										text: "Vendor 1",
-				
+
 										// Nested folders under Vendor 1
 										items: [
 											new sap.ui.webc.main.TreeItem("folder_2.1", {
@@ -223,10 +223,10 @@ sap.ui.define([
 												icon: "sap-icon://folder-full",
 												text: "Quote Backup",
 											}),
-											
+
 											new sap.ui.webc.main.TreeItem("folder_2.5", {
-                                                icon: "sap-icon://folder-full",
-                                                text: "Supplier Details",
+												icon: "sap-icon://folder-full",
+												text: "Supplier Details",
 											}),
 											new sap.ui.webc.main.TreeItem("folder_2.6", {
 												icon: "sap-icon://folder-full",
@@ -531,53 +531,53 @@ sap.ui.define([
 			// 	return iconUrl;
 		},
 
-			onOpenPressed: function(oEvent) {
-				debugger
-				 ;
-				// oEvent.preventDefault();
-				 
-				// var item = oEvent.getSource();
-				// var fileName = item.getFileName();
-				// var url111 = oEvent.getSource().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().oBindingContexts.undefined.oModel.sServiceUrl;
-				// var newurl = item.getUrl();
-				// var bWithoutCommonPart = newurl.substring('/odata/v4/my/'.length);
-				// var new_url = url111 + bWithoutCommonPart;
-				// // let dynamicUrl = newurl.replace("attachments", "Files");
-				// // console.log(dynamicUrl);
-				// var _download = function(item) {
-				// 	var settings = {
-				// 		// url: url111 + item.getUrl(),
-				// 		url: new_url,
-				// 		method: "GET",
-				// 		headers: {
-				// 			"Content-type": "application/octet-stream"
-				// 		},
-				// 		xhrFields: {
-				// 			responseType: 'blob'
-				// 		}
-				// 	};
-			
-				// 	return new Promise((resolve, reject) => {
-				// 		$.ajax(settings)
-				// 			.done((result) => {
-				// 				resolve(result);
-				// 			})
-				// 			.fail((err) => {
-				// 				reject(err);
-				// 			});
-				// 	});
-				// };
-			
-				// _download(item)
-				// 	.then((blob) => {
-				// 		var url = window.URL.createObjectURL(blob);
-				// 		// Open the file in a new tab
-				// 		window.open(url, '_blank');
-				// 	})
-				// 	.catch((err) => {
-				// 		console.log(err);
-				// 	});
-			},
+		onOpenPressed: function (oEvent) {
+			debugger
+			;
+			// oEvent.preventDefault();
+
+			// var item = oEvent.getSource();
+			// var fileName = item.getFileName();
+			// var url111 = oEvent.getSource().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().oBindingContexts.undefined.oModel.sServiceUrl;
+			// var newurl = item.getUrl();
+			// var bWithoutCommonPart = newurl.substring('/odata/v4/my/'.length);
+			// var new_url = url111 + bWithoutCommonPart;
+			// // let dynamicUrl = newurl.replace("attachments", "Files");
+			// // console.log(dynamicUrl);
+			// var _download = function(item) {
+			// 	var settings = {
+			// 		// url: url111 + item.getUrl(),
+			// 		url: new_url,
+			// 		method: "GET",
+			// 		headers: {
+			// 			"Content-type": "application/octet-stream"
+			// 		},
+			// 		xhrFields: {
+			// 			responseType: 'blob'
+			// 		}
+			// 	};
+
+			// 	return new Promise((resolve, reject) => {
+			// 		$.ajax(settings)
+			// 			.done((result) => {
+			// 				resolve(result);
+			// 			})
+			// 			.fail((err) => {
+			// 				reject(err);
+			// 			});
+			// 	});
+			// };
+
+			// _download(item)
+			// 	.then((blob) => {
+			// 		var url = window.URL.createObjectURL(blob);
+			// 		// Open the file in a new tab
+			// 		window.open(url, '_blank');
+			// 	})
+			// 	.catch((err) => {
+			// 		console.log(err);
+			// 	});
+		},
 		formatThumbnailUrl: function (mediaType) {
 			debugger
 			var iconUrl;

@@ -10,7 +10,6 @@ sap.ui.define(
 		var extractedId;
 		var flag = true;
 		return Controller.extend("finalwizard.controller.ObjectPage", {
-
 			onInit: function () {
 				debugger
 
