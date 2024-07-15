@@ -1,6 +1,6 @@
 const cds = require('@sap/cds',);
 const { v4: uuidv4 } = require('uuid');
-const Sequelize = require('sequelize');
+// const Sequelize = require('sequelize');
 const { SELECT, INSERT, UPDATE, DELETE } = cds.ql
 module.exports = cds.service.impl(async function () {
     let {
