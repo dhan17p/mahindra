@@ -186,6 +186,13 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 			routing: {
 				
 				onAfterBinding: async function (oBindingContext) {
+					var userid = new sap.ushell.services.UserInfo().getEmail();
+					if(userid != 'johnson.rozario@peolsolutions.com')
+						{
+					sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::FooterBar::_fc").setVisible(false);		
+					sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Attachments").mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[1].setUploadEnabled(false)
+					sap.ui.getCore().byId("vobscreen3::VOB_Screen3ObjectPage--fe::CustomSubSection::Comment").mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].setEditable(false)
+						}
 					sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::ObjectPage").mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[1].setVisible(false)
 					debugger
 					var currentUrl = window.location.href;

@@ -230,12 +230,6 @@ resources:
     service: html5-apps-repo
     service-name: mahindra-html5-app-host-service
     service-plan: app-host
-- name: bpa_instance 
-  type: org.cloudfoundry.existing-service
-  parameters:
-    service: process-automation-service
-    service-name: bpa_instance
-    service-plan: standard
 - name: TLP_Connectivity
   type: org.cloudfoundry.managed-service
   parameters:

@@ -19,6 +19,7 @@ sap.ui.define([
                 var result = oFunction.getBoundContext().getValue();
                 debugger
                 var router = sap.ui.core.UIComponent;
+                window.flagObjectPage = true;
                 router.getRouterFor(this).navTo("RouteObjectPage", {
                     id: `id=${result.value},IsActiveEntity=true`
                     // isAct: true
@@ -50,6 +51,14 @@ sap.ui.define([
                     id: `id=${oContext.getProperty("id")},IsActiveEntity=true`
                     // isAct: true
                 })
+            },
+            onAfterRendering:async function(oEvent){
+                debugger
+                var userid = new sap.ushell.services.UserInfo().getEmail();
+                if(userid != "dhanush.k@peolsolutions.com"){
+                    sap.ui.getCore().byId("application-finalwizardsem-display-component---Listreport--vobTable").mAggregations.headerToolbar.mAggregations.content[3].setEnabled(false)
+                    sap.ui.getCore().byId("application-finalwizardsem-display-component---Listreport--vobTable").mAggregations.headerToolbar.mAggregations.content[2].setEnabled(false)
+                }
             }
         });
     });

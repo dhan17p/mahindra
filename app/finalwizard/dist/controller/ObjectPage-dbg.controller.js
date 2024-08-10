@@ -9,9 +9,30 @@ sap.ui.define(
 		var key_id
 		var extractedId;
 		var flag = true;
+		var isActiveEntity
 		return Controller.extend("finalwizard.controller.ObjectPage", {
 			onInit: function () {
 				debugger
+				function getIsActiveEntityValue() {
+					// Get the current URL
+					var url = window.location.href;
+				
+					// Use regex to find the IsActiveEntity value in the URL
+					var regex = /IsActiveEntity=(true|false)/;
+					var match = url.match(regex);
+				
+					// If a match is found, return the value
+					if (match) {
+						return match[1]; // "true" or "false"
+					}
+				
+					// Return null if the parameter is not found
+					return null;
+				}
+				
+				// Usage example
+				 isActiveEntity = getIsActiveEntityValue();
+				console.log(isActiveEntity); // Output: true or false
 
 				var currentUrl = window.location.href;
 				// Extract the id from the URL
@@ -33,7 +54,7 @@ sap.ui.define(
 				wizstep.destroyContent();
 				var compCont = new sap.ui.core.ComponentContainer({
 					propagateModel: true,
-					height: "500px"
+					height: "70vh"
 				})
 				wizstep.addContent(compCont);
 				var ocustomerDetailContainer = this.getOwnerComponent().createComponent({
@@ -83,7 +104,7 @@ sap.ui.define(
 				wizstep.destroyContent();
 				var compCont = new sap.ui.core.ComponentContainer({
 					propagateModel: true,
-					height: "500px"
+					height: "70vh"
 				})
 				wizstep.addContent(compCont);
 				var ocustomerDetailContainer = this.getOwnerComponent().createComponent({
@@ -107,7 +128,7 @@ sap.ui.define(
 				wizstep.destroyContent();
 				var compCont = new sap.ui.core.ComponentContainer({
 					propagateModel: true,
-					height: "500px"
+					height: "70vh"
 				})
 				wizstep.addContent(compCont);
 				var ocustomerDetailContainer = this.getOwnerComponent().createComponent({
@@ -131,7 +152,7 @@ sap.ui.define(
 				wizstep.destroyContent();
 				var compCont = new sap.ui.core.ComponentContainer({
 					propagateModel: true,
-					height: "500px"
+					height: "70vh"
 				})
 				wizstep.addContent(compCont);
 				var ocustomerDetailContainer = this.getOwnerComponent().createComponent({

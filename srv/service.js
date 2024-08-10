@@ -25,7 +25,7 @@ module.exports = cds.service.impl(async function () {
         potential_suplier_scr4
 
     } = this.entities;
-    var BPA = await cds.connect.to("BPA_trigger");
+    // var BPA = await cds.connect.to("BPA_trigger");
     // var vcvv = process.env.VCAP_SERVICES;
     // console.log(vcvv);
     var srvUrl;
@@ -48,7 +48,6 @@ module.exports = cds.service.impl(async function () {
     function decodeTimestamp(timestamp) {
         // Create a new Date object using the timestamp
         var date = new Date(timestamp);
-
         // Extract the components of the date
         var year = date.getFullYear();
         var month = ('0' + (date.getMonth() + 1)).slice(-2); // Months are zero-based

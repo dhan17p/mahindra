@@ -8,14 +8,28 @@
 
 
 #application-finalwizardsem-display-component---ObjectPage--partrequest-nextButton{
-    float: right;   
+    float: right;  
+    right: 0;
+    padding-right: 5%; 
 }
 #application-finalwizardsem-display-component---ObjectPage--supplierdetails-nextButton{
     float: right;
+    right: 0;
+    padding-right: 5%; 
 }
 #application-finalwizardsem-display-component---ObjectPage--OptionalInfoStep-nextButton{
     float: right;
+    right: 0;
+    padding-right: 5%; 
 }
 #application-finalwizardsem-display-component---ObjectPage--vobapproval1-nextButton{
     display: none;
+    right: 0;
+    padding-right: 5%; 
+}
+
+.sapMWizard .sapMWizardNextButtonVisible{
+    position: fixed !important;
+    right:0;
+    padding-right: 5%;
 }

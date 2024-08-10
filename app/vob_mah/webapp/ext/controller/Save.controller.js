@@ -17,6 +17,28 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension', 'sap/m/MessageToast', 'sap
                 that = this;
                 sap.ui.getCore().byId("vobmah::VOBObjectPage--fe::CustomSection::Worflow_History").setVisible(false)
             },
+            routing:{
+                onAfterBinding:function (mBindingInfo) {
+                    debugger
+                    var userid = new sap.ushell.services.UserInfo().getEmail();
+                    if(userid != "dhanush.k@peolsolutions.com"){
+                        setTimeout(()=>{
+                            sap.ui.getCore().byId("vobmah::VOBObjectPage--fe::StandardAction::Edit").setVisible(false);
+
+                        },500)
+                        // sap.ui.getCore().byId("vobmah::VOBObjectPage--fe::StandardAction::Edit").setVisible(false);
+                        sap.ui.getCore().byId("vobmah::VOBObjectPage--fe::CustomSubSection::Comments").mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].setEditable(false)
+                    }
+                    if (window.flagObjectPage) {
+                        var editButton = this.base.getView().getContent()[0].mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[4];
+                    setTimeout(()=>{
+                        debugger
+                        window.flagObjectPage = false
+                        editButton.firePress();
+                    },500)
+                    }
+                }
+            },
             editFlow: {
                 onBeforeSave: function (oEvent) {
                     var oLabel = new sap.m.Label({

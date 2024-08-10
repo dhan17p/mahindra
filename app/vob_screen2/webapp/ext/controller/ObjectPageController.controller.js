@@ -28,7 +28,9 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 
 				let oHbox = sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSubSection::Vandorboard--mainHBox").getItems()[1];
-
+				var userid = new sap.ushell.services.UserInfo().getEmail();
+				if(userid == "dhanush.k@peolsolutions.com")
+					{
 				header_anchor.addAction(new sap.m.Button({
 					text: "Add Vendor",
 					type: "Accept",
@@ -130,12 +132,17 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						}
 					}
 				}))
+			}
 			},
 		
 			routing: {
 				onAfterBinding: async function (oBindingContext) {
 					debugger
 					let objectPage = this.base.getView().getContent()[0];
+					var userid = new sap.ushell.services.UserInfo().getEmail();
+					if(userid != "dhanush.k@peolsolutions.com"){
+						sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::FooterBar::_fc").setVisible(false)
+					}
 					// var spathid = oBindingContext.sPath;
 					// var idRegex = /\(([^)]+)\)/;
 					// var match = spathid.match(idRegex);
@@ -203,10 +210,15 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 						let oTableVbox = oHbox.getParent().getItems()[0].getItems()[1];
 						let list_inp_field = [];
 						let input_field;
+						var userid = new sap.ushell.services.UserInfo().getEmail();
+						if(userid != "dhanush.k@peolsolutions.com"){
+							sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSubSection::Comments").mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.items[0].setEditable(false)
+						// if(sap.ushell.services.getEmail())
 						for (let i = 0; i < finalsupp.venordss.length + 18; i++) {
 							input_field = new sap.m.TextArea({
 								height: "42px",
-								wrapping: 'None'
+								wrapping: 'None',
+								editable:false
 								// rows:1
 							});
 							input_field.addStyleClass("inpFieldClass ResetClass")
@@ -217,6 +229,25 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							}
 							list_inp_field.push(input_field);
 						}
+					}
+					else{
+						for (let i = 0; i < finalsupp.venordss.length + 18; i++) {
+							input_field = new sap.m.TextArea({
+								height: "42px",
+								wrapping: 'None',
+								
+								// rows:1
+							});
+							input_field.addStyleClass("inpFieldClass ResetClass")
+							if (vendorNames[j] == "vendor1" || vendorNames[j] == "vendor5") {
+								debugger
+								input_field.addStyleClass("inputcss")
+								// vendor.addStyleClass("custColo1");
+							}
+							list_inp_field.push(input_field);
+						}
+
+					}
 						let inp_vbox = new sap.m.VBox({
 							items: list_inp_field
 						});

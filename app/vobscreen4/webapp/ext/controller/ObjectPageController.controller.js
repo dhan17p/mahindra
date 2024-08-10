@@ -10,7 +10,8 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 			 * @memberOf vobscreen4.ext.controller.ObjectPageController
 			 */
 			onInit: function () {
-				sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSection::Worflow_History").setVisible(false)
+				debugger
+				// sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSection::Worflow_History").setVisible(false)
 				// function generateUniqueId() {
 
 				// 	// Generate a random number

@@ -27,3 +27,9 @@
     right: 0;
     padding-right: 5%; 
 }
+
+.sapMWizard .sapMWizardNextButtonVisible{
+    position: fixed !important;
+    right:0;
+    padding-right: 5%;
+}
