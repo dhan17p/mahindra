@@ -1,9 +1,15 @@
 sap.ui.define([
-    "sap/m/MessageToast",
+	"sap/m/MessageToast",
+    "sap/m/Dialog",
+    "sap/m/Button",
+    "sap/m/Text",
+    "sap/ui/unified/FileUploader",
     "sap/ui/model/json/JSONModel",
-	"sap/ui/core/Item",
-	"sap/m/MessageToast"
-], function(MessageToast) {
+    "sap/m/Tree",
+    "sap/m/CustomTreeItem",
+    "sap/m/HBox",
+    "sap/ui/core/Icon"
+], function (MessageToast, Dialog, Button, Text, FileUploader, JSONModel, Tree, CustomTreeItem, HBox, Icon){
     'use strict';
 	var that = this;
 	var extractedNumber;
@@ -11,6 +17,8 @@ sap.ui.define([
 	var type;
 	var foldername;
 	var baseuri;
+	var  spathtext;
+	var textbox;
 
     return {
         onPress: function(oEvent) {
@@ -358,46 +366,212 @@ sap.ui.define([
 		
 				// contentVBox.addItem(treeTable);
 				
+				// vb1.addItem(
+				// 	new sap.ui.webc.main.Tree("tree",{
+				// 		itemClick: async function (params) {
+				// 			debugger;
+				// 			let selectedItem = params.mParameters.item;
+				// 			let path = '';
+				// 			let currentFolder = selectedItem;
+
+				// 			// Traverse up the hierarchy and construct the path
+				// 			while (currentFolder && currentFolder.getId() !== 'tree') {
+				// 				// Get the icon and name of the current folder
+				// 				// let icon = currentFolder.getIcon();
+				// 				let name = currentFolder.getText();
+
+				// 				// Construct the path by adding the icon and name
+				// 				path = `${name} / ${path}`;
+
+				// 				// Move to the parent folder
+				// 				currentFolder = currentFolder.getParent();
+				// 			}
+
+				// 			// Set the footer text with the constructed path
+				// 			sap.ui.getCore().byId("tree").setFooterText(path);
+				// 		},
+				// 		footerText: "Click on the folder to select path",
+				// 		title: "Folders",
+				// 		items: [
+				// 			new sap.ui.webc.main.TreeItem(`fold1${generateUniqueId()}`, {
+				// 				icon: "sap-icon://folder-full",
+				// 				text: "Part No",
+
+				// 				//=======================Vendor 1========================
+				// 				items: [
+				// 					new sap.ui.webc.main.TreeItem(`fold2${generateUniqueId()}`, {
+				// 						icon: "sap-icon://folder-full",
+				// 						text: "Vendor 1",
+				// 					})]
+				// 			})]
+				// 	})
+				// )
+				var foldernode = [{
+                    text: "NDA"
+                },
+                {
+                    text: "RFQ"
+                },
+                {
+                    text: "Quote and Quote Synthesis"
+                },
+                {
+                    text: "Quote Backup"
+                },
+                {
+                    text: "Supplier Details"
+                },
+                {
+                    text: "Offer price Approval from Bazzar Sales Team"
+                },
+                {
+                    text: "SBU VOB FORUM",
+                    nodes: [
+                        {
+                            text: "PPT"
+                        },
+                        {
+                            text: "Backup data"
+                        },
+                        {
+                            text: "Approval"
+                        },
+                    ],
+                },
+                {
+                    text: "Vendor Code Creation"
+                },
+                {
+                    text: "NDA sign-off with Packagign Supplier"
+                },
+                {
+                    text: "Packaging Sign-offer"
+                },
+                {
+                    text: "Proposed and Approved Drawings"
+                },
+                {
+                    text: "alidation Reports"
+                },
+                {
+                    text: "Final Drawing Approval for Production"
+                },
+                {
+                    text: "VPPAP"
+                },
+                ]
+                var mainNode = [
+                    {
+                        text: "part1",
+                        nodes: [
+                            {
+                                text: "Vendor1",
+                                nodes: foldernode
+                            },
+                            {
+                                text: "Vendor2",
+                                nodes: foldernode
+                            }
+                        ]
+                    }
+                ]
+				var treeModel = new JSONModel({ treeModel: { nodes: mainNode } });
+
+                console.log("Mainnode", mainNode);
+				var oTree = new Tree({
+                    mode: "SingleSelect",
+                    items: {
+                        path: "/treeModel/nodes",
+                        template: new CustomTreeItem({
+                            content: new HBox({
+                                items: [
+                                    new Icon({ src: 'sap-icon://folder-full' }),
+                                    new Text({ text: '{text}' }).addStyleClass("text"),
+                                    // new Icon({ src: 'sap-icon://message-success' })
+                                ]
+                            }).addStyleClass("TreeHboxClass"),
+                            items: {
+                                path: "nodes",
+                                template: new CustomTreeItem({
+                                    content: new HBox({
+                                        width: "500px",
+                                        justifyContent: "SpaceBetween",
+                                        items: [
+                                            new Icon({ src: 'sap-icon://folder-full' }),
+                                            new Text({ text: '{text}' }).addStyleClass("text"),
+                                            // new Icon({ src: 'sap-icon://message-success' })
+                                        ]
+                                    }).addStyleClass("TreeHboxClass")
+                                })
+                            }
+                        })
+                    },
+                    selectionChange: function (oEvent) {
+                        debugger
+                        var aSelectedItems = oTree.getSelectedItems();
+
+                            console.log("Tree selectionChange event triggered");
+
+                            function getPathFromItem(oItem) {
+                                var aPath = [];
+                                while (oItem) {
+                                    var oBindingContext = oItem.getBindingContext();
+                                    if (oBindingContext) {
+                                        aPath.unshift(oBindingContext.getPath());
+                                    } else {
+                                        break; // Exit loop if there is no binding context
+                                    }
+                                    oItem = oItem.getParent();
+                                }
+                                return aPath.join("/");
+                            }
+
+                            if (aSelectedItems.length > 0) {
+                                var sPath = getPathFromItem(aSelectedItems[0]);
+                                console.log("Selected Path: " + sPath);
+                                function getNodeTextFromPath(nodes, path) {
+                                    // Split the path into its components
+                                    var pathComponents = path.split('/').filter(Boolean);
+                                
+                                    // Initialize currentNodes with the top level nodes
+                                    var currentNodes = nodes;
+                                    var textAsPath = '';
+                                    
+                                    // Traverse the nodes according to the path components
+                                    for (var i = 0; i < pathComponents.length; i++) {
+                                        var index = parseInt(pathComponents[i], 10);
+                                        
+                                        // Check if index is valid
+                                        if (isNaN(index) || index < 0 || index >= currentNodes.length) {
+                                            continue; // Invalid path
+                                        }
+                                        
+                                        // Update currentNode and textAsPath
+                                        var currentNode = currentNodes[index];
+                                        textAsPath += (textAsPath ? '/' : '') + currentNode.text;
+                                
+                                        // Move to the next level if nodes exist
+                                        currentNodes = currentNode.nodes || [];
+                                    }
+                                
+                                    // Return the accumulated path of texts
+                                    return textAsPath;
+                                }
+                                var text = getNodeTextFromPath(mainNode, sPath);
+                                debugger
+								// spathtext = text;
+								textbox.setText(text);
+                                console.log("Text at path:", text);
+                            }
+                    }
+                });
+				oTree.setModel(treeModel);
+				vb1.addItem(oTree);
+				textbox= new sap.m.Text({text:"ddd"});
 				vb1.addItem(
-					new sap.ui.webc.main.Tree("tree",{
-						itemClick: async function (params) {
-							debugger;
-							let selectedItem = params.mParameters.item;
-							let path = '';
-							let currentFolder = selectedItem;
-
-							// Traverse up the hierarchy and construct the path
-							while (currentFolder && currentFolder.getId() !== 'tree') {
-								// Get the icon and name of the current folder
-								// let icon = currentFolder.getIcon();
-								let name = currentFolder.getText();
-
-								// Construct the path by adding the icon and name
-								path = `${name} / ${path}`;
-
-								// Move to the parent folder
-								currentFolder = currentFolder.getParent();
-							}
-
-							// Set the footer text with the constructed path
-							sap.ui.getCore().byId("tree").setFooterText(path);
-						},
-						footerText: "Click on the folder to select path",
-						title: "Folders",
-						items: [
-							new sap.ui.webc.main.TreeItem(`fold1${generateUniqueId()}`, {
-								icon: "sap-icon://folder-full",
-								text: "Part No",
-
-								//=======================Vendor 1========================
-								items: [
-									new sap.ui.webc.main.TreeItem(`fold2${generateUniqueId()}`, {
-										icon: "sap-icon://folder-full",
-										text: "Vendor 1",
-									})]
-							})]
-					})
+					textbox
 				)
+
 				
 
 				debugger
@@ -422,16 +596,16 @@ sap.ui.define([
 					}
 				}
 				debugger
-				var child = vb1.mAggregations.items[0].mAggregations.items[0].mAggregations.items[0];
-				for(let a = 0;a<folders.length;a++)
-				{
-					child.addItem(
-						new sap.ui.webc.main.TreeItem(`fold1.3${generateUniqueId()}`,{
-							icon: "sap-icon://folder-full",
-							text: folders[a],
-						})
-					)
-				}
+				// var child = vb1.mAggregations.items[0].mAggregations.items[0].mAggregations.items[0];
+				// for(let a = 0;a<folders.length;a++)
+				// {
+				// 	child.addItem(
+				// 		new sap.ui.webc.main.TreeItem(`fold1.3${generateUniqueId()}`,{
+				// 			icon: "sap-icon://folder-full",
+				// 			text: folders[a],
+				// 		})
+				// 	)
+				// }
 				cdialog.open();
 				
 			}				

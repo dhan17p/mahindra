@@ -24,6 +24,7 @@ modules:
   - name: mahindra-db
   parameters:
     buildpack: nodejs_buildpack
+    
 - name: mahindra-destination-content
   type: com.sap.application.content
   requires:
