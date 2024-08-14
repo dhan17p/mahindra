@@ -5,6 +5,7 @@ sap.ui.define([
 
     return {
         submitmethod: async function(oEvent) {
+            debugger;
             var spathid = oEvent.sPath;
             var idRegex = /id=([a-fA-F0-9-]+)/;
             var match = spathid.match(idRegex);

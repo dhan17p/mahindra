@@ -20,7 +20,7 @@ modules:
     builder: npm
 - name: mahindra-db-deployer
   type: hdb
-  path: gen/db
+  path: gen/pg
   requires:
   - name: mahindra-db
   parameters:
@@ -193,10 +193,10 @@ modules:
     supported-platforms: []
 resources:
 - name: mahindra-db
-  type: com.sap.xs.hdi-container
+  type: org.cloudfoundry.managed-service
   parameters:
-    service: hana
-    service-plan: hdi-shared
+    service: postgresql-db
+    service-plan: trial
 - name: mahindra-destination-service
   type: org.cloudfoundry.managed-service
   parameters:

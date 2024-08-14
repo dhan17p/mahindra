@@ -25,7 +25,19 @@ module.exports = cds.service.impl(async function () {
         potential_suplier_scr4
 
     } = this.entities;
-    // var BPA = await cds.connect.to("BPA_trigger");
+  
+    // var body = {
+    //     "definitionId": "us10.e5793f88trial.vobworkflow.worfkflowprocess",
+    //     "context": {
+    //         "vobid": ``,
+    //         "level": "",
+    //         "users": ``,
+    //         "mainurl": ``,
+    //         "sequentialvobid": ``
+    //     }
+    // }
+    // var response = await BPA.post('/workflow/rest/v1/workflow-instances', body);
+    // var response = await BPA.get('/workflow/rest/v1/workflow-instances');
     // var vcvv = process.env.VCAP_SERVICES;
     // console.log(vcvv);
     var srvUrl;
@@ -67,7 +79,7 @@ module.exports = cds.service.impl(async function () {
     this.before('CREATE', 'Files', req => {
         console.log('Create called')
         console.log(JSON.stringify(req.data))
-        req.data.url = `https://3ebeb48ctrial-dev-mahindra-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/my/Files(${req.data.ID})/content`
+        req.data.url = `https://e5793f88trial-dev-mahindra-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/my/Files(${req.data.ID})/content`
     })
     this.on('UPDATE', Workflow_History, async (req) => {
 
@@ -359,16 +371,15 @@ module.exports = cds.service.impl(async function () {
         // }]
         // var values = await SELECT.from`VOB_Screen4`.columns`{sequentialVobId}`
         var values = await SELECT.from(VOB_Screen4)
-            .columns(b => { b.sequentialVobId })
+            .columns(b => { b.SequentialVobId })
         console.log(values);
-        const sequentialVobIds = values.map(obj => obj.sequentialVobId);
+        const sequentialVobIds = values.map(obj => obj.SequentialVobId);
         const validNumbers = sequentialVobIds
             .map(str => parseInt(str, 10))
             .filter(num => !isNaN(num));
         if (validNumbers.length > 0) {
             var maxSequentialVobId = Math.max(...validNumbers);
             maxSequentialVobId = maxSequentialVobId + 1
-
             console.log("Max sequentialVobId:", maxSequentialVobId);
         } else {
             maxSequentialVobId = 1;
@@ -599,10 +610,9 @@ module.exports = cds.service.impl(async function () {
             var sequentialvobid = await SELECT.from(VOB_Screen4).where({ id: reqdata.id })
             var seqId = sequentialvobid[0].SequentialVobId
             // let formattedSqrId = 'VOB' + seqId.toString().padStart(7, '0');
-
-
+            var BPA = await cds.connect.to("BPA_trigger");
             var body = {
-                "definitionId": "us10.361d517ftrial.vobworkflowmahindra.worfkflowprocess",
+                "definitionId": "us10.e5793f88trial.vobworkflow.worfkflowprocess",
                 "context": {
                     "vobid": `${sequentialvobid[0].id}`,
                     "level": "1.0",

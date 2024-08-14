@@ -6,6 +6,7 @@
     "license": "UNLICENSED",
     "private": true,
     "dependencies": {
+        "@cap-js/postgres": "^1.10.0",
         "@sap-cloud-sdk/http-client": "^3.7.0",
         "@sap-cloud-sdk/resilience": "^3.7.0",
         "@sap/cds": "^7",
@@ -40,7 +41,7 @@
     "cds": {
         "requires": {
             "auth": "dummy",
-            "db":"hana",
+            "db": "postgres",
             "destinations": true,
             "BPA_trigger": {
                 "kind": "odata-v2",
