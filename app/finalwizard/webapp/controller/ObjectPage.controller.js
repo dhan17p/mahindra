@@ -16,22 +16,22 @@ sap.ui.define(
 				function getIsActiveEntityValue() {
 					// Get the current URL
 					var url = window.location.href;
-				
+
 					// Use regex to find the IsActiveEntity value in the URL
 					var regex = /IsActiveEntity=(true|false)/;
 					var match = url.match(regex);
-				
+
 					// If a match is found, return the value
 					if (match) {
 						return match[1]; // "true" or "false"
 					}
-				
+
 					// Return null if the parameter is not found
 					return null;
 				}
-				
+
 				// Usage example
-				 isActiveEntity = getIsActiveEntityValue();
+				isActiveEntity = getIsActiveEntityValue();
 				console.log(isActiveEntity); // Output: true or false
 
 				var currentUrl = window.location.href;
@@ -42,7 +42,7 @@ sap.ui.define(
 				var id = currentUrl.match(/\/VOB\(id=([a-f\d-]+),IsActiveEntity=true\)/);
 				if (id) {
 					console.log(id[1]);
-					if(extractedId == id[1]){
+					if (extractedId == id[1]) {
 						flag = true;
 					}
 					extractedId = id[1];// Output: a55567a3-a5a4-4b71-a9e1-858b73ae1cc2
@@ -54,7 +54,7 @@ sap.ui.define(
 				wizstep.destroyContent();
 				var compCont = new sap.ui.core.ComponentContainer({
 					propagateModel: true,
-					height: "70vh"
+					height: "75%"
 				})
 				wizstep.addContent(compCont);
 				var ocustomerDetailContainer = this.getOwnerComponent().createComponent({
@@ -83,7 +83,7 @@ sap.ui.define(
 				var id = currentUrl.match(/\/VOB\(id=([a-f\d-]+),IsActiveEntity=true\)/);
 				if (id) {
 					console.log(id[1]);
-					if(extractedId != id[1]){
+					if (extractedId != id[1]) {
 						flag = true;
 					}
 					extractedId = id[1];// Output: a55567a3-a5a4-4b71-a9e1-858b73ae1cc2
@@ -104,7 +104,7 @@ sap.ui.define(
 				wizstep.destroyContent();
 				var compCont = new sap.ui.core.ComponentContainer({
 					propagateModel: true,
-					height: "70vh"
+					height: "75%"
 				})
 				wizstep.addContent(compCont);
 				var ocustomerDetailContainer = this.getOwnerComponent().createComponent({
@@ -128,7 +128,7 @@ sap.ui.define(
 				wizstep.destroyContent();
 				var compCont = new sap.ui.core.ComponentContainer({
 					propagateModel: true,
-					height: "70vh"
+					height: "75%"
 				})
 				wizstep.addContent(compCont);
 				var ocustomerDetailContainer = this.getOwnerComponent().createComponent({
@@ -152,7 +152,7 @@ sap.ui.define(
 				wizstep.destroyContent();
 				var compCont = new sap.ui.core.ComponentContainer({
 					propagateModel: true,
-					height: "70vh"
+					height: "75%"
 				})
 				wizstep.addContent(compCont);
 				var ocustomerDetailContainer = this.getOwnerComponent().createComponent({

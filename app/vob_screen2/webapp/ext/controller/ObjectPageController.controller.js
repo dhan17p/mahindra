@@ -167,7 +167,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					var id = currentUrl.match(uuidRegex)[1];
 					var vendorNames;
 
-					debugger
+
 					let oFunction1 = this.getView().getModel().bindContext("/vanddetails(...)");
 					var statusval1 = JSON.stringify({ id: id, status: "screen2get1" })
 					oFunction1.setParameter("status", statusval1)
@@ -175,6 +175,8 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					debugger
 					var result1 = oFunction1.getBoundContext().getValue().value;
 					var finalsupp = JSON.parse(result1);
+
+					debugger
 					 vendorNames = finalsupp.supplier
 					 var vendor4details= finalsupp.vob_details;
 					let oHbox = sap.ui.getCore().byId("vobscreen2::VOB_Screen2ObjectPage--fe::CustomSubSection::Vandorboard--mainHBox").getItems()[1];

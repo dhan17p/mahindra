@@ -28,7 +28,7 @@
         "watch-vob_mah": "cds watch --open vob_mah/webapp/index.html?sap-ui-xx-viewCache=false",
         "undeploy": "cf undeploy mahindra --delete-services --delete-service-keys --delete-service-brokers",
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
-        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+        "deploy": "cf deploy mta_archives/mahindra_1.0.0.mtar",
         "watch-vob_screen2": "cds watch --open vob_screen2/webapp/index.html?sap-ui-xx-viewCache=false",
         "watch-vobscreen3": "cds watch --open vobscreen3/webapp/index.html?sap-ui-xx-viewCache=false",
         "watch-vobscreen4": "cds watch --open vobscreen4/webapp/index.html?sap-ui-xx-viewCache=false",

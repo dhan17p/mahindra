@@ -11,18 +11,18 @@
             <Page id="wizardContentPage" showHeader="false">
                 <content>
                     <Wizard id="CreateProductWizard" class="height1" renderMode="Page">
-                        <WizardStep id="partrequest" title="VOB-Part Request" validated="true" icon ="sap-icon://request">
+                        <WizardStep id="partrequest" class="wizardStepClass" title="VOB-Part Request" validated="true" icon ="sap-icon://request">
                         <!-- <Text text="sssss"></Text> -->
-                           <core:ComponentContainer id="screen1" propagateModel="true" height="70vh" />
+                           <core:ComponentContainer id="screen1" propagateModel="true" height="75%" />
                         </WizardStep>
-                        <WizardStep id="supplierdetails" validated="true" title="VOB-Supplier Details" activate="screen2activate" icon ="sap-icon://supplier">
-                            <core:ComponentContainer id="screen2" propagateModel="true" height="70vh" />
+                        <WizardStep id="supplierdetails" class="wizardStepClass" validated="true" title="VOB-Supplier Details" activate="screen2activate" icon ="sap-icon://supplier">
+                            <core:ComponentContainer id="screen2" propagateModel="true" height="75%" />
                         </WizardStep>
-                        <WizardStep id="OptionalInfoStep" validated="true" activate="screen3activate" title="VOB-Document Upload" icon="sap-icon://add-document">
-                            <core:ComponentContainer id="screen3" propagateModel="true" height="70vh" />
+                        <WizardStep id="OptionalInfoStep" class="wizardStepClass" validated="true" activate="screen3activate" title="VOB-Document Upload" icon="sap-icon://add-document">
+                            <core:ComponentContainer id="screen3" propagateModel="true" height="75%" />
                         </WizardStep>
-                        <WizardStep id="vobapproval1" complete="pricingComplete" validated="true" title="VOB-Approval" activate="screen4activate" icon="sap-icon://employee-approvals">
-                            <core:ComponentContainer id="screen4" propagateModel="true" height="70vh" />
+                        <WizardStep id="vobapproval1" class="wizardStepClass" complete="pricingComplete" validated="true" title="VOB-Approval" activate="screen4activate" icon="sap-icon://employee-approvals">
+                            <core:ComponentContainer id="screen4" propagateModel="true" height="75%" />
                         </WizardStep>
                     </Wizard>
                 </content>
